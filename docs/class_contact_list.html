@@ -132,15 +132,15 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a6bb31b66af7743b70e8246b50d965a51" id="r_a6bb31b66af7743b70e8246b50d965a51"><td class="memItemLeft" align="right" valign="top">QVector&lt; <a class="el" href="class_contact.html">Contact</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6bb31b66af7743b70e8246b50d965a51">allContacts</a> () const</td></tr>
 <tr class="memdesc:a6bb31b66af7743b70e8246b50d965a51"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets all contacts in the list.  <br /></td></tr>
 <tr class="separator:a6bb31b66af7743b70e8246b50d965a51"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a88f4928bf7e4ab9e09d964e024469c76" id="r_a88f4928bf7e4ab9e09d964e024469c76"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a88f4928bf7e4ab9e09d964e024469c76">contains</a> (const QString &amp;name) const</td></tr>
-<tr class="memdesc:a88f4928bf7e4ab9e09d964e024469c76"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if a contact exists in the list.  <br /></td></tr>
-<tr class="separator:a88f4928bf7e4ab9e09d964e024469c76"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a39dcf35bc1ee9316a01ab355e036d010" id="r_a39dcf35bc1ee9316a01ab355e036d010"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a39dcf35bc1ee9316a01ab355e036d010">count</a> () const</td></tr>
-<tr class="memdesc:a39dcf35bc1ee9316a01ab355e036d010"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the number of contacts in the list.  <br /></td></tr>
-<tr class="separator:a39dcf35bc1ee9316a01ab355e036d010"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7dcdcc1325e39501487e8489667128e0" id="r_a7dcdcc1325e39501487e8489667128e0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7dcdcc1325e39501487e8489667128e0">isEmpty</a> () const</td></tr>
-<tr class="memdesc:a7dcdcc1325e39501487e8489667128e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the list is empty.  <br /></td></tr>
-<tr class="separator:a7dcdcc1325e39501487e8489667128e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a220414e2439dc1d90b1e6daba6bb1ffc" id="r_a220414e2439dc1d90b1e6daba6bb1ffc"><td class="memItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a220414e2439dc1d90b1e6daba6bb1ffc">contains</a> (const QString &amp;name) const</td></tr>
+<tr class="memdesc:a220414e2439dc1d90b1e6daba6bb1ffc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if a contact exists in the list.  <br /></td></tr>
+<tr class="separator:a220414e2439dc1d90b1e6daba6bb1ffc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a63b7a4d4a815aa1d026db3affc2340ba" id="r_a63b7a4d4a815aa1d026db3affc2340ba"><td class="memItemLeft" align="right" valign="top">constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a63b7a4d4a815aa1d026db3affc2340ba">count</a> () const</td></tr>
+<tr class="memdesc:a63b7a4d4a815aa1d026db3affc2340ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the number of contacts in the list.  <br /></td></tr>
+<tr class="separator:a63b7a4d4a815aa1d026db3affc2340ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c35bdaf57078d8b10dd1e5a988ca10e" id="r_a2c35bdaf57078d8b10dd1e5a988ca10e"><td class="memItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2c35bdaf57078d8b10dd1e5a988ca10e">isEmpty</a> () const</td></tr>
+<tr class="memdesc:a2c35bdaf57078d8b10dd1e5a988ca10e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the list is empty.  <br /></td></tr>
+<tr class="separator:a2c35bdaf57078d8b10dd1e5a988ca10e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2621398efd1b929babf0311f95b716f8" id="r_a2621398efd1b929babf0311f95b716f8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2621398efd1b929babf0311f95b716f8">saveToFile</a> (const QString &amp;filePath=&quot;contacts.csv&quot;) const</td></tr>
 <tr class="memdesc:a2621398efd1b929babf0311f95b716f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves contacts to a CSV file.  <br /></td></tr>
 <tr class="separator:a2621398efd1b929babf0311f95b716f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -267,11 +267,14 @@ QVector&lt;Contact&gt; contenente tutti i contatti </dd></dl>
 
 </div>
 </div>
-<a id="a88f4928bf7e4ab9e09d964e024469c76" name="a88f4928bf7e4ab9e09d964e024469c76"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a88f4928bf7e4ab9e09d964e024469c76">&#9670;&#160;</a></span>contains()</h2>
+<a id="a220414e2439dc1d90b1e6daba6bb1ffc" name="a220414e2439dc1d90b1e6daba6bb1ffc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a220414e2439dc1d90b1e6daba6bb1ffc">&#9670;&#160;</a></span>contains()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">bool ContactList::contains </td>
@@ -280,6 +283,11 @@ QVector&lt;Contact&gt; contenente tutti i contatti </dd></dl>
           <td> const</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>Checks if a contact exists in the list. </p>
@@ -301,11 +309,14 @@ QVector&lt;Contact&gt; contenente tutti i contatti </dd></dl>
 
 </div>
 </div>
-<a id="a39dcf35bc1ee9316a01ab355e036d010" name="a39dcf35bc1ee9316a01ab355e036d010"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a39dcf35bc1ee9316a01ab355e036d010">&#9670;&#160;</a></span>count()</h2>
+<a id="a63b7a4d4a815aa1d026db3affc2340ba" name="a63b7a4d4a815aa1d026db3affc2340ba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a63b7a4d4a815aa1d026db3affc2340ba">&#9670;&#160;</a></span>count()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">int ContactList::count </td>
@@ -314,6 +325,11 @@ QVector&lt;Contact&gt; contenente tutti i contatti </dd></dl>
           <td> const</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>Gets the number of contacts in the list. </p>
@@ -354,11 +370,14 @@ int conteggio dei contatti </dd></dl>
 
 </div>
 </div>
-<a id="a7dcdcc1325e39501487e8489667128e0" name="a7dcdcc1325e39501487e8489667128e0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7dcdcc1325e39501487e8489667128e0">&#9670;&#160;</a></span>isEmpty()</h2>
+<a id="a2c35bdaf57078d8b10dd1e5a988ca10e" name="a2c35bdaf57078d8b10dd1e5a988ca10e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2c35bdaf57078d8b10dd1e5a988ca10e">&#9670;&#160;</a></span>isEmpty()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">bool ContactList::isEmpty </td>
@@ -367,6 +386,11 @@ int conteggio dei contatti </dd></dl>
           <td> const</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>Checks if the list is empty. </p>

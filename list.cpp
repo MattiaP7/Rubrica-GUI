@@ -6,8 +6,12 @@
 #include "list.hpp"
 #include <QFile>
 #include <QTextStream>
+#include <thread>
 
 namespace {
+    // Soglia per utilizzare i thread
+    #define THRESHOLD 3
+
     /**
     * @brief Unisce due liste ordinate in una singola lista ordinata.
     *
@@ -20,7 +24,7 @@ namespace {
         if (!right) return left;
 
 
-        if (left->contact.name() < right->contact.name()) {
+        if (left->contact.name().toLower() < right->contact.name().toLower()) {
             left->next = merge(left->next, right);
             return left;
         } else {
@@ -62,15 +66,33 @@ namespace {
     * @param head Puntatore alla testa della lista da ordinare.
     * @return `Node*` Puntatore alla testa della lista ordinata.
     */
-    Node* merge_sort(Node* head) {
+    Node* merge_sort(Node* head, int depth = 0) {
         if (!head || !head->next) return head;
 
         Node* left;
         Node* right;
         split(head, &left, &right);
 
-        left = merge_sort(left);
-        right = merge_sort(right);
+        if (depth < THRESHOLD){
+            left = merge_sort(left, depth + 1);
+            right = merge_sort(right, depth + 1);
+        } else {
+            Node* sorted_left = nullptr;
+            Node* sorted_right = nullptr;
+
+            std::thread left_thread([&](){
+                sorted_left = merge_sort(left, depth + 1);
+            });
+            std::thread right_thread([&](){
+                sorted_right = merge_sort(right, depth + 1);
+            });
+
+            left_thread.join();
+            right_thread.join();
+
+            left = sorted_left;
+            right = sorted_right;
+        }
 
         return merge(left, right);
     }
@@ -166,14 +188,14 @@ QVector<Contact> ContactList::allContacts() const
     return contacts;
 }
 
-bool ContactList::contains(const QString& name) const
+constexpr bool ContactList::contains(const QString& name) const
 {
     return findNode(name) != nullptr;
 }
 
-int ContactList::count() const { return m_count; }
+constexpr int ContactList::count() const { return m_count; }
 
-bool ContactList::isEmpty() const { return m_count == 0; }
+constexpr bool ContactList::isEmpty() const { return m_count == 0; }
 
 bool ContactList::saveToFile(const QString& filePath) const
 {
@@ -257,5 +279,5 @@ Node* ContactList::findNode(const QString& name) const
 
 void ContactList::sort()
 {
-    m_head = merge_sort(m_head);
+    m_head = merge_sort(m_head, this->count());
 }

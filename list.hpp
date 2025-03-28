@@ -146,7 +146,7 @@ public:
      * @param name Nome da verificare
      * @return true se il contatto esiste, false altrimenti
      */
-    bool contains(const QString& name) const;
+    constexpr bool contains(const QString& name) const;
 
     /**
      * @brief Gets the number of contacts in the list
@@ -156,7 +156,7 @@ public:
      *
      * @return int conteggio dei contatti
      */
-    int count() const;
+    constexpr int count() const;
 
     /**
      * @brief Checks if the list is empty
@@ -166,7 +166,7 @@ public:
      *
      * @return true se la lista è vuota, false altrimenti
      */
-    bool isEmpty() const;
+    constexpr bool isEmpty() const;
 
     /**
      * @brief Saves contacts to a CSV file

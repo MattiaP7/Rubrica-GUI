@@ -36,14 +36,14 @@ MainWindow::~MainWindow()
 
 void MainWindow::initializeUI()
 {
-    // Configure table
+    // Configuro la tabella, 3 colonne Nome, Telefono, Email
     ui->tableWidget->setColumnCount(3);
     QStringList headers{"Nome", "Telefono", "Email"};
     ui->tableWidget->setHorizontalHeaderLabels(headers);
     ui->tableWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
-    // Connect buttons using modern Qt5 syntax
+    // Connetto tutti pulsanti della UI
     connect(ui->btnAggiungi, &QPushButton::clicked,
             this, &MainWindow::onAddButtonClicked);
     connect(ui->btnCerca, &QPushButton::clicked,
@@ -52,6 +52,7 @@ void MainWindow::initializeUI()
             this, &MainWindow::onRemoveButtonClicked);
     connect(ui->btnModifica, &QPushButton::clicked,
             this, &MainWindow::onEditButtonClicked);
+    // Cambio il testo e la funzionalità del primo bottone, per evitare di crearne un'altro
     connect(ui->tableWidget, &QTableWidget::itemSelectionChanged, this, [this]() {
         if(ui->btnAggiungi->text() == "Conferma Modifica") {
             resetForm();
@@ -67,6 +68,7 @@ void MainWindow::refreshContactTable()
     // Pulisci e ripopola la tabella
     ui->tableWidget->setRowCount(0);
 
+    // contacsts contiene tutti i contatti della lista
     const auto contacts = m_contactList.allContacts();
     for (const auto& contact : contacts) {
         // Salta i contatti vuoti
@@ -118,7 +120,8 @@ void MainWindow::onAddButtonClicked()
     }
 
     if(currentPhone.size() != 10 || !currentPhone.toLongLong()) {
-        showErrorMessage("Errore", "Inserisci un numero di telefono valido (10 cifre)");
+        QString message = QString("Devi inserire un numero di telefono a 10 cifre, hai inserito %1 cifre").arg(currentPhone.size());
+        showErrorMessage("Errore", message);
         ui->inputTelefono->selectAll();
         ui->inputTelefono->setFocus();
         return;
@@ -159,8 +162,8 @@ void MainWindow::onSearchButtonClicked()
         QMessageBox::information(this, "Risultati", "Nessun contatto trovato");
         clearHighlights();
     } else {
+        // stampo il numero di contatti trovati e evidenzio nella tabella i contatti che matchano la query
         highlightSearchResults(results);
-        // stampo il numero di contatti trovati
         QString message = QString("Trovati %1 contatti").arg(results.size());
         QMessageBox::information(this, "Risultati", message);
     }
@@ -213,7 +216,7 @@ void MainWindow::onEditButtonClicked()
     ui->inputEmail->setText(originalEmail);
 
     // 4. Cambia testo del pulsante "Aggiungi" in "Conferma Modifica"
-    ui->btnAggiungi->setText("Conferma Modifica");
+    ui->btnAggiungi->setText("Conferma");
     ui->btnAggiungi->disconnect();
     connect(ui->btnAggiungi, &QPushButton::clicked, this, [this, originalName]() {
         confirmEdit(originalName);
@@ -365,6 +368,7 @@ void MainWindow::clearHighlights()
 
 int MainWindow::showSelectionDialog(const QString& title, const QString& message, const QVector<Contact>& contacts)
 {
+    // Nel dialog vengono mostrati: indice. nome - telefono
     QStringList items;
     for(int i = 0; i < contacts.size(); ++i) {
         items << QString("%1. %2 - %3").arg(i+1).arg(contacts[i].name()).arg(contacts[i].phone());
@@ -377,6 +381,8 @@ int MainWindow::showSelectionDialog(const QString& title, const QString& message
         return items.indexOf(selected);
     }
     return -1;
+
+    // Se tutto è andato a buon fine ritorniamo l'indice dell'items, altrimenti -1
 }
 
 
