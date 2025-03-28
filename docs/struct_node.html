@@ -92,7 +92,7 @@ $(function(){ initResizable(false); });
 </div><!--header-->
 <div class="contents">
 
-<p>The <a class="el" href="struct_node.html" title="The Node struct with the Contact values and pointer to the next node.">Node</a> struct with the <a class="el" href="class_contact.html" title="Represents a contact with name, phone number, and email.">Contact</a> values and pointer to the next node.  
+<p><a class="el" href="struct_node.html" title="Node structure for the linked list implementation.">Node</a> structure for the linked list implementation.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="list_8hpp_source.html">list.hpp</a>&gt;</code></p>
@@ -100,20 +100,21 @@ $(function(){ initResizable(false); });
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a808b98b14155f913ee1d2b4225c27ae6" id="r_a808b98b14155f913ee1d2b4225c27ae6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a808b98b14155f913ee1d2b4225c27ae6">Node</a> (const <a class="el" href="class_contact.html">Contact</a> &amp;c, <a class="el" href="struct_node.html">Node</a> *n=nullptr)</td></tr>
-<tr class="memdesc:a808b98b14155f913ee1d2b4225c27ae6"><td class="mdescLeft">&#160;</td><td class="mdescRight">costructor for the struct <a class="el" href="struct_node.html" title="The Node struct with the Contact values and pointer to the next node.">Node</a>  <br /></td></tr>
+<tr class="memdesc:a808b98b14155f913ee1d2b4225c27ae6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for <a class="el" href="struct_node.html" title="Node structure for the linked list implementation.">Node</a> structure.  <br /></td></tr>
 <tr class="separator:a808b98b14155f913ee1d2b4225c27ae6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a4e6a09076832162dcf62b6725303c064" id="r_a4e6a09076832162dcf62b6725303c064"><td class="memItemLeft" align="right" valign="top"><a id="a4e6a09076832162dcf62b6725303c064" name="a4e6a09076832162dcf62b6725303c064"></a>
-<a class="el" href="class_contact.html">Contact</a>&#160;</td><td class="memItemRight" valign="bottom"><b>contact</b></td></tr>
+<tr class="memitem:a4e6a09076832162dcf62b6725303c064" id="r_a4e6a09076832162dcf62b6725303c064"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_contact.html">Contact</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4e6a09076832162dcf62b6725303c064">contact</a></td></tr>
 <tr class="separator:a4e6a09076832162dcf62b6725303c064"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2559a716f69ccaa76d648d9f1b83065e" id="r_a2559a716f69ccaa76d648d9f1b83065e"><td class="memItemLeft" align="right" valign="top"><a id="a2559a716f69ccaa76d648d9f1b83065e" name="a2559a716f69ccaa76d648d9f1b83065e"></a>
-<a class="el" href="struct_node.html">Node</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>next</b></td></tr>
+<tr class="memitem:a2559a716f69ccaa76d648d9f1b83065e" id="r_a2559a716f69ccaa76d648d9f1b83065e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_node.html">Node</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2559a716f69ccaa76d648d9f1b83065e">next</a></td></tr>
 <tr class="separator:a2559a716f69ccaa76d648d9f1b83065e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>The <a class="el" href="struct_node.html" title="The Node struct with the Contact values and pointer to the next node.">Node</a> struct with the <a class="el" href="class_contact.html" title="Represents a contact with name, phone number, and email.">Contact</a> values and pointer to the next node. </p>
+<div class="textblock"><p><a class="el" href="struct_node.html" title="Node structure for the linked list implementation.">Node</a> structure for the linked list implementation. </p>
+<p>Struttura <a class="el" href="struct_node.html" title="Node structure for the linked list implementation.">Node</a> per l'implementazione della lista concatenata</p>
+<p>This structure represents a single node in the linked list, containing a <a class="el" href="class_contact.html" title="Represents a contact entry with name, phone number and optional email.">Contact</a> object and a pointer to the next node in the sequence.</p>
+<p>Questa struttura rappresenta un singolo nodo nella lista concatenata, contenente un oggetto <a class="el" href="class_contact.html" title="Represents a contact entry with name, phone number and optional email.">Contact</a> e un puntatore al nodo successivo nella sequenza. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a808b98b14155f913ee1d2b4225c27ae6" name="a808b98b14155f913ee1d2b4225c27ae6"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a808b98b14155f913ee1d2b4225c27ae6">&#9670;&#160;</a></span>Node()</h2>
@@ -142,14 +143,48 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>costructor for the struct <a class="el" href="struct_node.html" title="The Node struct with the Contact values and pointer to the next node.">Node</a> </p>
+<p>Constructor for <a class="el" href="struct_node.html" title="Node structure for the linked list implementation.">Node</a> structure. </p>
+<p>Costruttore per la struttura <a class="el" href="struct_node.html" title="Node structure for the linked list implementation.">Node</a></p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">c</td><td>contact values </td></tr>
-    <tr><td class="paramname">n</td><td>pointer to the next node, with default value of nullptr </td></tr>
+    <tr><td class="paramname">c</td><td><a class="el" href="class_contact.html" title="Represents a contact entry with name, phone number and optional email.">Contact</a> object to store in the node </td></tr>
+    <tr><td class="paramname">n</td><td>Pointer to the next node (defaults to nullptr)</td></tr>
+    <tr><td class="paramname">c</td><td>Oggetto <a class="el" href="class_contact.html" title="Represents a contact entry with name, phone number and optional email.">Contact</a> da memorizzare nel nodo </td></tr>
+    <tr><td class="paramname">n</td><td>Puntatore al nodo successivo (default a nullptr) </td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a4e6a09076832162dcf62b6725303c064" name="a4e6a09076832162dcf62b6725303c064"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e6a09076832162dcf62b6725303c064">&#9670;&#160;</a></span>contact</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_contact.html">Contact</a> Node::contact</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p><a class="el" href="class_contact.html" title="Represents a contact entry with name, phone number and optional email.">Contact</a> data stored in the node / Dati del contatto memorizzati nel nodo </p>
+
+</div>
+</div>
+<a id="a2559a716f69ccaa76d648d9f1b83065e" name="a2559a716f69ccaa76d648d9f1b83065e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2559a716f69ccaa76d648d9f1b83065e">&#9670;&#160;</a></span>next</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_node.html">Node</a>* Node::next</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Pointer to the next node in the list / Puntatore al nodo successivo nella lista </p>
 
 </div>
 </div>

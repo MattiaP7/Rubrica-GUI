@@ -91,7 +91,7 @@ $(function(){ initResizable(false); });
 </div><!--header-->
 <div class="contents">
 
-<p>Represents a contact with name, phone number, and email.  
+<p>Represents a contact entry with name, phone number and optional email.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="contatto_8hpp_source.html">contatto.hpp</a>&gt;</code></p>
@@ -99,31 +99,31 @@ $(function(){ initResizable(false); });
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ae39444f378e6de7fd6c3e60981949af5" id="r_ae39444f378e6de7fd6c3e60981949af5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae39444f378e6de7fd6c3e60981949af5">Contact</a> ()</td></tr>
-<tr class="memdesc:ae39444f378e6de7fd6c3e60981949af5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor.  <br /></td></tr>
+<tr class="memdesc:ae39444f378e6de7fd6c3e60981949af5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor creates an empty contact.  <br /></td></tr>
 <tr class="separator:ae39444f378e6de7fd6c3e60981949af5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a35d66158a972c914128c2f1e0be0f6bd" id="r_a35d66158a972c914128c2f1e0be0f6bd"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a35d66158a972c914128c2f1e0be0f6bd">Contact</a> (const QString &amp;<a class="el" href="#a7994a4deabe6089561780ad057d6ce25">name</a>, const QString &amp;<a class="el" href="#a6a674a362a967d77b15cba1ba9b65d50">phone</a>, const QString &amp;<a class="el" href="#a23cd41bdb518dc514f597e207a9fb9f6">email</a>=&quot;&quot;)</td></tr>
-<tr class="memdesc:a35d66158a972c914128c2f1e0be0f6bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parameterized constructor.  <br /></td></tr>
+<tr class="memdesc:a35d66158a972c914128c2f1e0be0f6bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parameterized constructor creates a contact with given data.  <br /></td></tr>
 <tr class="separator:a35d66158a972c914128c2f1e0be0f6bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7994a4deabe6089561780ad057d6ce25" id="r_a7994a4deabe6089561780ad057d6ce25"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7994a4deabe6089561780ad057d6ce25">name</a> () const</td></tr>
-<tr class="memdesc:a7994a4deabe6089561780ad057d6ce25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the contact's name.  <br /></td></tr>
+<tr class="memdesc:a7994a4deabe6089561780ad057d6ce25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the contact's full name.  <br /></td></tr>
 <tr class="separator:a7994a4deabe6089561780ad057d6ce25"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6a674a362a967d77b15cba1ba9b65d50" id="r_a6a674a362a967d77b15cba1ba9b65d50"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6a674a362a967d77b15cba1ba9b65d50">phone</a> () const</td></tr>
-<tr class="memdesc:a6a674a362a967d77b15cba1ba9b65d50"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the contact's phone number.  <br /></td></tr>
+<tr class="memdesc:a6a674a362a967d77b15cba1ba9b65d50"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the contact's phone number.  <br /></td></tr>
 <tr class="separator:a6a674a362a967d77b15cba1ba9b65d50"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a23cd41bdb518dc514f597e207a9fb9f6" id="r_a23cd41bdb518dc514f597e207a9fb9f6"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a23cd41bdb518dc514f597e207a9fb9f6">email</a> () const</td></tr>
-<tr class="memdesc:a23cd41bdb518dc514f597e207a9fb9f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the contact's email.  <br /></td></tr>
+<tr class="memdesc:a23cd41bdb518dc514f597e207a9fb9f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the contact's email address.  <br /></td></tr>
 <tr class="separator:a23cd41bdb518dc514f597e207a9fb9f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2fdcd52720f00cffbdd56fd72fa8cc0b" id="r_a2fdcd52720f00cffbdd56fd72fa8cc0b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2fdcd52720f00cffbdd56fd72fa8cc0b">isEmail</a> ()</td></tr>
-<tr class="memdesc:a2fdcd52720f00cffbdd56fd72fa8cc0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">check if a string is considered as 'email' (MUST have '@' and a valid domain, such as '@gmail.com')  <br /></td></tr>
+<tr class="memdesc:a2fdcd52720f00cffbdd56fd72fa8cc0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Validates the email format.  <br /></td></tr>
 <tr class="separator:a2fdcd52720f00cffbdd56fd72fa8cc0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7d924be8ba2f54fec765ed5ea5272ae3" id="r_a7d924be8ba2f54fec765ed5ea5272ae3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7d924be8ba2f54fec765ed5ea5272ae3">setName</a> (const QString &amp;<a class="el" href="#a7994a4deabe6089561780ad057d6ce25">name</a>)</td></tr>
-<tr class="memdesc:a7d924be8ba2f54fec765ed5ea5272ae3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the contact's name.  <br /></td></tr>
+<tr class="memdesc:a7d924be8ba2f54fec765ed5ea5272ae3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the contact's full name.  <br /></td></tr>
 <tr class="separator:a7d924be8ba2f54fec765ed5ea5272ae3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abf8651aa6caf3c93e8eedbef3eb67f13" id="r_abf8651aa6caf3c93e8eedbef3eb67f13"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abf8651aa6caf3c93e8eedbef3eb67f13">setPhone</a> (const QString &amp;<a class="el" href="#a6a674a362a967d77b15cba1ba9b65d50">phone</a>)</td></tr>
-<tr class="memdesc:abf8651aa6caf3c93e8eedbef3eb67f13"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the contact's phone number.  <br /></td></tr>
+<tr class="memdesc:abf8651aa6caf3c93e8eedbef3eb67f13"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the contact's phone number.  <br /></td></tr>
 <tr class="separator:abf8651aa6caf3c93e8eedbef3eb67f13"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4a8d381b38663c5886b4a40f1a0b7f99" id="r_a4a8d381b38663c5886b4a40f1a0b7f99"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4a8d381b38663c5886b4a40f1a0b7f99">setEmail</a> (const QString &amp;<a class="el" href="#a23cd41bdb518dc514f597e207a9fb9f6">email</a>)</td></tr>
-<tr class="memdesc:a4a8d381b38663c5886b4a40f1a0b7f99"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the contact's email.  <br /></td></tr>
+<tr class="memdesc:a4a8d381b38663c5886b4a40f1a0b7f99"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the contact's email address.  <br /></td></tr>
 <tr class="separator:a4a8d381b38663c5886b4a40f1a0b7f99"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaa2d73a4c2a6e6680858a4841208d94b" id="r_aaa2d73a4c2a6e6680858a4841208d94b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaa2d73a4c2a6e6680858a4841208d94b">operator==</a> (const <a class="el" href="class_contact.html">Contact</a> &amp;other) const</td></tr>
 <tr class="memdesc:aaa2d73a4c2a6e6680858a4841208d94b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Equality comparison operator.  <br /></td></tr>
@@ -133,8 +133,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:afce58a9215ddc0ed1cc43aa7eb66fc7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Represents a contact with name, phone number, and email. </p>
-<p>Rappresenta un contatto con nome e numero di telefono, può anche avere una email </p>
+<div class="textblock"><p>Represents a contact entry with name, phone number and optional email. </p>
+<p>Rappresenta una voce della rubrica con nome, numero di telefono e email opzionale</p>
+<p>This class encapsulates all information about a single contact, providing methods to access and modify the data, and validation capabilities.</p>
+<p>Questa classe incapsula tutte le informazioni su un singolo contatto, fornendo metodi per accedere e modificare i dati, e capacità di validazione. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ae39444f378e6de7fd6c3e60981949af5" name="ae39444f378e6de7fd6c3e60981949af5"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae39444f378e6de7fd6c3e60981949af5">&#9670;&#160;</a></span>Contact() <span class="overload">[1/2]</span></h2>
@@ -151,8 +153,8 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Default constructor. </p>
-<p>Costruttore di default </p>
+<p>Default constructor creates an empty contact. </p>
+<p>Costruttore di default crea un contatto vuoto </p>
 
 </div>
 </div>
@@ -180,12 +182,16 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Parameterized constructor. </p>
+<p>Parameterized constructor creates a contact with given data. </p>
+<p>Costruttore parametrizzato crea un contatto con i dati forniti</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">name</td><td>The contact's full name </td></tr>
-    <tr><td class="paramname">phone</td><td>The contact's phone number </td></tr>
-    <tr><td class="paramname">email</td><td>The contact's email address (optional) </td></tr>
+    <tr><td class="paramname">name</td><td>Full name of the contact (cannot be empty) </td></tr>
+    <tr><td class="paramname">phone</td><td>Phone number of the contact (cannot be empty) </td></tr>
+    <tr><td class="paramname">email</td><td>Email address (optional, must be valid if provided)</td></tr>
+    <tr><td class="paramname">name</td><td>Nome completo del contatto (non può essere vuoto) </td></tr>
+    <tr><td class="paramname">phone</td><td>Numero di telefono del contatto (non può essere vuoto) </td></tr>
+    <tr><td class="paramname">email</td><td>Indirizzo email (opzionale, deve essere valido se fornito) </td></tr>
   </table>
   </dd>
 </dl>
@@ -208,8 +214,11 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Get the contact's email. </p>
-<dl class="section return"><dt>Returns</dt><dd>Email address as QString </dd></dl>
+<p>Gets the contact's email address. </p>
+<p>Ottiene l'indirizzo email del contatto</p>
+<dl class="section return"><dt>Returns</dt><dd>QString containing the email (may be empty)</dd>
+<dd>
+QString contenente l'email (può essere vuota) </dd></dl>
 
 </div>
 </div>
@@ -228,10 +237,12 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>check if a string is considered as 'email' (MUST have '@' and a valid domain, such as '@gmail.com') </p>
-<dl class="section return"><dt>Returns</dt><dd>true - if all checks pass </dd>
+<p>Validates the email format. </p>
+<p>Valida il formato dell'email</p>
+<p>Checks if the email contains '@' and a valid domain. Verifica se l'email contiene '@' e un dominio valido.</p>
+<dl class="section return"><dt>Returns</dt><dd>true if email is valid (or empty), false otherwise</dd>
 <dd>
-false - if check doesn't pass </dd></dl>
+true se l'email è valida (o vuota), false altrimenti </dd></dl>
 
 </div>
 </div>
@@ -250,8 +261,11 @@ false - if check doesn't pass </dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p>Get the contact's name. </p>
-<dl class="section return"><dt>Returns</dt><dd><a class="el" href="class_contact.html" title="Represents a contact with name, phone number, and email.">Contact</a> name as QString </dd></dl>
+<p>Gets the contact's full name. </p>
+<p>Ottiene il nome completo del contatto</p>
+<dl class="section return"><dt>Returns</dt><dd>QString containing the name</dd>
+<dd>
+QString contenente il nome </dd></dl>
 
 </div>
 </div>
@@ -271,13 +285,22 @@ false - if check doesn't pass </dd></dl>
 </div><div class="memdoc">
 
 <p>Less-than comparison operator for sorting. </p>
+<p>Operatore di confronto minore-per per l'ordinamento</p>
+<p>Compares contacts by name (case-insensitive) for sorting purposes. Confronta i contatti per nome (case-insensitive) per scopi di ordinamento.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">other</td><td><a class="el" href="class_contact.html" title="Represents a contact with name, phone number, and email.">Contact</a> to compare with </td></tr>
+    <tr><td class="paramname">other</td><td><a class="el" href="class_contact.html" title="Represents a contact entry with name, phone number and optional email.">Contact</a> to compare with </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>True if this contact should come before the other </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>true if this contact should come before the other</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>Contatto con cui confrontare </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true se questo contatto dovrebbe venire prima dell'altro </dd></dl>
 
 </div>
 </div>
@@ -297,13 +320,22 @@ false - if check doesn't pass </dd></dl>
 </div><div class="memdoc">
 
 <p>Equality comparison operator. </p>
+<p>Operatore di confronto di uguaglianza</p>
+<p>Two contacts are considered equal if all their fields match. Due contatti sono considerati uguali se tutti i loro campi corrispondono.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">other</td><td><a class="el" href="class_contact.html" title="Represents a contact with name, phone number, and email.">Contact</a> to compare with </td></tr>
+    <tr><td class="paramname">other</td><td><a class="el" href="class_contact.html" title="Represents a contact entry with name, phone number and optional email.">Contact</a> to compare with </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>True if contacts are identical </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>true if contacts are identical, false otherwise</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td>Contatto con cui confrontare </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true se i contatti sono identici, false altrimenti </dd></dl>
 
 </div>
 </div>
@@ -322,8 +354,11 @@ false - if check doesn't pass </dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p>Get the contact's phone number. </p>
-<dl class="section return"><dt>Returns</dt><dd>Phone number as QString </dd></dl>
+<p>Gets the contact's phone number. </p>
+<p>Ottiene il numero di telefono del contatto</p>
+<dl class="section return"><dt>Returns</dt><dd>QString containing the phone number</dd>
+<dd>
+QString contenente il numero di telefono </dd></dl>
 
 </div>
 </div>
@@ -342,10 +377,12 @@ false - if check doesn't pass </dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p>Set the contact's email. </p>
+<p>Sets the contact's email address. </p>
+<p>Imposta l'indirizzo email del contatto</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">email</td><td>New email to set </td></tr>
+    <tr><td class="paramname">email</td><td>New email address (will be validated)</td></tr>
+    <tr><td class="paramname">email</td><td>Nuovo indirizzo email (sarà validato) </td></tr>
   </table>
   </dd>
 </dl>
@@ -367,10 +404,12 @@ false - if check doesn't pass </dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p>Set the contact's name. </p>
+<p>Sets the contact's full name. </p>
+<p>Imposta il nome completo del contatto</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">name</td><td>New name to set </td></tr>
+    <tr><td class="paramname">name</td><td>New name (cannot be empty)</td></tr>
+    <tr><td class="paramname">name</td><td>Nuovo nome (non può essere vuoto) </td></tr>
   </table>
   </dd>
 </dl>
@@ -392,10 +431,12 @@ false - if check doesn't pass </dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p>Set the contact's phone number. </p>
+<p>Sets the contact's phone number. </p>
+<p>Imposta il numero di telefono del contatto</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">phone</td><td>New phone number to set </td></tr>
+    <tr><td class="paramname">phone</td><td>New phone number (cannot be empty)</td></tr>
+    <tr><td class="paramname">phone</td><td>Nuovo numero di telefono (non può essere vuoto) </td></tr>
   </table>
   </dd>
 </dl>

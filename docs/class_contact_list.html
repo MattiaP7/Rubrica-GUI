@@ -92,7 +92,7 @@ $(function(){ initResizable(false); });
 </div><!--header-->
 <div class="contents">
 
-<p>Manages a collection of <a class="el" href="class_contact.html" title="Represents a contact with name, phone number, and email.">Contact</a> objects.  
+<p>A linked list implementation for managing <a class="el" href="class_contact.html" title="Represents a contact entry with name, phone number and optional email.">Contact</a> objects.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="list_8hpp_source.html">list.hpp</a>&gt;</code></p>
@@ -105,53 +105,54 @@ Inheritance diagram for ContactList:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="signals" name="signals"></a>
 Signals</h2></td></tr>
-<tr class="memitem:ace1994978f8812b79d585047348dc38d" id="r_ace1994978f8812b79d585047348dc38d"><td class="memItemLeft" align="right" valign="top"><a id="ace1994978f8812b79d585047348dc38d" name="ace1994978f8812b79d585047348dc38d"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>dataChanged</b> ()</td></tr>
-<tr class="memdesc:ace1994978f8812b79d585047348dc38d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Emitted when contacts change, without this function the table wouldn't update. <br /></td></tr>
+<tr class="memitem:ace1994978f8812b79d585047348dc38d" id="r_ace1994978f8812b79d585047348dc38d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ace1994978f8812b79d585047348dc38d">dataChanged</a> ()</td></tr>
+<tr class="memdesc:ace1994978f8812b79d585047348dc38d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Signal emitted when the contact data changes.  <br /></td></tr>
 <tr class="separator:ace1994978f8812b79d585047348dc38d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a67d8ebd9c33250230c3abba9c2951efa" id="r_a67d8ebd9c33250230c3abba9c2951efa"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a67d8ebd9c33250230c3abba9c2951efa">ContactList</a> (QObject *parent=nullptr)</td></tr>
-<tr class="memdesc:a67d8ebd9c33250230c3abba9c2951efa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <br /></td></tr>
+<tr class="memdesc:a67d8ebd9c33250230c3abba9c2951efa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs an empty <a class="el" href="class_contact_list.html" title="A linked list implementation for managing Contact objects.">ContactList</a>.  <br /></td></tr>
 <tr class="separator:a67d8ebd9c33250230c3abba9c2951efa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8f3361944a317712dff8835d4eba8970" id="r_a8f3361944a317712dff8835d4eba8970"><td class="memItemLeft" align="right" valign="top"><a id="a8f3361944a317712dff8835d4eba8970" name="a8f3361944a317712dff8835d4eba8970"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>~ContactList</b> ()</td></tr>
-<tr class="memdesc:a8f3361944a317712dff8835d4eba8970"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor. <br /></td></tr>
+<tr class="memitem:a8f3361944a317712dff8835d4eba8970" id="r_a8f3361944a317712dff8835d4eba8970"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8f3361944a317712dff8835d4eba8970">~ContactList</a> ()</td></tr>
+<tr class="memdesc:a8f3361944a317712dff8835d4eba8970"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor that cleans up all nodes.  <br /></td></tr>
 <tr class="separator:a8f3361944a317712dff8835d4eba8970"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3f2e8992ae797b76aa8d7107ec79787b" id="r_a3f2e8992ae797b76aa8d7107ec79787b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3f2e8992ae797b76aa8d7107ec79787b">addContact</a> (const <a class="el" href="class_contact.html">Contact</a> &amp;contact)</td></tr>
-<tr class="memdesc:a3f2e8992ae797b76aa8d7107ec79787b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Add a new contact to the list.  <br /></td></tr>
+<tr class="memdesc:a3f2e8992ae797b76aa8d7107ec79787b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a new contact to the list.  <br /></td></tr>
 <tr class="separator:a3f2e8992ae797b76aa8d7107ec79787b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9e876ce2cbc858ce1abf98d0106a244e" id="r_a9e876ce2cbc858ce1abf98d0106a244e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9e876ce2cbc858ce1abf98d0106a244e">removeContact</a> (const QString &amp;name)</td></tr>
-<tr class="memdesc:a9e876ce2cbc858ce1abf98d0106a244e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remove a contact by name.  <br /></td></tr>
+<tr class="memdesc:a9e876ce2cbc858ce1abf98d0106a244e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes a contact by name.  <br /></td></tr>
 <tr class="separator:a9e876ce2cbc858ce1abf98d0106a244e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a43851598be0676dd2b14eab622c903b6" id="r_a43851598be0676dd2b14eab622c903b6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a43851598be0676dd2b14eab622c903b6">updateContact</a> (const QString &amp;originalName, const <a class="el" href="class_contact.html">Contact</a> &amp;updatedContact)</td></tr>
-<tr class="memdesc:a43851598be0676dd2b14eab622c903b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update an existing contact.  <br /></td></tr>
+<tr class="memdesc:a43851598be0676dd2b14eab622c903b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates an existing contact.  <br /></td></tr>
 <tr class="separator:a43851598be0676dd2b14eab622c903b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af2d6455cf7ffdc35c82d0074814881c4" id="r_af2d6455cf7ffdc35c82d0074814881c4"><td class="memItemLeft" align="right" valign="top">QVector&lt; <a class="el" href="class_contact.html">Contact</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af2d6455cf7ffdc35c82d0074814881c4">searchContacts</a> (const QString &amp;query) const</td></tr>
-<tr class="memdesc:af2d6455cf7ffdc35c82d0074814881c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Search contacts by query string.  <br /></td></tr>
+<tr class="memdesc:af2d6455cf7ffdc35c82d0074814881c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Searches contacts matching a query string.  <br /></td></tr>
 <tr class="separator:af2d6455cf7ffdc35c82d0074814881c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6bb31b66af7743b70e8246b50d965a51" id="r_a6bb31b66af7743b70e8246b50d965a51"><td class="memItemLeft" align="right" valign="top">QVector&lt; <a class="el" href="class_contact.html">Contact</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6bb31b66af7743b70e8246b50d965a51">allContacts</a> () const</td></tr>
-<tr class="memdesc:a6bb31b66af7743b70e8246b50d965a51"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get all contacts.  <br /></td></tr>
+<tr class="memdesc:a6bb31b66af7743b70e8246b50d965a51"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets all contacts in the list.  <br /></td></tr>
 <tr class="separator:a6bb31b66af7743b70e8246b50d965a51"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a88f4928bf7e4ab9e09d964e024469c76" id="r_a88f4928bf7e4ab9e09d964e024469c76"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a88f4928bf7e4ab9e09d964e024469c76">contains</a> (const QString &amp;name) const</td></tr>
-<tr class="memdesc:a88f4928bf7e4ab9e09d964e024469c76"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a contact exists.  <br /></td></tr>
+<tr class="memdesc:a88f4928bf7e4ab9e09d964e024469c76"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if a contact exists in the list.  <br /></td></tr>
 <tr class="separator:a88f4928bf7e4ab9e09d964e024469c76"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a39dcf35bc1ee9316a01ab355e036d010" id="r_a39dcf35bc1ee9316a01ab355e036d010"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a39dcf35bc1ee9316a01ab355e036d010">count</a> () const</td></tr>
-<tr class="memdesc:a39dcf35bc1ee9316a01ab355e036d010"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get number of contacts.  <br /></td></tr>
+<tr class="memdesc:a39dcf35bc1ee9316a01ab355e036d010"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the number of contacts in the list.  <br /></td></tr>
 <tr class="separator:a39dcf35bc1ee9316a01ab355e036d010"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7dcdcc1325e39501487e8489667128e0" id="r_a7dcdcc1325e39501487e8489667128e0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7dcdcc1325e39501487e8489667128e0">isEmpty</a> () const</td></tr>
-<tr class="memdesc:a7dcdcc1325e39501487e8489667128e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if list is empty.  <br /></td></tr>
+<tr class="memdesc:a7dcdcc1325e39501487e8489667128e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the list is empty.  <br /></td></tr>
 <tr class="separator:a7dcdcc1325e39501487e8489667128e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2621398efd1b929babf0311f95b716f8" id="r_a2621398efd1b929babf0311f95b716f8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2621398efd1b929babf0311f95b716f8">saveToFile</a> (const QString &amp;filePath=&quot;contacts.csv&quot;) const</td></tr>
-<tr class="memdesc:a2621398efd1b929babf0311f95b716f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Save contacts to file.  <br /></td></tr>
+<tr class="memdesc:a2621398efd1b929babf0311f95b716f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves contacts to a CSV file.  <br /></td></tr>
 <tr class="separator:a2621398efd1b929babf0311f95b716f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4926f25de8933f202efc5b0902e39a7d" id="r_a4926f25de8933f202efc5b0902e39a7d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4926f25de8933f202efc5b0902e39a7d">loadFromFile</a> (const QString &amp;filePath=&quot;contacts.csv&quot;)</td></tr>
-<tr class="memdesc:a4926f25de8933f202efc5b0902e39a7d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Load contacts from file.  <br /></td></tr>
+<tr class="memdesc:a4926f25de8933f202efc5b0902e39a7d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads contacts from a CSV file.  <br /></td></tr>
 <tr class="separator:a4926f25de8933f202efc5b0902e39a7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Manages a collection of <a class="el" href="class_contact.html" title="Represents a contact with name, phone number, and email.">Contact</a> objects. </p>
+<div class="textblock"><p>A linked list implementation for managing <a class="el" href="class_contact.html" title="Represents a contact entry with name, phone number and optional email.">Contact</a> objects. </p>
+<p>Implementazione di una lista concatenata per la gestione di oggetti <a class="el" href="class_contact.html" title="Represents a contact entry with name, phone number and optional email.">Contact</a></p>
+<p>This class provides functionality to manage a collection of contacts using a singly linked list structure. It supports basic CRUD operations, file I/O, and sorting capabilities.</p>
+<p>Questa classe fornisce funzionalità per gestire una collezione di contatti utilizzando una struttura a lista concatenata singola. Supporta operazioni CRUD di base, I/O su file e capacità di ordinamento. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a67d8ebd9c33250230c3abba9c2951efa" name="a67d8ebd9c33250230c3abba9c2951efa"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a67d8ebd9c33250230c3abba9c2951efa">&#9670;&#160;</a></span>ContactList()</h2>
@@ -176,13 +177,35 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Constructor. </p>
+<p>Constructs an empty <a class="el" href="class_contact_list.html" title="A linked list implementation for managing Contact objects.">ContactList</a>. </p>
+<p>Costruisce una <a class="el" href="class_contact_list.html" title="A linked list implementation for managing Contact objects.">ContactList</a> vuota</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">parent</td><td>Parent QObject </td></tr>
+    <tr><td class="paramname">parent</td><td>Parent QObject for Qt's object hierarchy</td></tr>
+    <tr><td class="paramname">parent</td><td>QObject genitore per la gerarchia di oggetti Qt </td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="a8f3361944a317712dff8835d4eba8970" name="a8f3361944a317712dff8835d4eba8970"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8f3361944a317712dff8835d4eba8970">&#9670;&#160;</a></span>~ContactList()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ContactList::~ContactList </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Destructor that cleans up all nodes. </p>
+<p>Distruttore che pulisce tutti i nodi </p>
 
 </div>
 </div>
@@ -202,13 +225,22 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Add a new contact to the list. </p>
+<p>Adds a new contact to the list. </p>
+<p>Aggiunge un nuovo contatto alla lista</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">contact</td><td><a class="el" href="class_contact.html" title="Represents a contact with name, phone number, and email.">Contact</a> to add </td></tr>
+    <tr><td class="paramname">contact</td><td><a class="el" href="class_contact.html" title="Represents a contact entry with name, phone number and optional email.">Contact</a> object to add </td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>void</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">contact</td><td>Oggetto <a class="el" href="class_contact.html" title="Represents a contact entry with name, phone number and optional email.">Contact</a> da aggiungere </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>void </dd></dl>
 
 </div>
 </div>
@@ -227,8 +259,11 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Get all contacts. </p>
-<dl class="section return"><dt>Returns</dt><dd>Vector of all contacts </dd></dl>
+<p>Gets all contacts in the list. </p>
+<p>Ottiene tutti i contatti nella lista</p>
+<dl class="section return"><dt>Returns</dt><dd>QVector&lt;Contact&gt; containing all contacts</dd>
+<dd>
+QVector&lt;Contact&gt; contenente tutti i contatti </dd></dl>
 
 </div>
 </div>
@@ -247,14 +282,22 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Check if a contact exists. </p>
+<p>Checks if a contact exists in the list. </p>
+<p>Verifica se un contatto esiste nella lista</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">name</td><td>Name to check </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>True if contact exists </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>true if contact exists, false otherwise</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>Nome da verificare </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true se il contatto esiste, false altrimenti </dd></dl>
 
 </div>
 </div>
@@ -273,8 +316,41 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Get number of contacts. </p>
-<dl class="section return"><dt>Returns</dt><dd><a class="el" href="class_contact.html" title="Represents a contact with name, phone number, and email.">Contact</a> count </dd></dl>
+<p>Gets the number of contacts in the list. </p>
+<p>Ottiene il numero di contatti nella lista</p>
+<dl class="section return"><dt>Returns</dt><dd>int count of contacts</dd>
+<dd>
+int conteggio dei contatti </dd></dl>
+
+</div>
+</div>
+<a id="ace1994978f8812b79d585047348dc38d" name="ace1994978f8812b79d585047348dc38d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ace1994978f8812b79d585047348dc38d">&#9670;&#160;</a></span>dataChanged</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ContactList::dataChanged </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">signal</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Signal emitted when the contact data changes. </p>
+<p>Segnale emesso quando i dati dei contatti cambiano</p>
+<p>This signal is used to notify observers (like UI components) that the underlying data has changed and needs refreshing.</p>
+<p>Questo segnale è usato per notificare agli osservatori (come componenti UI) che i dati sottostanti sono cambiati e necessitano di aggiornamento. </p>
 
 </div>
 </div>
@@ -293,8 +369,11 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Check if list is empty. </p>
-<dl class="section return"><dt>Returns</dt><dd>True if no contacts exist </dd></dl>
+<p>Checks if the list is empty. </p>
+<p>Verifica se la lista è vuota</p>
+<dl class="section return"><dt>Returns</dt><dd>true if list is empty, false otherwise</dd>
+<dd>
+true se la lista è vuota, false altrimenti </dd></dl>
 
 </div>
 </div>
@@ -313,14 +392,23 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Load contacts from file. </p>
+<p>Loads contacts from a CSV file. </p>
+<p>Carica i contatti da un file CSV</p>
+<p>The file format should be: Name,Phone,Email (one contact per line) Il formato del file dovrebbe essere: Nome,Telefono,Email (un contatto per riga)</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">filePath</td><td>Path to load file </td></tr>
+    <tr><td class="paramname">filePath</td><td>Path to the input file (default: "contacts.csv") </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>True if load succeeded </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>true if load succeeded, false otherwise</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">filePath</td><td>Percorso al file di input (default: "contacts.csv") </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true se il caricamento è riuscito, false altrimenti </dd></dl>
 
 </div>
 </div>
@@ -339,14 +427,22 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Remove a contact by name. </p>
+<p>Removes a contact by name. </p>
+<p>Rimuove un contatto per nome</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">name</td><td>Name of contact to remove </td></tr>
+    <tr><td class="paramname">name</td><td>Name of the contact to remove </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>True if contact was found and removed </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>true if contact was found and removed, false otherwise</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>Nome del contatto da rimuovere </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true se il contatto è stato trovato e rimosso, false altrimenti </dd></dl>
 
 </div>
 </div>
@@ -365,14 +461,23 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Save contacts to file. </p>
+<p>Saves contacts to a CSV file. </p>
+<p>Salva i contatti in un file CSV</p>
+<p>The file format is: Name,Phone,Email (one contact per line) Il formato del file è: Nome,Telefono,Email (un contatto per riga)</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">filePath</td><td>Path to save file </td></tr>
+    <tr><td class="paramname">filePath</td><td>Path to the output file (default: "contacts.csv") </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>True if save succeeded </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>true if save succeeded, false otherwise</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">filePath</td><td>Percorso al file di output (default: "contacts.csv") </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true se il salvataggio è riuscito, false altrimenti </dd></dl>
 
 </div>
 </div>
@@ -391,14 +496,23 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Search contacts by query string. </p>
+<p>Searches contacts matching a query string. </p>
+<p>Cerca contatti che corrispondono a una stringa di ricerca</p>
+<p>The search is case-insensitive and looks for matches in name, phone, or email. La ricerca è case-insensitive e cerca corrispondenze in nome, telefono o email.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">query</td><td>Search string </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Vector of matching contacts </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>QVector&lt;Contact&gt; of matching contacts</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">query</td><td>Stringa di ricerca </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>QVector&lt;Contact&gt; di contatti corrispondenti </dd></dl>
 
 </div>
 </div>
@@ -421,15 +535,24 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Update an existing contact. </p>
+<p>Updates an existing contact. </p>
+<p>Aggiorna un contatto esistente</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">originalName</td><td>Current name of the contact </td></tr>
+    <tr><td class="paramname">originalName</td><td>Current name of the contact to update </td></tr>
     <tr><td class="paramname">updatedContact</td><td>New contact data </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>True if contact was found and updated </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>true if contact was found and updated, false otherwise</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">originalName</td><td>Nome attuale del contatto da aggiornare </td></tr>
+    <tr><td class="paramname">updatedContact</td><td>Nuovi dati del contatto </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true se il contatto è stato trovato e aggiornato, false altrimenti </dd></dl>
 
 </div>
 </div>
