@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['name_0',['name',['../class_contact.html#a7994a4deabe6089561780ad057d6ce25',1,'Contact']]],
-  ['node_1',['Node',['../struct_node.html#a808b98b14155f913ee1d2b4225c27ae6',1,'Node']]]
+  ['initializeui_0',['initializeUI',['../class_main_window.html#a8bc70626215bfbe408ea664ea91ba758',1,'MainWindow']]],
+  ['isdarkmode_1',['isDarkMode',['../utils_8hpp.html#a36044a6efa9c4e015378e56c3e37181d',1,'utils.cpp']]],
+  ['isemail_2',['isEmail',['../class_contact.html#a2fdcd52720f00cffbdd56fd72fa8cc0b',1,'Contact']]],
+  ['isempty_3',['isEmpty',['../class_contact_list.html#a2c35bdaf57078d8b10dd1e5a988ca10e',1,'ContactList']]]
 ];

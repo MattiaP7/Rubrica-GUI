@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['phone_0',['phone',['../class_contact.html#a6a674a362a967d77b15cba1ba9b65d50',1,'Contact']]]
+  ['mainwindow_0',['MainWindow',['../class_main_window.html#a996c5a2b6f77944776856f08ec30858d',1,'MainWindow']]]
 ];

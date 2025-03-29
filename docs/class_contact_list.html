@@ -87,6 +87,8 @@ $(function(){ initResizable(false); });
   <div class="summary">
 <a href="#signals">Signals</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="class_contact_list-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">ContactList Class Reference</div></div>
 </div><!--header-->
@@ -147,6 +149,25 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a4926f25de8933f202efc5b0902e39a7d" id="r_a4926f25de8933f202efc5b0902e39a7d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4926f25de8933f202efc5b0902e39a7d">loadFromFile</a> (const QString &amp;filePath=&quot;contacts.csv&quot;)</td></tr>
 <tr class="memdesc:a4926f25de8933f202efc5b0902e39a7d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads contacts from a CSV file.  <br /></td></tr>
 <tr class="separator:a4926f25de8933f202efc5b0902e39a7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:ae37ba5ccb9b1f932fd524d3b1f0787a1" id="r_ae37ba5ccb9b1f932fd524d3b1f0787a1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae37ba5ccb9b1f932fd524d3b1f0787a1">clear</a> ()</td></tr>
+<tr class="memdesc:ae37ba5ccb9b1f932fd524d3b1f0787a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clears all nodes from the list.  <br /></td></tr>
+<tr class="separator:ae37ba5ccb9b1f932fd524d3b1f0787a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a63aba1d0b041bb6923cec7d2254e6ff3" id="r_a63aba1d0b041bb6923cec7d2254e6ff3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_node.html">Node</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a63aba1d0b041bb6923cec7d2254e6ff3">findNode</a> (const QString &amp;name) const</td></tr>
+<tr class="memdesc:a63aba1d0b041bb6923cec7d2254e6ff3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds a node by contact name.  <br /></td></tr>
+<tr class="separator:a63aba1d0b041bb6923cec7d2254e6ff3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a984bc9262f4f8249f779e00f02525244" id="r_a984bc9262f4f8249f779e00f02525244"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a984bc9262f4f8249f779e00f02525244">sort</a> ()</td></tr>
+<tr class="memdesc:a984bc9262f4f8249f779e00f02525244"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sorts the list using merge sort algorithm.  <br /></td></tr>
+<tr class="separator:a984bc9262f4f8249f779e00f02525244"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a8e7d2995f35b5aa43fa346b6e4a35329" id="r_a8e7d2995f35b5aa43fa346b6e4a35329"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_node.html">Node</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8e7d2995f35b5aa43fa346b6e4a35329">m_head</a></td></tr>
+<tr class="separator:a8e7d2995f35b5aa43fa346b6e4a35329"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ad885c412264e47eb1e9a31c58afca5" id="r_a1ad885c412264e47eb1e9a31c58afca5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1ad885c412264e47eb1e9a31c58afca5">m_count</a></td></tr>
+<tr class="separator:a1ad885c412264e47eb1e9a31c58afca5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A linked list implementation for managing <a class="el" href="class_contact.html" title="Represents a contact entry with name, phone number and optional email.">Contact</a> objects. </p>
@@ -267,6 +288,36 @@ QVector&lt;Contact&gt; contenente tutti i contatti </dd></dl>
 
 </div>
 </div>
+<a id="ae37ba5ccb9b1f932fd524d3b1f0787a1" name="ae37ba5ccb9b1f932fd524d3b1f0787a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae37ba5ccb9b1f932fd524d3b1f0787a1">&#9670;&#160;</a></span>clear()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ContactList::clear </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Clears all nodes from the list. </p>
+<p>Svuota tutti i nodi dalla lista</p>
+<p>This method deallocates all nodes but keeps the <a class="el" href="class_contact_list.html" title="A linked list implementation for managing Contact objects.">ContactList</a> object valid.</p>
+<p>Questo metodo dealloca tutti i nodi ma mantiene valido l'oggetto <a class="el" href="class_contact_list.html" title="A linked list implementation for managing Contact objects.">ContactList</a>. </p>
+
+</div>
+</div>
 <a id="a220414e2439dc1d90b1e6daba6bb1ffc" name="a220414e2439dc1d90b1e6daba6bb1ffc"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a220414e2439dc1d90b1e6daba6bb1ffc">&#9670;&#160;</a></span>contains()</h2>
 
@@ -367,6 +418,48 @@ int conteggio dei contatti </dd></dl>
 <p>Segnale emesso quando i dati dei contatti cambiano</p>
 <p>This signal is used to notify observers (like UI components) that the underlying data has changed and needs refreshing.</p>
 <p>Questo segnale è usato per notificare agli osservatori (come componenti UI) che i dati sottostanti sono cambiati e necessitano di aggiornamento. </p>
+
+</div>
+</div>
+<a id="a63aba1d0b041bb6923cec7d2254e6ff3" name="a63aba1d0b041bb6923cec7d2254e6ff3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a63aba1d0b041bb6923cec7d2254e6ff3">&#9670;&#160;</a></span>findNode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_node.html">Node</a> * ContactList::findNode </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;</td>          <td class="paramname"><span class="paramname"><em>name</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Finds a node by contact name. </p>
+<p>Trova un nodo per nome del contatto</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>Name to search for </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Node* Pointer to the found node, or nullptr if not found</dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>Nome da cercare </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Node* Puntatore al nodo trovato, o nullptr se non trovato </dd></dl>
 
 </div>
 </div>
@@ -540,6 +633,35 @@ true se la lista è vuota, false altrimenti </dd></dl>
 
 </div>
 </div>
+<a id="a984bc9262f4f8249f779e00f02525244" name="a984bc9262f4f8249f779e00f02525244"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a984bc9262f4f8249f779e00f02525244">&#9670;&#160;</a></span>sort()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ContactList::sort </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sorts the list using merge sort algorithm. </p>
+<p>Ordina la lista usando l'algoritmo merge sort</p>
+<p>Contacts are sorted alphabetically by name in ascending order. I contatti sono ordinati alfabeticamente per nome in ordine crescente. </p>
+
+</div>
+</div>
 <a id="a43851598be0676dd2b14eab622c903b6" name="a43851598be0676dd2b14eab622c903b6"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a43851598be0676dd2b14eab622c903b6">&#9670;&#160;</a></span>updateContact()</h2>
 
@@ -577,6 +699,53 @@ true se la lista è vuota, false altrimenti </dd></dl>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true se il contatto è stato trovato e aggiornato, false altrimenti </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a1ad885c412264e47eb1e9a31c58afca5" name="a1ad885c412264e47eb1e9a31c58afca5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ad885c412264e47eb1e9a31c58afca5">&#9670;&#160;</a></span>m_count</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ContactList::m_count</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Number of contacts in the list / Numero di contatti nella lista </p>
+
+</div>
+</div>
+<a id="a8e7d2995f35b5aa43fa346b6e4a35329" name="a8e7d2995f35b5aa43fa346b6e4a35329"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8e7d2995f35b5aa43fa346b6e4a35329">&#9670;&#160;</a></span>m_head</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_node.html">Node</a>* ContactList::m_head</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Pointer to the first node in the list / Puntatore al primo nodo nella lista </p>
 
 </div>
 </div>

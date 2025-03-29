@@ -1,8 +1,7 @@
 var searchData=
 [
-  ['savetofile_0',['saveToFile',['../class_contact_list.html#a2621398efd1b929babf0311f95b716f8',1,'ContactList']]],
-  ['searchcontacts_1',['searchContacts',['../class_contact_list.html#af2d6455cf7ffdc35c82d0074814881c4',1,'ContactList']]],
-  ['setemail_2',['setEmail',['../class_contact.html#a4a8d381b38663c5886b4a40f1a0b7f99',1,'Contact']]],
-  ['setname_3',['setName',['../class_contact.html#a7d924be8ba2f54fec765ed5ea5272ae3',1,'Contact']]],
-  ['setphone_4',['setPhone',['../class_contact.html#abf8651aa6caf3c93e8eedbef3eb67f13',1,'Contact']]]
+  ['refreshcontacttable_0',['refreshContactTable',['../class_main_window.html#ad2484230eb8ce1f2376675c335a27e01',1,'MainWindow']]],
+  ['removecontact_1',['removeContact',['../class_contact_list.html#a9e876ce2cbc858ce1abf98d0106a244e',1,'ContactList']]],
+  ['resetform_2',['resetForm',['../class_main_window.html#aca2106eb5187f0058b5ee53780e5502d',1,'MainWindow']]],
+  ['rubruca_20gui_20tramite_20qt_20creator_3',['Rubruca GUI tramite Qt creator',['../index.html',1,'']]]
 ];
