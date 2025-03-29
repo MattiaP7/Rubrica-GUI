@@ -11,6 +11,8 @@
 <script type="text/javascript" src="dynsections.js"></script>
 <script type="text/javascript" src="clipboard.js"></script>
 <link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <script type="text/javascript" src="resize.js"></script>
 <script type="text/javascript" src="cookie.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
@@ -49,19 +51,29 @@ $(function() { codefold.init(0); });
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
 $(function() {
-  initMenu('',true,false,'search.php','Search',false);
+  initMenu('',true,false,'search.php','Search',true);
   $(function() { init_search(); });
 });
 /* @license-end */
 </script>
 <div id="main-nav"></div>
 </div><!-- top -->
-<div id="doc-content">
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(function(){ initResizable(false); });
+$(function(){initNavTree('list_8hpp_source.html',''); initResizable(true); });
 /* @license-end */
 </script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -151,33 +163,36 @@ $(function(){ initResizable(false); });
 <div class="ttc" id="aclass_contact_html"><div class="ttname"><a href="class_contact.html">Contact</a></div><div class="ttdoc">Represents a contact entry with name, phone number and optional email.</div><div class="ttdef"><b>Definition</b> contatto.hpp:26</div></div>
 <div class="ttc" id="aclass_contact_list_html"><div class="ttname"><a href="class_contact_list.html">ContactList</a></div><div class="ttdoc">A linked list implementation for managing Contact objects.</div><div class="ttdef"><b>Definition</b> list.hpp:56</div></div>
 <div class="ttc" id="aclass_contact_list_html_a1ad885c412264e47eb1e9a31c58afca5"><div class="ttname"><a href="class_contact_list.html#a1ad885c412264e47eb1e9a31c58afca5">ContactList::m_count</a></div><div class="ttdeci">int m_count</div><div class="ttdef"><b>Definition</b> list.hpp:216</div></div>
-<div class="ttc" id="aclass_contact_list_html_a220414e2439dc1d90b1e6daba6bb1ffc"><div class="ttname"><a href="class_contact_list.html#a220414e2439dc1d90b1e6daba6bb1ffc">ContactList::contains</a></div><div class="ttdeci">constexpr bool contains(const QString &amp;name) const</div><div class="ttdoc">Checks if a contact exists in the list.</div><div class="ttdef"><b>Definition</b> list.cpp:191</div></div>
-<div class="ttc" id="aclass_contact_list_html_a2621398efd1b929babf0311f95b716f8"><div class="ttname"><a href="class_contact_list.html#a2621398efd1b929babf0311f95b716f8">ContactList::saveToFile</a></div><div class="ttdeci">bool saveToFile(const QString &amp;filePath=&quot;contacts.csv&quot;) const</div><div class="ttdoc">Saves contacts to a CSV file.</div><div class="ttdef"><b>Definition</b> list.cpp:200</div></div>
-<div class="ttc" id="aclass_contact_list_html_a2c35bdaf57078d8b10dd1e5a988ca10e"><div class="ttname"><a href="class_contact_list.html#a2c35bdaf57078d8b10dd1e5a988ca10e">ContactList::isEmpty</a></div><div class="ttdeci">constexpr bool isEmpty() const</div><div class="ttdoc">Checks if the list is empty.</div><div class="ttdef"><b>Definition</b> list.cpp:198</div></div>
-<div class="ttc" id="aclass_contact_list_html_a3f2e8992ae797b76aa8d7107ec79787b"><div class="ttname"><a href="class_contact_list.html#a3f2e8992ae797b76aa8d7107ec79787b">ContactList::addContact</a></div><div class="ttdeci">void addContact(const Contact &amp;contact)</div><div class="ttdoc">Adds a new contact to the list.</div><div class="ttdef"><b>Definition</b> list.cpp:109</div></div>
-<div class="ttc" id="aclass_contact_list_html_a43851598be0676dd2b14eab622c903b6"><div class="ttname"><a href="class_contact_list.html#a43851598be0676dd2b14eab622c903b6">ContactList::updateContact</a></div><div class="ttdeci">bool updateContact(const QString &amp;originalName, const Contact &amp;updatedContact)</div><div class="ttdoc">Updates an existing contact.</div><div class="ttdef"><b>Definition</b> list.cpp:151</div></div>
-<div class="ttc" id="aclass_contact_list_html_a4926f25de8933f202efc5b0902e39a7d"><div class="ttname"><a href="class_contact_list.html#a4926f25de8933f202efc5b0902e39a7d">ContactList::loadFromFile</a></div><div class="ttdeci">bool loadFromFile(const QString &amp;filePath=&quot;contacts.csv&quot;)</div><div class="ttdoc">Loads contacts from a CSV file.</div><div class="ttdef"><b>Definition</b> list.cpp:225</div></div>
-<div class="ttc" id="aclass_contact_list_html_a63aba1d0b041bb6923cec7d2254e6ff3"><div class="ttname"><a href="class_contact_list.html#a63aba1d0b041bb6923cec7d2254e6ff3">ContactList::findNode</a></div><div class="ttdeci">Node * findNode(const QString &amp;name) const</div><div class="ttdoc">Finds a node by contact name.</div><div class="ttdef"><b>Definition</b> list.cpp:269</div></div>
-<div class="ttc" id="aclass_contact_list_html_a63b7a4d4a815aa1d026db3affc2340ba"><div class="ttname"><a href="class_contact_list.html#a63b7a4d4a815aa1d026db3affc2340ba">ContactList::count</a></div><div class="ttdeci">constexpr int count() const</div><div class="ttdoc">Gets the number of contacts in the list.</div><div class="ttdef"><b>Definition</b> list.cpp:196</div></div>
-<div class="ttc" id="aclass_contact_list_html_a67d8ebd9c33250230c3abba9c2951efa"><div class="ttname"><a href="class_contact_list.html#a67d8ebd9c33250230c3abba9c2951efa">ContactList::ContactList</a></div><div class="ttdeci">ContactList(QObject *parent=nullptr)</div><div class="ttdoc">Constructs an empty ContactList.</div><div class="ttdef"><b>Definition</b> list.cpp:101</div></div>
-<div class="ttc" id="aclass_contact_list_html_a6bb31b66af7743b70e8246b50d965a51"><div class="ttname"><a href="class_contact_list.html#a6bb31b66af7743b70e8246b50d965a51">ContactList::allContacts</a></div><div class="ttdeci">QVector&lt; Contact &gt; allContacts() const</div><div class="ttdoc">Gets all contacts in the list.</div><div class="ttdef"><b>Definition</b> list.cpp:178</div></div>
+<div class="ttc" id="aclass_contact_list_html_a220414e2439dc1d90b1e6daba6bb1ffc"><div class="ttname"><a href="class_contact_list.html#a220414e2439dc1d90b1e6daba6bb1ffc">ContactList::contains</a></div><div class="ttdeci">constexpr bool contains(const QString &amp;name) const</div><div class="ttdoc">Checks if a contact exists in the list.</div><div class="ttdef"><b>Definition</b> list.cpp:198</div></div>
+<div class="ttc" id="aclass_contact_list_html_a2621398efd1b929babf0311f95b716f8"><div class="ttname"><a href="class_contact_list.html#a2621398efd1b929babf0311f95b716f8">ContactList::saveToFile</a></div><div class="ttdeci">bool saveToFile(const QString &amp;filePath=&quot;contacts.csv&quot;) const</div><div class="ttdoc">Saves contacts to a CSV file.</div><div class="ttdef"><b>Definition</b> list.cpp:207</div></div>
+<div class="ttc" id="aclass_contact_list_html_a2c35bdaf57078d8b10dd1e5a988ca10e"><div class="ttname"><a href="class_contact_list.html#a2c35bdaf57078d8b10dd1e5a988ca10e">ContactList::isEmpty</a></div><div class="ttdeci">constexpr bool isEmpty() const</div><div class="ttdoc">Checks if the list is empty.</div><div class="ttdef"><b>Definition</b> list.cpp:205</div></div>
+<div class="ttc" id="aclass_contact_list_html_a3f2e8992ae797b76aa8d7107ec79787b"><div class="ttname"><a href="class_contact_list.html#a3f2e8992ae797b76aa8d7107ec79787b">ContactList::addContact</a></div><div class="ttdeci">void addContact(const Contact &amp;contact)</div><div class="ttdoc">Adds a new contact to the list.</div><div class="ttdef"><b>Definition</b> list.cpp:114</div></div>
+<div class="ttc" id="aclass_contact_list_html_a43851598be0676dd2b14eab622c903b6"><div class="ttname"><a href="class_contact_list.html#a43851598be0676dd2b14eab622c903b6">ContactList::updateContact</a></div><div class="ttdeci">bool updateContact(const QString &amp;originalName, const Contact &amp;updatedContact)</div><div class="ttdoc">Updates an existing contact.</div><div class="ttdef"><b>Definition</b> list.cpp:158</div></div>
+<div class="ttc" id="aclass_contact_list_html_a4926f25de8933f202efc5b0902e39a7d"><div class="ttname"><a href="class_contact_list.html#a4926f25de8933f202efc5b0902e39a7d">ContactList::loadFromFile</a></div><div class="ttdeci">bool loadFromFile(const QString &amp;filePath=&quot;contacts.csv&quot;)</div><div class="ttdoc">Loads contacts from a CSV file.</div><div class="ttdef"><b>Definition</b> list.cpp:232</div></div>
+<div class="ttc" id="aclass_contact_list_html_a63aba1d0b041bb6923cec7d2254e6ff3"><div class="ttname"><a href="class_contact_list.html#a63aba1d0b041bb6923cec7d2254e6ff3">ContactList::findNode</a></div><div class="ttdeci">Node * findNode(const QString &amp;name) const</div><div class="ttdoc">Finds a node by contact name.</div><div class="ttdef"><b>Definition</b> list.cpp:276</div></div>
+<div class="ttc" id="aclass_contact_list_html_a63b7a4d4a815aa1d026db3affc2340ba"><div class="ttname"><a href="class_contact_list.html#a63b7a4d4a815aa1d026db3affc2340ba">ContactList::count</a></div><div class="ttdeci">constexpr int count() const</div><div class="ttdoc">Gets the number of contacts in the list.</div><div class="ttdef"><b>Definition</b> list.cpp:203</div></div>
+<div class="ttc" id="aclass_contact_list_html_a67d8ebd9c33250230c3abba9c2951efa"><div class="ttname"><a href="class_contact_list.html#a67d8ebd9c33250230c3abba9c2951efa">ContactList::ContactList</a></div><div class="ttdeci">ContactList(QObject *parent=nullptr)</div><div class="ttdoc">Constructs an empty ContactList.</div><div class="ttdef"><b>Definition</b> list.cpp:106</div></div>
+<div class="ttc" id="aclass_contact_list_html_a6bb31b66af7743b70e8246b50d965a51"><div class="ttname"><a href="class_contact_list.html#a6bb31b66af7743b70e8246b50d965a51">ContactList::allContacts</a></div><div class="ttdeci">QVector&lt; Contact &gt; allContacts() const</div><div class="ttdoc">Gets all contacts in the list.</div><div class="ttdef"><b>Definition</b> list.cpp:185</div></div>
 <div class="ttc" id="aclass_contact_list_html_a8e7d2995f35b5aa43fa346b6e4a35329"><div class="ttname"><a href="class_contact_list.html#a8e7d2995f35b5aa43fa346b6e4a35329">ContactList::m_head</a></div><div class="ttdeci">Node * m_head</div><div class="ttdef"><b>Definition</b> list.hpp:215</div></div>
-<div class="ttc" id="aclass_contact_list_html_a8f3361944a317712dff8835d4eba8970"><div class="ttname"><a href="class_contact_list.html#a8f3361944a317712dff8835d4eba8970">ContactList::~ContactList</a></div><div class="ttdeci">~ContactList()</div><div class="ttdoc">Destructor that cleans up all nodes.</div><div class="ttdef"><b>Definition</b> list.cpp:104</div></div>
-<div class="ttc" id="aclass_contact_list_html_a984bc9262f4f8249f779e00f02525244"><div class="ttname"><a href="class_contact_list.html#a984bc9262f4f8249f779e00f02525244">ContactList::sort</a></div><div class="ttdeci">void sort()</div><div class="ttdoc">Sorts the list using merge sort algorithm.</div><div class="ttdef"><b>Definition</b> list.cpp:280</div></div>
-<div class="ttc" id="aclass_contact_list_html_a9e876ce2cbc858ce1abf98d0106a244e"><div class="ttname"><a href="class_contact_list.html#a9e876ce2cbc858ce1abf98d0106a244e">ContactList::removeContact</a></div><div class="ttdeci">bool removeContact(const QString &amp;name)</div><div class="ttdoc">Removes a contact by name.</div><div class="ttdef"><b>Definition</b> list.cpp:121</div></div>
+<div class="ttc" id="aclass_contact_list_html_a8f3361944a317712dff8835d4eba8970"><div class="ttname"><a href="class_contact_list.html#a8f3361944a317712dff8835d4eba8970">ContactList::~ContactList</a></div><div class="ttdeci">~ContactList()</div><div class="ttdoc">Destructor that cleans up all nodes.</div><div class="ttdef"><b>Definition</b> list.cpp:109</div></div>
+<div class="ttc" id="aclass_contact_list_html_a984bc9262f4f8249f779e00f02525244"><div class="ttname"><a href="class_contact_list.html#a984bc9262f4f8249f779e00f02525244">ContactList::sort</a></div><div class="ttdeci">void sort()</div><div class="ttdoc">Sorts the list using merge sort algorithm.</div><div class="ttdef"><b>Definition</b> list.cpp:287</div></div>
+<div class="ttc" id="aclass_contact_list_html_a9e876ce2cbc858ce1abf98d0106a244e"><div class="ttname"><a href="class_contact_list.html#a9e876ce2cbc858ce1abf98d0106a244e">ContactList::removeContact</a></div><div class="ttdeci">bool removeContact(const QString &amp;name)</div><div class="ttdoc">Removes a contact by name.</div><div class="ttdef"><b>Definition</b> list.cpp:126</div></div>
 <div class="ttc" id="aclass_contact_list_html_ace1994978f8812b79d585047348dc38d"><div class="ttname"><a href="class_contact_list.html#ace1994978f8812b79d585047348dc38d">ContactList::dataChanged</a></div><div class="ttdeci">void dataChanged()</div><div class="ttdoc">Signal emitted when the contact data changes.</div></div>
-<div class="ttc" id="aclass_contact_list_html_ae37ba5ccb9b1f932fd524d3b1f0787a1"><div class="ttname"><a href="class_contact_list.html#ae37ba5ccb9b1f932fd524d3b1f0787a1">ContactList::clear</a></div><div class="ttdeci">void clear()</div><div class="ttdoc">Clears all nodes from the list.</div><div class="ttdef"><b>Definition</b> list.cpp:259</div></div>
-<div class="ttc" id="aclass_contact_list_html_af2d6455cf7ffdc35c82d0074814881c4"><div class="ttname"><a href="class_contact_list.html#af2d6455cf7ffdc35c82d0074814881c4">ContactList::searchContacts</a></div><div class="ttdeci">QVector&lt; Contact &gt; searchContacts(const QString &amp;query) const</div><div class="ttdoc">Searches contacts matching a query string.</div><div class="ttdef"><b>Definition</b> list.cpp:162</div></div>
+<div class="ttc" id="aclass_contact_list_html_ae37ba5ccb9b1f932fd524d3b1f0787a1"><div class="ttname"><a href="class_contact_list.html#ae37ba5ccb9b1f932fd524d3b1f0787a1">ContactList::clear</a></div><div class="ttdeci">void clear()</div><div class="ttdoc">Clears all nodes from the list.</div><div class="ttdef"><b>Definition</b> list.cpp:266</div></div>
+<div class="ttc" id="aclass_contact_list_html_af2d6455cf7ffdc35c82d0074814881c4"><div class="ttname"><a href="class_contact_list.html#af2d6455cf7ffdc35c82d0074814881c4">ContactList::searchContacts</a></div><div class="ttdeci">QVector&lt; Contact &gt; searchContacts(const QString &amp;query) const</div><div class="ttdoc">Searches contacts matching a query string.</div><div class="ttdef"><b>Definition</b> list.cpp:169</div></div>
 <div class="ttc" id="acontatto_8hpp_html"><div class="ttname"><a href="contatto_8hpp.html">contatto.hpp</a></div><div class="ttdoc">Contact class definition with name, phone and email.</div></div>
 <div class="ttc" id="astruct_node_html"><div class="ttname"><a href="struct_node.html">Node</a></div><div class="ttdoc">Node structure for the linked list implementation.</div><div class="ttdef"><b>Definition</b> list.hpp:25</div></div>
 <div class="ttc" id="astruct_node_html_a2559a716f69ccaa76d648d9f1b83065e"><div class="ttname"><a href="struct_node.html#a2559a716f69ccaa76d648d9f1b83065e">Node::next</a></div><div class="ttdeci">Node * next</div><div class="ttdef"><b>Definition</b> list.hpp:27</div></div>
 <div class="ttc" id="astruct_node_html_a4e6a09076832162dcf62b6725303c064"><div class="ttname"><a href="struct_node.html#a4e6a09076832162dcf62b6725303c064">Node::contact</a></div><div class="ttdeci">Contact contact</div><div class="ttdef"><b>Definition</b> list.hpp:26</div></div>
 <div class="ttc" id="astruct_node_html_a808b98b14155f913ee1d2b4225c27ae6"><div class="ttname"><a href="struct_node.html#a808b98b14155f913ee1d2b4225c27ae6">Node::Node</a></div><div class="ttdeci">Node(const Contact &amp;c, Node *n=nullptr)</div><div class="ttdoc">Constructor for Node structure.</div><div class="ttdef"><b>Definition</b> list.hpp:39</div></div>
 </div><!-- fragment --></div><!-- contents -->
-<!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0
-</small></address>
 </div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="list_8hpp.html">list.hpp</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.12.0 </li>
+  </ul>
+</div>
 </body>
 </html>

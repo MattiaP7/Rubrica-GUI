@@ -152,6 +152,9 @@
       <pointsize>11</pointsize>
      </font>
     </property>
+    <property name="editTriggers">
+     <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
+    </property>
    </widget>
    <widget class="QPushButton" name="btnModifica">
     <property name="geometry">
@@ -179,7 +182,7 @@
      <x>0</x>
      <y>0</y>
      <width>1000</width>
-     <height>21</height>
+     <height>25</height>
     </rect>
    </property>
   </widget>

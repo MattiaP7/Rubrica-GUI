@@ -148,16 +148,6 @@ private:
      */
     void clearHighlights();
 
-    /**
-     * @brief Shows a selection dialog when multiple matches are found
-     * @brief Mostra una finestra di selezione quando vengono trovati più corrispondenze
-     *
-     * @param title The dialog title / Il titolo della finestra
-     * @param message The dialog message / Il messaggio della finestra
-     * @param contacts The list of contacts to select from / La lista di contatti tra cui scegliere
-     * @return The index of the selected contact (-1 if canceled) / L'indice del contatto selezionato (-1 se annullato)
-     */
-    int showSelectionDialog(const QString& title, const QString& message, const QVector<Contact>& contacts);
 
     /**
      * @brief Resets the form to its initial state

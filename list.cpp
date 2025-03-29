@@ -8,9 +8,14 @@
 #include <QTextStream>
 #include <thread>
 
-namespace {
+
+/**
+ * @brief namespace for utility function used ONLY in this file.
+ * @brief namespace per funzioni utilizzate UNICAMENTE in questo file.
+ */
+namespace m_list_namespace{
     // Soglia per utilizzare i thread
-    #define THRESHOLD 3
+    #define THRESHOLD 1000
 
     /**
     * @brief Unisce due liste ordinate in una singola lista ordinata.
@@ -122,6 +127,8 @@ bool ContactList::removeContact(const QString& name)
 {
     if (!m_head) return false;
 
+    this->sort();
+
     if (m_head->contact.name() == name) {
         Node* to_delete = m_head;
         m_head = m_head->next;
@@ -228,7 +235,7 @@ bool ContactList::loadFromFile(const QString& filePath)
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
         return false;
 
-    clear(); // Pulisci la lista corrente
+    this->clear(); // Pulisci la lista corrente
 
     QTextStream in(&file);
     while (!in.atEnd()) {
@@ -279,5 +286,7 @@ Node* ContactList::findNode(const QString& name) const
 
 void ContactList::sort()
 {
-    m_head = merge_sort(m_head, this->count());
+    // se this->count() > 1000 attiverà l'ordinamento con i thread
+    // altrimenti fare un merge sort classico
+    m_head = m_list_namespace::merge_sort(m_head, this->count());
 }

@@ -18,3 +18,8 @@ FILE_PATTERNS = *.hpp *.cpp *h
 PRIVATE_MEMBERS = YES  # Mostra membri privati
 PRIVATE_METHODS = YES  # Mostra metodi privati
 EXTRACT_PRIVATE = YES  # Mostra tutto il codice privato
+EXTRACT_STATIC = YES
+
+GENERATE_TREEVIEW = YES
+FULL_SIDEBAR = YES
+ENABLE_NAMESPACES = YES

@@ -119,6 +119,16 @@ void MainWindow::onAddButtonClicked()
         return;
     }
 
+    bool ok_phone;
+    currentPhone.toULongLong(&ok_phone, 10);
+    if(!ok_phone){
+        QString message = QString("Il numero di telefono deve contenere solo cifre");
+        showErrorMessage("Errore", message);
+        ui->inputTelefono->selectAll();
+        ui->inputTelefono->setFocus();
+        return;
+    }
+
     if(currentPhone.size() != 10 || !currentPhone.toLongLong()) {
         QString message = QString("Devi inserire un numero di telefono a 10 cifre, hai inserito %1 cifre").arg(currentPhone.size());
         showErrorMessage("Errore", message);
@@ -126,6 +136,7 @@ void MainWindow::onAddButtonClicked()
         ui->inputTelefono->setFocus();
         return;
     }
+
 
     // Validazione email (opzionale ma se presente deve essere valida)
     if(!currentEmail.isEmpty()) {
@@ -171,28 +182,19 @@ void MainWindow::onSearchButtonClicked()
 
 void MainWindow::onRemoveButtonClicked()
 {
-    // Prima cerca i contatti
-    QString query = QInputDialog::getText(this, "Cerca Contatti da Eliminare",
-                                          "Inserisci nome o numero di telefono:");
-    if(query.isEmpty()) return;
-
-    const auto results = m_contactList.searchContacts(query);
-    if(results.isEmpty()) {
-        QMessageBox::information(this, "Risultati", "Nessun contatto trovato");
+    int currentRow = ui->tableWidget->currentRow();
+    if (currentRow < 0) {
+        showErrorMessage("Errore", "Seleziona un contatto da eliminare");
         return;
     }
 
-    // Mostra dialog di selezione
-    int choice = showSelectionDialog("Elimina Contatto",
-                                     "Seleziona il contatto da eliminare:", results);
+    QString name_to_delete = ui->tableWidget->item(currentRow, 0)->text();
 
-    if(choice >= 0 && choice < results.size()) {
-        if(m_contactList.removeContact(results[choice].name())) {
-            QMessageBox::information(this, "Successo", "Contatto eliminato");
-            refreshContactTable();
-        } else {
-            QMessageBox::warning(this, "Errore", "Eliminazione fallita");
-        }
+    if(m_contactList.removeContact(name_to_delete)) {
+        QMessageBox::information(this, "Successo", "Contatto eliminato");
+        refreshContactTable();
+    } else {
+        QMessageBox::warning(this, "Errore", "Eliminazione fallita");
     }
 }
 
@@ -295,7 +297,7 @@ Contact MainWindow::getContactFromInput() const
         ui->inputNome->text().trimmed(),
         ui->inputTelefono->text().trimmed(),
         ui->inputEmail->text().trimmed()
-        );
+    );
 }
 
 bool MainWindow::validateInput() const
@@ -317,7 +319,7 @@ void MainWindow::showErrorMessage(const QString& title, const QString& message)
     QMessageBox msgBox(this);
     msgBox.setWindowTitle(title);
     msgBox.setText(message);
-    msgBox.setIcon(QMessageBox::Warning);
+    msgBox.setIcon(QMessageBox::Critical);
     msgBox.setStandardButtons(QMessageBox::Ok);
 
     // Centra la message box rispetto alla finestra principale
@@ -341,7 +343,6 @@ void MainWindow::highlightSearchResults(const QVector<Contact>& results)
         for(const auto& contact : results) {
             if(name == contact.name() || phone == contact.phone()) {
                 for(int j = 0; j < ui->tableWidget->columnCount(); ++j) {
-                    // fare un push front di tutti i contatti trovati
                     if(isDarkMode()){
                         ui->tableWidget->item(i, j)->setForeground(Qt::cyan);
                     }else{
@@ -366,24 +367,4 @@ void MainWindow::clearHighlights()
         }
     }
 }
-
-int MainWindow::showSelectionDialog(const QString& title, const QString& message, const QVector<Contact>& contacts)
-{
-    // Nel dialog vengono mostrati: indice. nome - telefono
-    QStringList items;
-    for(int i = 0; i < contacts.size(); ++i) {
-        items << QString("%1. %2 - %3").arg(i+1).arg(contacts[i].name()).arg(contacts[i].phone());
-    }
-
-    bool ok;
-    QString selected = QInputDialog::getItem(this, title, message, items, 0, false, &ok);
-
-    if(ok && !selected.isEmpty()) {
-        return items.indexOf(selected);
-    }
-    return -1;
-
-    // Se tutto è andato a buon fine ritorniamo l'indice dell'items, altrimenti -1
-}
-
 
