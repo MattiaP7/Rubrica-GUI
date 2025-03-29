@@ -341,6 +341,7 @@ void MainWindow::highlightSearchResults(const QVector<Contact>& results)
         for(const auto& contact : results) {
             if(name == contact.name() || phone == contact.phone()) {
                 for(int j = 0; j < ui->tableWidget->columnCount(); ++j) {
+                    // fare un push front di tutti i contatti trovati
                     if(isDarkMode()){
                         ui->tableWidget->item(i, j)->setForeground(Qt::cyan);
                     }else{

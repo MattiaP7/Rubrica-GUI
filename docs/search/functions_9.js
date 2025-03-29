@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['removecontact_0',['removeContact',['../class_contact_list.html#a9e876ce2cbc858ce1abf98d0106a244e',1,'ContactList']]]
+  ['phone_0',['phone',['../class_contact.html#a6a674a362a967d77b15cba1ba9b65d50',1,'Contact']]]
 ];

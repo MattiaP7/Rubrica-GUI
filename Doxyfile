@@ -13,4 +13,4 @@ GENERATE_XML = NO
 
 # Non creare una sottocartella per l'output HTML
 HTML_OUTPUT = .
-FILE_PATTERNS = *.hpp *.cpp
+FILE_PATTERNS = *.hpp *.cpp *h

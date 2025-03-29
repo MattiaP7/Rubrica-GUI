@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['_7econtactlist_0',['~ContactList',['../class_contact_list.html#a8f3361944a317712dff8835d4eba8970',1,'ContactList']]]
+  ['updatecontact_0',['updateContact',['../class_contact_list.html#a43851598be0676dd2b14eab622c903b6',1,'ContactList']]]
 ];
