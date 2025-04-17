@@ -8,6 +8,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QSortFilterProxyModel>
 #include <QTableWidgetItem>
 #include "list.hpp"
 
@@ -85,6 +86,8 @@ private:
     Ui::MainWindow *ui;             /**< Pointer to the UI components / Puntatore ai componenti dell'interfaccia */
     ContactList m_contactList;      /**< The contact list instance / Istanza della lista contatti */
 
+    QSortFilterProxyModel* m_proxyModel;
+
     /**
      * @brief Initializes the user interface components
      * @brief Inizializza i componenti dell'interfaccia utente
@@ -147,6 +150,7 @@ private:
      * @brief Rimuove tutte le evidenziazioni dalla tabella
      */
     void clearHighlights();
+
 
 
     /**

@@ -129,27 +129,27 @@ bool ContactList::removeContact(const QString& name)
 
     this->sort();
 
-    if (m_head->contact.name() == name) {
+    if (capitalize(m_head->contact.name()) == capitalize(name)) {
         Node* to_delete = m_head;
         m_head = m_head->next;
         delete to_delete;
         m_count--;
         emit dataChanged();
         return true;
-    }
+    }else{
+        Node* current = m_head;
+        while (current->next != nullptr && capitalize(current->next->contact.name()) != capitalize(name)) {
+            current = current->next;
+        }
 
-    Node* current = m_head;
-    while (current->next && current->next->contact.name() != name) {
-        current = current->next;
-    }
-
-    if (current->next) {
-        Node* to_delete = current->next;
-        current->next = current->next->next;
-        delete to_delete;
-        m_count--;
-        emit dataChanged();
-        return true;
+        if (current->next != nullptr) {
+            Node* to_delete = current->next;
+            current->next = current->next->next;
+            delete to_delete;
+            m_count--;
+            emit dataChanged();
+            return true;
+        }
     }
 
     return false;

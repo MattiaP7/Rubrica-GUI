@@ -45,6 +45,9 @@
     <property name="text">
      <string>Aggiungi</string>
     </property>
+    <property name="shortcut">
+     <string>Ctrl+P</string>
+    </property>
    </widget>
    <widget class="QPushButton" name="btnCerca">
     <property name="geometry">
@@ -64,6 +67,9 @@
     <property name="text">
      <string>Cerca</string>
     </property>
+    <property name="shortcut">
+     <string>Ctrl+F</string>
+    </property>
    </widget>
    <widget class="QPushButton" name="btnElimina">
     <property name="geometry">
@@ -82,6 +88,9 @@
     </property>
     <property name="text">
      <string>Elimina</string>
+    </property>
+    <property name="shortcut">
+     <string>Ctrl+D</string>
     </property>
    </widget>
    <widget class="QLineEdit" name="inputNome">
@@ -174,6 +183,9 @@
     <property name="text">
      <string>Modifica</string>
     </property>
+    <property name="shortcut">
+     <string>Ctrl+M</string>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -182,7 +194,7 @@
      <x>0</x>
      <y>0</y>
      <width>1000</width>
-     <height>25</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/icon"/>
+    <qresource prefix="/new/prefix1">
+        <file>build/Desktop_Qt_6_8_1_MinGW_64_bit-Debug/rubrica_logo.png</file>
+    </qresource>
+</RCC>

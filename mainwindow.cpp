@@ -170,7 +170,7 @@ void MainWindow::onSearchButtonClicked()
     // results è un QVector<Contact> visto che contiene tutti i contatti trovati da searchContacts(query)
     const auto results = m_contactList.searchContacts(query);
     if(results.isEmpty()) {
-        QMessageBox::information(this, "Risultati", "Nessun contatto trovato");
+        QMessageBox::information(this, "Ricerca", "Nessun contatto trovato");
         clearHighlights();
     } else {
         // stampo il numero di contatti trovati e evidenzio nella tabella i contatti che matchano la query
@@ -297,7 +297,7 @@ Contact MainWindow::getContactFromInput() const
         ui->inputNome->text().trimmed(),
         ui->inputTelefono->text().trimmed(),
         ui->inputEmail->text().trimmed()
-    );
+        );
 }
 
 bool MainWindow::validateInput() const
@@ -332,23 +332,19 @@ void MainWindow::showErrorMessage(const QString& title, const QString& message)
 
 void MainWindow::highlightSearchResults(const QVector<Contact>& results)
 {
-    clearHighlights();
+    // Nasconde tutte le righe inizialmente
+    for(int i = 0; i < ui->tableWidget->rowCount(); ++i) {
+        ui->tableWidget->setRowHidden(i, true);
+    }
 
+    // Mostra solo le righe che corrispondono ai risultati trovati
     for(int i = 0; i < ui->tableWidget->rowCount(); ++i) {
         QString name = ui->tableWidget->item(i, 0)->text();
         QString phone = ui->tableWidget->item(i, 1)->text();
 
-
-
         for(const auto& contact : results) {
             if(name == contact.name() || phone == contact.phone()) {
-                for(int j = 0; j < ui->tableWidget->columnCount(); ++j) {
-                    if(isDarkMode()){
-                        ui->tableWidget->item(i, j)->setForeground(Qt::cyan);
-                    }else{
-                        ui->tableWidget->item(i, j)->setForeground(Qt::red);
-                    }
-                }
+                ui->tableWidget->setRowHidden(i, false);
                 break;
             }
         }
@@ -357,14 +353,15 @@ void MainWindow::highlightSearchResults(const QVector<Contact>& results)
 
 void MainWindow::clearHighlights()
 {
+    // Mostra tutte le righe e resetta i colori
     for(int i = 0; i < ui->tableWidget->rowCount(); ++i) {
+        ui->tableWidget->setRowHidden(i, false);
         for(int j = 0; j < ui->tableWidget->columnCount(); ++j) {
-            if(isDarkMode()){
+            if(isDarkMode()) {
                 ui->tableWidget->item(i, j)->setForeground(Qt::white);
-            }else{
+            } else {
                 ui->tableWidget->item(i, j)->setBackground(Qt::white);
             }
         }
     }
 }
-

@@ -37,6 +37,7 @@ bool Contact::isEmail(){
     if (position == -1) return false;
 
     QString domain = m_email.mid(position + 1);
+    // questo vector contiene domains riconosciuti
     QVector<QString> allowed_domains = {
         "gmail.com",      "outlook.com",   "yahoo.com",     "hotmail.com",
         "icloud.com",     "aol.com",       "zoho.com",      "protonmail.com",

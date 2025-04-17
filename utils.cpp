@@ -16,3 +16,16 @@ bool isDarkMode() {
     return text.lightness() > window.lightness();
 #endif // QT_VERSION
 }
+
+/**
+ * @brief function for capitalize every word in a QString.
+ * @param str
+ * @return the same string but capitalize
+ */
+QString capitalize(const QString& str){
+    QStringList words = str.split(" ", Qt::SkipEmptyParts);
+    for (QString& word : words)
+        word.front() = word.front().toUpper();
+
+    return words.join(" ");
+}
