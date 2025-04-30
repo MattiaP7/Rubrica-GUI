@@ -50,7 +50,7 @@ struct Node {
  * file I/O, and sorting capabilities.
  *
  * Questa classe fornisce funzionalità per gestire una collezione di contatti
- * utilizzando una struttura a lista concatenata singola. Supporta operazioni CRUD di base,
+ * utilizzando una struttura a lista concatenata singola. Supporta operazioni CRUD(Create, Read, Update, Delete) di base,
  * I/O su file e capacità di ordinamento.
  */
 class ContactList : public QObject

@@ -68,7 +68,7 @@ void MainWindow::refreshContactTable()
     // Pulisci e ripopola la tabella
     ui->tableWidget->setRowCount(0);
 
-    // contacsts contiene tutti i contatti della lista
+    // contacts contiene tutti i contatti della lista
     const auto contacts = m_contactList.allContacts();
     for (const auto& contact : contacts) {
         // Salta i contatti vuoti
@@ -79,7 +79,7 @@ void MainWindow::refreshContactTable()
         int row = ui->tableWidget->rowCount();
         ui->tableWidget->insertRow(row);
 
-        auto nameItem = new QTableWidgetItem(contact.name());
+        auto nameItem = new QTableWidgetItem(capitalize(contact.name()));
         nameItem->setFlags(nameItem->flags() | Qt::ItemIsSelectable | Qt::ItemIsEnabled);
         ui->tableWidget->setItem(row, 0, nameItem);
 
@@ -102,7 +102,7 @@ void MainWindow::onAddButtonClicked()
 {
     // Salva i valori correnti degli input
     // Utilizzo .trimmed() per rimuovere spazi iniziali o finali indesiderati
-    QString currentName = ui->inputNome->text().trimmed();
+    QString currentName = capitalize(ui->inputNome->text().trimmed());
     QString currentPhone = ui->inputTelefono->text().trimmed();
     QString currentEmail = ui->inputEmail->text().trimmed();
 
@@ -360,7 +360,7 @@ void MainWindow::clearHighlights()
             if(isDarkMode()) {
                 ui->tableWidget->item(i, j)->setForeground(Qt::white);
             } else {
-                ui->tableWidget->item(i, j)->setBackground(Qt::white);
+                ui->tableWidget->item(i, j)->setBackground(Qt::black);
             }
         }
     }

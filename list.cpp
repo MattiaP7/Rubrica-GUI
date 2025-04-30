@@ -168,19 +168,26 @@ bool ContactList::updateContact(const QString& originalName, const Contact& upda
 
 QVector<Contact> ContactList::searchContacts(const QString& query) const
 {
-    QVector<Contact> results;
-    Node* current = m_head;
+    QVector<Contact> results; // vettore di contatti contenente i contatti trovati
+    Node* current = m_head;     
 
-    while (current) {
+    while (current /* !=nullptr */) {
+        // cerca contatti che corrispondano per nome(case insensitive) , telefono o email
         if (current->contact.name().contains(query, Qt::CaseInsensitive) ||
-            current->contact.phone().contains(query)) {
+            current->contact.phone().contains(query) ||
+            current->contact.email().contains(query)
+        ) {
+            // se trovato appendo il contatto Al vettore di contatti
             results.append(current->contact);
         }
+        // se non trovato vado al prossimo contatto
         current = current->next;
     }
 
     return results;
 }
+
+
 
 QVector<Contact> ContactList::allContacts() const
 {
@@ -289,4 +296,18 @@ void ContactList::sort()
     // se this->count() > 1000 attiverà l'ordinamento con i thread
     // altrimenti fare un merge sort classico
     m_head = m_list_namespace::merge_sort(m_head, this->count());
+
+    /*
+        il merge sort funziona così. 
+        dato un container, esso viene diviso in due metà con stesso numero di elementi (se possibile)[1], a questo punto facciamo ricorsivamente la stessa cosa finchè non ci troviamo ad avere sotto container formati da un elemento. Una volta fatto ciò uniamo i sotto continer di singoli elementi nei precedenti sotto container da 2 elementi ma ordinati, facciamo questo cosa ricorsivamente finchè non abbiamo il container originale tutto ordinato[2]
+
+
+        [1] => continer [38, 27, 43, 10]   
+                        /               \
+                    [38, 27]            [43, 10]
+                      /  \                /  \
+                   [38]  [27]           [43] [10]
+        [2]                      MERGE
+                            [10, 27, 38, 43]
+    */
 }

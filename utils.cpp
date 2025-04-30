@@ -19,8 +19,10 @@ bool isDarkMode() {
 
 /**
  * @brief function for capitalize every word in a QString.
+ * @brief funzione che capitalizza l'iniziale di ogni parola in una stringa
  * @param str
  * @return the same string but capitalize
+ * @return la stessa stringa ma capitalizzata
  */
 QString capitalize(const QString& str){
     QStringList words = str.split(" ", Qt::SkipEmptyParts);
