@@ -166,27 +166,55 @@ bool ContactList::updateContact(const QString& originalName, const Contact& upda
     return true;
 }
 
-QVector<Contact> ContactList::searchContacts(const QString& query) const
-{
-    QVector<Contact> results; // vettore di contatti contenente i contatti trovati
-    Node* current = m_head;     
+// QVector<Contact> ContactList::searchContacts(const QString& query) const
+// {
+//     QVector<Contact> results; // vettore di contatti contenente i contatti trovati
+//     Node* current = m_head;
 
-    while (current /* !=nullptr */) {
-        // cerca contatti che corrispondano per nome(case insensitive) , telefono o email
-        if (current->contact.name().contains(query, Qt::CaseInsensitive) ||
-            current->contact.phone().contains(query) ||
-            current->contact.email().contains(query)
-        ) {
-            // se trovato appendo il contatto Al vettore di contatti
-            results.append(current->contact);
+//     while (current /* !=nullptr */) {
+//         // cerca contatti che corrispondano per nome(case insensitive) , telefono o email
+//         if (current->contact.name().contains(query, Qt::CaseInsensitive) ||
+//             current->contact.phone().contains(query) ||
+//             current->contact.email().contains(query)
+//         ) {
+//             // se trovato appendo il contatto Al vettore di contatti
+//             results.append(current->contact);
+//         }
+//         // se non trovato vado al prossimo contatto
+//         current = current->next;
+//     }
+
+//     return results;
+// }
+
+void ContactList::search(const QString& str, QTableWidget* table) {
+    Node* current = m_head;
+    QString searchStr = str.toUpper();
+    int row = 0;
+
+    while (current != nullptr) {
+        QString name = current->contact.name().toUpper();
+        QString email = current->contact.email().toUpper();
+        QString phone = current->contact.phone().toUpper();
+
+        if (name.contains(searchStr) || email.contains(searchStr) || phone.contains(searchStr)) {
+            table->insertRow(row);
+
+            QTableWidgetItem* nameItem  = new QTableWidgetItem(current->contact.name());
+            QTableWidgetItem* emailItem = new QTableWidgetItem(current->contact.email());
+            QTableWidgetItem* phoneItem = new QTableWidgetItem(current->contact.phone());
+
+
+            table->setItem(row, 0, nameItem);
+            table->setItem(row, 1, phoneItem);
+            table->setItem(row, 2, emailItem);
+
+            row++;
         }
-        // se non trovato vado al prossimo contatto
+
         current = current->next;
     }
-
-    return results;
 }
-
 
 
 QVector<Contact> ContactList::allContacts() const

@@ -11,6 +11,7 @@
 #include "utils.hpp"
 #include <QObject>
 #include <QVector>
+#include <QTableWidget>
 
 /**
  * @struct Node
@@ -125,7 +126,14 @@ public:
      * @param query Stringa di ricerca
      * @return QVector<Contact> di contatti corrispondenti
      */
-    QVector<Contact> searchContacts(const QString& query) const;
+    //QVector<Contact> searchContacts(const QString& query) const;
+
+    /**
+     * @brief search
+     * @param str
+     * @param table
+     */
+    void search(const QString& str, QTableWidget* table);
 
     /**
      * @brief Gets all contacts in the list

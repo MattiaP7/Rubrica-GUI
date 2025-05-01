@@ -43,21 +43,54 @@ void MainWindow::initializeUI()
     ui->tableWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
+    // Connetto l'input della ricerca
+    connect(
+        ui->inputSearch,
+        &QLineEdit::textChanged,
+        this,
+        &MainWindow::on_inputSearch_textChanged
+    );
+
+
     // Connetto tutti pulsanti della UI
-    connect(ui->btnAggiungi, &QPushButton::clicked,
-            this, &MainWindow::onAddButtonClicked);
-    connect(ui->btnCerca, &QPushButton::clicked,
-            this, &MainWindow::onSearchButtonClicked);
-    connect(ui->btnElimina, &QPushButton::clicked,
-            this, &MainWindow::onRemoveButtonClicked);
-    connect(ui->btnModifica, &QPushButton::clicked,
-            this, &MainWindow::onEditButtonClicked);
-    // Cambio il testo e la funzionalità del primo bottone, per evitare di crearne un'altro
-    connect(ui->tableWidget, &QTableWidget::itemSelectionChanged, this, [this]() {
-        if(ui->btnAggiungi->text() == "Conferma Modifica") {
-            resetForm();
+    connect(
+        ui->btnAggiungi,
+        &QPushButton::clicked,
+        this,
+        &MainWindow::onAddButtonClicked
+    );
+    connect(
+        ui->btnElimina,
+        &QPushButton::clicked,
+        this,
+        &MainWindow::onRemoveButtonClicked
+    );
+    connect(
+        ui->btnModifica,
+        &QPushButton::clicked,
+        this,
+        &MainWindow::onEditButtonClicked
+    );
+
+    /**
+     * @brief Connette il segnale textChanged di inputTelefono a una lambda che aggiorna il
+     *        contatore caratteri.
+     *
+     * Aggiorna dinamincamente il contatore tramite una lamda function,
+     * tramite `[=]`, includo `this`, per poter accedere a `ui`.
+     *
+     * @param text Il nuovo testo inserito in `inputTelefono`,
+     *         passato automaticamente dal segnale.
+     */
+    connect(
+        ui->inputTelefono,
+        &QLineEdit::textChanged,
+        this,
+        [=](const QString &text){
+            int len = text.length();
+            ui->countTelefono->setText(QString("%1").arg(len));
         }
-    });
+    );
 }
 
 void MainWindow::refreshContactTable()
@@ -72,9 +105,11 @@ void MainWindow::refreshContactTable()
     const auto contacts = m_contactList.allContacts();
     for (const auto& contact : contacts) {
         // Salta i contatti vuoti
-        if(contact.name().isEmpty() && contact.phone().isEmpty() && contact.email().isEmpty()) {
-            continue;
-        }
+        if(
+            contact.name().isEmpty() &&
+            contact.phone().isEmpty() &&
+            contact.email().isEmpty()
+        ) continue;
 
         int row = ui->tableWidget->rowCount();
         ui->tableWidget->insertRow(row);
@@ -119,6 +154,9 @@ void MainWindow::onAddButtonClicked()
         return;
     }
 
+    // converto la stringa del telefono in un numero
+    // toULongLong ritorna il valore di ok_phone,
+    // se false vuol dire che la stringa non era composta da soli numeri = errore
     bool ok_phone;
     currentPhone.toULongLong(&ok_phone, 10);
     if(!ok_phone){
@@ -142,22 +180,25 @@ void MainWindow::onAddButtonClicked()
     if(!currentEmail.isEmpty()) {
         Contact tempContact("", "", currentEmail);
         if(!tempContact.isEmail()) {
-            showErrorMessage("Errore", "Inserisci un indirizzo email valido o lascia il campo vuoto");
+            showErrorMessage(
+                "Errore",
+                "Inserisci un indirizzo email valido o lascia il campo vuoto"
+            );
             ui->inputEmail->selectAll();
             ui->inputEmail->setFocus();
             return;
         }
     }
 
-    // Se tutte le validazioni passano
+    // Se tutte le validazioni passano, creo un nuovo nodo e lo aggiungo alla lista
     Contact newContact(currentName, currentPhone, currentEmail);
     m_contactList.addContact(newContact);
 
-    // Pulisci i campi solo se l'inserimento è avvenuto con successo
+    // Pulisco i campi solo se l'inserimento è avvenuto con successo
     clearInputFields();
 }
 
-
+/* vecchia versione della search
 void MainWindow::onSearchButtonClicked()
 {
     // la query rappresenta l'input della ricerca
@@ -179,7 +220,7 @@ void MainWindow::onSearchButtonClicked()
         QMessageBox::information(this, "Risultati", message);
     }
 }
-
+*/
 void MainWindow::onRemoveButtonClicked()
 {
     int currentRow = ui->tableWidget->currentRow();
@@ -224,7 +265,6 @@ void MainWindow::onEditButtonClicked()
         confirmEdit(originalName);
     });
     ui->btnElimina->hide();
-    ui->btnCerca->hide();
     ui->btnModifica->hide();
 }
 
@@ -265,7 +305,6 @@ void MainWindow::confirmEdit(const QString& originalName)
 
     // Dopo avere eseguito la modifica ripristino i bottoni
     ui->btnElimina->show();
-    ui->btnCerca->show();
     ui->btnModifica->show();
 
     // Reimposta il testo del pulsante "Aggiungi" se necessario
@@ -365,3 +404,11 @@ void MainWindow::clearHighlights()
         }
     }
 }
+
+void MainWindow::on_inputSearch_textChanged(const QString &arg1)
+{
+    ui->tableWidget->setRowCount(0);  // Svuota la tabella
+    //contactList.search(text, ui->tableWidget);  // Esegui la ricerca
+    m_contactList.search(arg1, ui->tableWidget);
+}
+

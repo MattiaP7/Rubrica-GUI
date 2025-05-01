@@ -55,11 +55,6 @@ private slots:
      */
     void onAddButtonClicked();
 
-    /**
-     * @brief Slot for handling the Search button click
-     * @brief Slot per gestire il click sul pulsante Cerca
-     */
-    void onSearchButtonClicked();
 
     /**
      * @brief Slot for handling the Remove button click
@@ -81,6 +76,8 @@ private slots:
      * Aggiorna l'interfaccia utente per riflettere i cambiamenti nella lista contatti.
      */
     void onContactListChanged();
+
+    void on_inputSearch_textChanged(const QString &arg1);
 
 private:
     Ui::MainWindow *ui;             /**< Pointer to the UI components / Puntatore ai componenti dell'interfaccia */
