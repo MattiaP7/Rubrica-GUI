@@ -13,7 +13,7 @@ var class_contact_list =
     [ "loadFromFile", "class_contact_list.html#a4926f25de8933f202efc5b0902e39a7d", null ],
     [ "removeContact", "class_contact_list.html#a9e876ce2cbc858ce1abf98d0106a244e", null ],
     [ "saveToFile", "class_contact_list.html#a2621398efd1b929babf0311f95b716f8", null ],
-    [ "searchContacts", "class_contact_list.html#af2d6455cf7ffdc35c82d0074814881c4", null ],
+    [ "search", "class_contact_list.html#a4b72c0e77cff85b8d8e9b15942bd7913", null ],
     [ "sort", "class_contact_list.html#a984bc9262f4f8249f779e00f02525244", null ],
     [ "updateContact", "class_contact_list.html#a43851598be0676dd2b14eab622c903b6", null ],
     [ "m_count", "class_contact_list.html#a1ad885c412264e47eb1e9a31c58afca5", null ],

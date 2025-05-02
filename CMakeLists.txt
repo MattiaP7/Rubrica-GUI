@@ -15,9 +15,12 @@ qt_add_executable(RubricaGUI
     list.hpp list.cpp
     utils.hpp
     utils.cpp
+    resource.qrc
 
 
 )
+
+qt_add_resources(RESOURCES resources.qrc)
 
 target_link_libraries(RubricaGUI
     PRIVATE

@@ -140,9 +140,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a43851598be0676dd2b14eab622c903b6" id="r_a43851598be0676dd2b14eab622c903b6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a43851598be0676dd2b14eab622c903b6">updateContact</a> (const QString &amp;originalName, const <a class="el" href="class_contact.html">Contact</a> &amp;updatedContact)</td></tr>
 <tr class="memdesc:a43851598be0676dd2b14eab622c903b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates an existing contact.  <br /></td></tr>
 <tr class="separator:a43851598be0676dd2b14eab622c903b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af2d6455cf7ffdc35c82d0074814881c4" id="r_af2d6455cf7ffdc35c82d0074814881c4"><td class="memItemLeft" align="right" valign="top">QVector&lt; <a class="el" href="class_contact.html">Contact</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af2d6455cf7ffdc35c82d0074814881c4">searchContacts</a> (const QString &amp;query) const</td></tr>
-<tr class="memdesc:af2d6455cf7ffdc35c82d0074814881c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Searches contacts matching a query string.  <br /></td></tr>
-<tr class="separator:af2d6455cf7ffdc35c82d0074814881c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b72c0e77cff85b8d8e9b15942bd7913" id="r_a4b72c0e77cff85b8d8e9b15942bd7913"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4b72c0e77cff85b8d8e9b15942bd7913">search</a> (const QString &amp;str, QTableWidget *table)</td></tr>
+<tr class="memdesc:a4b72c0e77cff85b8d8e9b15942bd7913"><td class="mdescLeft">&#160;</td><td class="mdescRight">Searches contacts matching a query string.  <br /></td></tr>
+<tr class="separator:a4b72c0e77cff85b8d8e9b15942bd7913"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6bb31b66af7743b70e8246b50d965a51" id="r_a6bb31b66af7743b70e8246b50d965a51"><td class="memItemLeft" align="right" valign="top">QVector&lt; <a class="el" href="class_contact.html">Contact</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6bb31b66af7743b70e8246b50d965a51">allContacts</a> () const</td></tr>
 <tr class="memdesc:a6bb31b66af7743b70e8246b50d965a51"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets all contacts in the list.  <br /></td></tr>
 <tr class="separator:a6bb31b66af7743b70e8246b50d965a51"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -185,7 +185,7 @@ Private Attributes</h2></td></tr>
 <div class="textblock"><p>A linked list implementation for managing <a class="el" href="class_contact.html" title="Represents a contact entry with name, phone number and optional email.">Contact</a> objects. </p>
 <p>Implementazione di una lista concatenata per la gestione di oggetti <a class="el" href="class_contact.html" title="Represents a contact entry with name, phone number and optional email.">Contact</a></p>
 <p>This class provides functionality to manage a collection of contacts using a singly linked list structure. It supports basic CRUD operations, file I/O, and sorting capabilities.</p>
-<p>Questa classe fornisce funzionalità per gestire una collezione di contatti utilizzando una struttura a lista concatenata singola. Supporta operazioni CRUD di base, I/O su file e capacità di ordinamento. </p>
+<p>Questa classe fornisce funzionalità per gestire una collezione di contatti utilizzando una struttura a lista concatenata singola. Supporta operazioni CRUD(Create, Read, Update, Delete) di base, I/O su file e capacità di ordinamento. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a67d8ebd9c33250230c3abba9c2951efa" name="a67d8ebd9c33250230c3abba9c2951efa"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a67d8ebd9c33250230c3abba9c2951efa">&#9670;&#160;</a></span>ContactList()</h2>
@@ -610,17 +610,21 @@ true se la lista è vuota, false altrimenti </dd></dl>
 
 </div>
 </div>
-<a id="af2d6455cf7ffdc35c82d0074814881c4" name="af2d6455cf7ffdc35c82d0074814881c4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af2d6455cf7ffdc35c82d0074814881c4">&#9670;&#160;</a></span>searchContacts()</h2>
+<a id="a4b72c0e77cff85b8d8e9b15942bd7913" name="a4b72c0e77cff85b8d8e9b15942bd7913"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4b72c0e77cff85b8d8e9b15942bd7913">&#9670;&#160;</a></span>search()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">QVector&lt; <a class="el" href="class_contact.html">Contact</a> &gt; ContactList::searchContacts </td>
+          <td class="memname">void ContactList::search </td>
           <td>(</td>
-          <td class="paramtype">const QString &amp;</td>          <td class="paramname"><span class="paramname"><em>query</em></span></td><td>)</td>
-          <td> const</td>
+          <td class="paramtype">const QString &amp;</td>          <td class="paramname"><span class="paramname"><em>str</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">QTableWidget *</td>          <td class="paramname"><span class="paramname"><em>table</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -641,7 +645,14 @@ true se la lista è vuota, false altrimenti </dd></dl>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>QVector&lt;Contact&gt; di contatti corrispondenti </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>QVector&lt;Contact&gt; di contatti corrispondenti</dd></dl>
+<p>search </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td></td></tr>
+    <tr><td class="paramname">table</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

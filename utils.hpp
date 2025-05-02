@@ -24,7 +24,7 @@ bool isDarkMode();
  * @param str
  * @return the same string but capitalize
  */
-QString capitalize(const QString& str);
+QString capitalize(const QString &str);
 
 
 #endif // UTILS_HPP

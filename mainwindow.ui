@@ -29,8 +29,8 @@
    <widget class="QPushButton" name="btnAggiungi">
     <property name="geometry">
      <rect>
-      <x>860</x>
-      <y>300</y>
+      <x>850</x>
+      <y>230</y>
       <width>141</width>
       <height>91</height>
      </rect>
@@ -42,6 +42,9 @@
       <bold>true</bold>
      </font>
     </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
     <property name="text">
      <string>Aggiungi</string>
     </property>
@@ -52,8 +55,8 @@
    <widget class="QPushButton" name="btnElimina">
     <property name="geometry">
      <rect>
-      <x>1020</x>
-      <y>400</y>
+      <x>850</x>
+      <y>430</y>
       <width>141</width>
       <height>91</height>
      </rect>
@@ -63,6 +66,9 @@
       <pointsize>15</pointsize>
       <bold>true</bold>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
     </property>
     <property name="text">
      <string>Elimina</string>
@@ -146,8 +152,8 @@
    <widget class="QPushButton" name="btnModifica">
     <property name="geometry">
      <rect>
-      <x>1020</x>
-      <y>300</y>
+      <x>850</x>
+      <y>330</y>
       <width>141</width>
       <height>91</height>
      </rect>
@@ -157,6 +163,9 @@
       <pointsize>15</pointsize>
       <bold>true</bold>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
     </property>
     <property name="text">
      <string>Modifica</string>
@@ -181,24 +190,6 @@
     </property>
     <property name="placeholderText">
      <string>Contatto da cercare</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="countTelefono">
-    <property name="geometry">
-     <rect>
-      <x>1090</x>
-      <y>110</y>
-      <width>81</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>15</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string/>
     </property>
    </widget>
   </widget>

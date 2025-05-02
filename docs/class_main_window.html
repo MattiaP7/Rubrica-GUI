@@ -131,9 +131,6 @@ Private Slots</h2></td></tr>
 <tr class="memitem:a21ef75eba70ede6f72d07ba0e4687bbb" id="r_a21ef75eba70ede6f72d07ba0e4687bbb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a21ef75eba70ede6f72d07ba0e4687bbb">onAddButtonClicked</a> ()</td></tr>
 <tr class="memdesc:a21ef75eba70ede6f72d07ba0e4687bbb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Slot for handling the Add button click.  <br /></td></tr>
 <tr class="separator:a21ef75eba70ede6f72d07ba0e4687bbb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a00074c539abb424d3e144aa9b1dd1b62" id="r_a00074c539abb424d3e144aa9b1dd1b62"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a00074c539abb424d3e144aa9b1dd1b62">onSearchButtonClicked</a> ()</td></tr>
-<tr class="memdesc:a00074c539abb424d3e144aa9b1dd1b62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Slot for handling the Search button click.  <br /></td></tr>
-<tr class="separator:a00074c539abb424d3e144aa9b1dd1b62"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5cd1b5a52dab4c725755d4b990a9b6e8" id="r_a5cd1b5a52dab4c725755d4b990a9b6e8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5cd1b5a52dab4c725755d4b990a9b6e8">onRemoveButtonClicked</a> ()</td></tr>
 <tr class="memdesc:a5cd1b5a52dab4c725755d4b990a9b6e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Slot for handling the Remove button click.  <br /></td></tr>
 <tr class="separator:a5cd1b5a52dab4c725755d4b990a9b6e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -143,6 +140,9 @@ Private Slots</h2></td></tr>
 <tr class="memitem:ae86fdaca5db8342ba4d3cc4426197dd4" id="r_ae86fdaca5db8342ba4d3cc4426197dd4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae86fdaca5db8342ba4d3cc4426197dd4">onContactListChanged</a> ()</td></tr>
 <tr class="memdesc:ae86fdaca5db8342ba4d3cc4426197dd4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Slot called when the contact list changes.  <br /></td></tr>
 <tr class="separator:ae86fdaca5db8342ba4d3cc4426197dd4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c13ffc7cb525aa56eabe2261dee8516" id="r_a3c13ffc7cb525aa56eabe2261dee8516"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3c13ffc7cb525aa56eabe2261dee8516">on_inputSearch_textChanged</a> (const QString &amp;query)</td></tr>
+<tr class="memdesc:a3c13ffc7cb525aa56eabe2261dee8516"><td class="mdescLeft">&#160;</td><td class="mdescRight">slot called for searching and to filter the table widgets of contacts  <br /></td></tr>
+<tr class="separator:a3c13ffc7cb525aa56eabe2261dee8516"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
@@ -434,6 +434,41 @@ Oggetto <a class="el" href="class_contact.html" title="Represents a contact entr
 
 </div>
 </div>
+<a id="a3c13ffc7cb525aa56eabe2261dee8516" name="a3c13ffc7cb525aa56eabe2261dee8516"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3c13ffc7cb525aa56eabe2261dee8516">&#9670;&#160;</a></span>on_inputSearch_textChanged</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MainWindow::on_inputSearch_textChanged </td>
+          <td>(</td>
+          <td class="paramtype">const QString &amp;</td>          <td class="paramname"><span class="paramname"><em>query</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>slot called for searching and to filter the table widgets of contacts </p>
+<p>slot chiamato per cercare e filtrare la tabella dei contatti</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">query</td><td>- parameter to search, it could be the name, the phone or the email </td></tr>
+    <tr><td class="paramname">query</td><td>- parametro da cercare, puo' essere nome, telefono, email </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a21ef75eba70ede6f72d07ba0e4687bbb" name="a21ef75eba70ede6f72d07ba0e4687bbb"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a21ef75eba70ede6f72d07ba0e4687bbb">&#9670;&#160;</a></span>onAddButtonClicked</h2>
 
@@ -544,34 +579,6 @@ Oggetto <a class="el" href="class_contact.html" title="Represents a contact entr
 
 <p>Slot for handling the Remove button click. </p>
 <p>Slot per gestire il click sul pulsante Rimuovi </p>
-
-</div>
-</div>
-<a id="a00074c539abb424d3e144aa9b1dd1b62" name="a00074c539abb424d3e144aa9b1dd1b62"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a00074c539abb424d3e144aa9b1dd1b62">&#9670;&#160;</a></span>onSearchButtonClicked</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void MainWindow::onSearchButtonClicked </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Slot for handling the Search button click. </p>
-<p>Slot per gestire il click sul pulsante Cerca </p>
 
 </div>
 </div>

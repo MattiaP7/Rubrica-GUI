@@ -77,7 +77,15 @@ private slots:
      */
     void onContactListChanged();
 
-    void on_inputSearch_textChanged(const QString &arg1);
+
+    /**
+     * @brief slot called for searching and to filter the table widgets of contacts
+     * @brief slot chiamato per cercare e filtrare la tabella dei contatti
+     *
+     * @param query - parameter to search, it could be the name, the phone or the email
+     * @param query - parametro da cercare, puo' essere nome, telefono, email
+     */
+    void on_inputSearch_textChanged(const QString &query);
 
 private:
     Ui::MainWindow *ui;             /**< Pointer to the UI components / Puntatore ai componenti dell'interfaccia */

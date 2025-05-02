@@ -8,7 +8,6 @@
 #define LIST_HPP
 
 #include "contatto.hpp"
-#include "utils.hpp"
 #include <QObject>
 #include <QVector>
 #include <QTableWidget>

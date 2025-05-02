@@ -40,8 +40,28 @@ void MainWindow::initializeUI()
     ui->tableWidget->setColumnCount(3);
     QStringList headers{"Nome", "Telefono", "Email"};
     ui->tableWidget->setHorizontalHeaderLabels(headers);
+
+/*
+ * se volessi applicare uno stile per gli headers...
+    QStringList headers{"Nome", "Telefono", "Email"};
+    QStringList colors{"#FFD700", "#87CEEB", "#90EE90"}; // oro, azzurro, verde chiaro
+
+    ui->tableWidget->setColumnCount(headers.size());
+
+    for (int i = 0; i < headers.size(); ++i) {
+        QTableWidgetItem* headerItem = new QTableWidgetItem(headers[i]);
+        headerItem->setBackground(QColor(colors[i]));
+        headerItem->setTextAlignment(Qt::AlignCenter);
+        headerItem->setForeground(QBrush(Qt::black)); // colore del testo
+        ui->tableWidget->setHorizontalHeaderItem(i, headerItem);
+    }
+
+    // IN CASO TOGLI LE LINEE, IMPOSTA NEI BUTTON DEI COLOR
+*/
     ui->tableWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+
+
 
     // Connetto l'input della ricerca
     connect(
@@ -72,25 +92,6 @@ void MainWindow::initializeUI()
         &MainWindow::onEditButtonClicked
     );
 
-    /**
-     * @brief Connette il segnale textChanged di inputTelefono a una lambda che aggiorna il
-     *        contatore caratteri.
-     *
-     * Aggiorna dinamincamente il contatore tramite una lamda function,
-     * tramite `[=]`, includo `this`, per poter accedere a `ui`.
-     *
-     * @param text Il nuovo testo inserito in `inputTelefono`,
-     *         passato automaticamente dal segnale.
-     */
-    connect(
-        ui->inputTelefono,
-        &QLineEdit::textChanged,
-        this,
-        [=](const QString &text){
-            int len = text.length();
-            ui->countTelefono->setText(QString("%1").arg(len));
-        }
-    );
 }
 
 void MainWindow::refreshContactTable()
@@ -198,29 +199,7 @@ void MainWindow::onAddButtonClicked()
     clearInputFields();
 }
 
-/* vecchia versione della search
-void MainWindow::onSearchButtonClicked()
-{
-    // la query rappresenta l'input della ricerca
-    QString query = QInputDialog::getText(this, "Cerca Contatti", "Inserisci nome o numero di telefono:");
-    if(query.isEmpty()) {
-        clearHighlights();
-        return;
-    }
 
-    // results è un QVector<Contact> visto che contiene tutti i contatti trovati da searchContacts(query)
-    const auto results = m_contactList.searchContacts(query);
-    if(results.isEmpty()) {
-        QMessageBox::information(this, "Ricerca", "Nessun contatto trovato");
-        clearHighlights();
-    } else {
-        // stampo il numero di contatti trovati e evidenzio nella tabella i contatti che matchano la query
-        highlightSearchResults(results);
-        QString message = QString("Trovati %1 contatti").arg(results.size());
-        QMessageBox::information(this, "Risultati", message);
-    }
-}
-*/
 void MainWindow::onRemoveButtonClicked()
 {
     int currentRow = ui->tableWidget->currentRow();
@@ -336,7 +315,7 @@ Contact MainWindow::getContactFromInput() const
         ui->inputNome->text().trimmed(),
         ui->inputTelefono->text().trimmed(),
         ui->inputEmail->text().trimmed()
-        );
+    );
 }
 
 bool MainWindow::validateInput() const
@@ -399,16 +378,17 @@ void MainWindow::clearHighlights()
             if(isDarkMode()) {
                 ui->tableWidget->item(i, j)->setForeground(Qt::white);
             } else {
-                ui->tableWidget->item(i, j)->setBackground(Qt::black);
+                ui->tableWidget->item(i, j)->setBackground(Qt::white);
             }
         }
     }
 }
 
-void MainWindow::on_inputSearch_textChanged(const QString &arg1)
+void MainWindow::on_inputSearch_textChanged(const QString &query)
 {
-    ui->tableWidget->setRowCount(0);  // Svuota la tabella
-    //contactList.search(text, ui->tableWidget);  // Esegui la ricerca
-    m_contactList.search(arg1, ui->tableWidget);
+    ui->tableWidget->setRowCount(0);
+    m_contactList.search(query, ui->tableWidget);
 }
+
+
 

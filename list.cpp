@@ -4,6 +4,7 @@
  */
 
 #include "list.hpp"
+#include "utils.hpp"
 #include <QFile>
 #include <QTextStream>
 #include <thread>
@@ -187,9 +188,9 @@ bool ContactList::updateContact(const QString& originalName, const Contact& upda
 //     return results;
 // }
 
-void ContactList::search(const QString& str, QTableWidget* table) {
+void ContactList::search(const QString& query, QTableWidget* table) {
     Node* current = m_head;
-    QString searchStr = str.toUpper();
+    QString searchStr = query.toUpper();
     int row = 0;
 
     while (current != nullptr) {
@@ -200,10 +201,9 @@ void ContactList::search(const QString& str, QTableWidget* table) {
         if (name.contains(searchStr) || email.contains(searchStr) || phone.contains(searchStr)) {
             table->insertRow(row);
 
-            QTableWidgetItem* nameItem  = new QTableWidgetItem(current->contact.name());
+            QTableWidgetItem* nameItem  = new QTableWidgetItem(capitalize(current->contact.name()));
             QTableWidgetItem* emailItem = new QTableWidgetItem(current->contact.email());
-            QTableWidgetItem* phoneItem = new QTableWidgetItem(current->contact.phone());
-
+            QTableWidgetItem* phoneItem = new QTableWidgetItem(capitalize(current->contact.phone()));
 
             table->setItem(row, 0, nameItem);
             table->setItem(row, 1, phoneItem);
