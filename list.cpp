@@ -339,3 +339,43 @@ void ContactList::sort()
                             [10, 27, 38, 43]
     */
 }
+
+
+Contact ContactList::at(int index) const {
+    if (index < 0 || index >= m_count) {
+        return Contact{};  // oppure solleva un'eccezione o usa std::optional
+    }
+
+    Node* current = m_head;
+    int i = 0;
+    while (current != nullptr && i < index) {
+        current = current->next;
+        ++i;
+    }
+
+    if (current)
+        return current->contact;
+    return Contact{};
+}
+
+bool ContactList::updateAt(int index, const Contact& updatedContact) {
+    if (index < 0 || index >= m_count) {
+        return false;
+    }
+
+    Node* current = m_head;
+    int i = 0;
+    while (current != nullptr && i < index) {
+        current = current->next;
+        ++i;
+    }
+
+    if (current) {
+        current->contact = updatedContact;
+        emit dataChanged();
+        return true;
+    }
+
+    return false;
+}
+

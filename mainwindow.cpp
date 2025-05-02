@@ -80,6 +80,18 @@ void MainWindow::initializeUI()
         &MainWindow::onAddButtonClicked
     );
     connect(
+        ui->btnConferma,
+        &QPushButton::clicked,
+        this,
+        &MainWindow::onConfirmButtonClicked
+    );
+    connect(
+        ui->btnCancel,
+        &QPushButton::clicked,
+        this,
+        &MainWindow::onCancelButtonClicked
+    );
+    connect(
         ui->btnElimina,
         &QPushButton::clicked,
         this,
@@ -91,7 +103,22 @@ void MainWindow::initializeUI()
         this,
         &MainWindow::onEditButtonClicked
     );
+    connect(
+        ui->btnConferma_2,
+        &QPushButton::clicked,
+        this,
+        &MainWindow::on_btnConferma_2_clicked
+    );
+    connect(
+        ui->btnCancel_2,
+        &QPushButton::clicked,
+        this,
+        &MainWindow::on_btnCancel_2_clicked
+    );
 
+
+    QString style = applyStyleSheet(isDarkMode());
+    this->setStyleSheet(style);
 }
 
 void MainWindow::refreshContactTable()
@@ -136,6 +163,11 @@ void MainWindow::refreshContactTable()
 
 void MainWindow::onAddButtonClicked()
 {
+    // vado alla pagina per aggiungere un contatto
+    ui->stackedWidget->setCurrentIndex(1);
+}
+
+void MainWindow::onConfirmButtonClicked(){
     // Salva i valori correnti degli input
     // Utilizzo .trimmed() per rimuovere spazi iniziali o finali indesiderati
     QString currentName = capitalize(ui->inputNome->text().trimmed());
@@ -184,7 +216,7 @@ void MainWindow::onAddButtonClicked()
             showErrorMessage(
                 "Errore",
                 "Inserisci un indirizzo email valido o lascia il campo vuoto"
-            );
+                );
             ui->inputEmail->selectAll();
             ui->inputEmail->setFocus();
             return;
@@ -195,10 +227,17 @@ void MainWindow::onAddButtonClicked()
     Contact newContact(currentName, currentPhone, currentEmail);
     m_contactList.addContact(newContact);
 
+    // torno alla home page
+    ui->stackedWidget->setCurrentIndex(0);
+
     // Pulisco i campi solo se l'inserimento è avvenuto con successo
     clearInputFields();
 }
 
+void MainWindow::onCancelButtonClicked(){
+    //QMessageBox::information(this, "Successo", "Operazione cancellata");
+    ui->stackedWidget->setCurrentIndex(0);
+}
 
 void MainWindow::onRemoveButtonClicked()
 {
@@ -218,34 +257,57 @@ void MainWindow::onRemoveButtonClicked()
     }
 }
 
-void MainWindow::onEditButtonClicked()
-{
-    // 1. Verifica selezione
-    int currentRow = ui->tableWidget->currentRow();
-    if (currentRow < 0) {
-        showErrorMessage("Errore", "Seleziona un contatto da modificare");
+void MainWindow::onEditButtonClicked() {
+    int row = ui->tableWidget->currentRow();
+    if (row < 0 || row >= m_contactList.count()) {
+        showErrorMessage("Errore", "Seleziona un contatto da modificare.");
         return;
     }
 
-    // 2. Recupera dati esistenti
-    QString originalName = ui->tableWidget->item(currentRow, 0)->text();
-    QString originalPhone = ui->tableWidget->item(currentRow, 1)->text();
-    QString originalEmail = ui->tableWidget->item(currentRow, 2)->text();
+    const Contact& contact = m_contactList.at(row);
+    ui->inputNome_2->setText(contact.name());
+    ui->inputTelefono_2->setText(contact.phone());
+    ui->inputEmail_2->setText(contact.email());
 
-    // 3. Popola i campi di input senza chiedere conferma
-    ui->inputNome->setText(originalName);
-    ui->inputTelefono->setText(originalPhone);
-    ui->inputEmail->setText(originalEmail);
-
-    // 4. Cambia testo del pulsante "Aggiungi" in "Conferma Modifica"
-    ui->btnAggiungi->setText("Conferma");
-    ui->btnAggiungi->disconnect();
-    connect(ui->btnAggiungi, &QPushButton::clicked, this, [this, originalName]() {
-        confirmEdit(originalName);
-    });
-    ui->btnElimina->hide();
-    ui->btnModifica->hide();
+    m_editingRow = row;
+    ui->stackedWidget->setCurrentIndex(2); // vai alla pagina modifica
 }
+
+void MainWindow::on_btnConferma_2_clicked() {
+    if (m_editingRow < 0 || m_editingRow >= m_contactList.count()) return;
+
+    QString name = capitalize(ui->inputNome_2->text().trimmed());
+    QString phone = ui->inputTelefono_2->text().trimmed();
+    QString email = ui->inputEmail_2->text().trimmed();
+
+    if(name.isEmpty()) {
+        showErrorMessage("Errore", "Il nome è obbligatorio");
+        return;
+    }
+
+    if(phone.isEmpty() || phone.size() != 10 || !phone.toULongLong()) {
+        showErrorMessage("Errore", "Numero di telefono non valido");
+        return;
+    }
+
+    if(!email.isEmpty() && !email.contains('@')) {
+        showErrorMessage("Errore", "Email non valida");
+        return;
+    }
+
+    Contact newContact{name, phone, email};
+    m_contactList.updateAt(m_editingRow, newContact);
+
+    m_editingRow = -1;
+    refreshContactTable();
+    ui->stackedWidget->setCurrentIndex(0); // torna alla pagina principale
+}
+
+void MainWindow::on_btnCancel_2_clicked() {
+    m_editingRow = -1;
+    ui->stackedWidget->setCurrentIndex(0);
+}
+
 
 void MainWindow::confirmEdit(const QString& originalName)
 {
@@ -292,6 +354,11 @@ void MainWindow::confirmEdit(const QString& originalName)
     // Puoi anche ricollegare il segnale del pulsante "Aggiungi" se necessario
     ui->btnAggiungi->disconnect();
     connect(ui->btnAggiungi, &QPushButton::clicked, this, &MainWindow::onAddButtonClicked);
+}
+
+void MainWindow::onCancelEditClicked()
+{
+    ui->stackedWidget->setCurrentIndex(0);
 }
 
 void MainWindow::resetForm()

@@ -27,4 +27,12 @@ bool isDarkMode();
 QString capitalize(const QString &str);
 
 
+/**
+ * @brief applyStyleSheet
+ * @param isDarkMode
+ * @return
+ */
+QString applyStyleSheet(bool isDarkMode);
+
+
 #endif // UTILS_HPP

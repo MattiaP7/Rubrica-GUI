@@ -26,171 +26,375 @@
    <string>Rubrica</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="btnAggiungi">
+   <widget class="QStackedWidget" name="stackedWidget">
     <property name="geometry">
      <rect>
-      <x>850</x>
-      <y>230</y>
-      <width>141</width>
-      <height>91</height>
+      <x>0</x>
+      <y>0</y>
+      <width>1200</width>
+      <height>600</height>
      </rect>
     </property>
-    <property name="font">
-     <font>
-      <family>Segoe UI</family>
-      <pointsize>15</pointsize>
-      <bold>true</bold>
-     </font>
+    <property name="minimumSize">
+     <size>
+      <width>1200</width>
+      <height>600</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>1200</width>
+      <height>600</height>
+     </size>
     </property>
     <property name="styleSheet">
-     <string notr="true"/>
+     <string/>
     </property>
-    <property name="text">
-     <string>Aggiungi</string>
+    <property name="currentIndex">
+     <number>0</number>
     </property>
-    <property name="shortcut">
-     <string>Ctrl+P</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="btnElimina">
-    <property name="geometry">
-     <rect>
-      <x>850</x>
-      <y>430</y>
-      <width>141</width>
-      <height>91</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>15</pointsize>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true"/>
-    </property>
-    <property name="text">
-     <string>Elimina</string>
-    </property>
-    <property name="shortcut">
-     <string>Ctrl+D</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="inputNome">
-    <property name="geometry">
-     <rect>
-      <x>850</x>
-      <y>60</y>
-      <width>231</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>15</pointsize>
-     </font>
-    </property>
-    <property name="placeholderText">
-     <string>Nome e Cognome</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="inputTelefono">
-    <property name="geometry">
-     <rect>
-      <x>850</x>
-      <y>110</y>
-      <width>231</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>15</pointsize>
-     </font>
-    </property>
-    <property name="placeholderText">
-     <string>Numero di telefono</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="inputEmail">
-    <property name="geometry">
-     <rect>
-      <x>850</x>
-      <y>160</y>
-      <width>231</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>15</pointsize>
-     </font>
-    </property>
-    <property name="placeholderText">
-     <string>Email</string>
-    </property>
-   </widget>
-   <widget class="QTableWidget" name="tableWidget">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>60</y>
-      <width>811</width>
-      <height>541</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>11</pointsize>
-     </font>
-    </property>
-    <property name="editTriggers">
-     <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="btnModifica">
-    <property name="geometry">
-     <rect>
-      <x>850</x>
-      <y>330</y>
-      <width>141</width>
-      <height>91</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>15</pointsize>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true"/>
-    </property>
-    <property name="text">
-     <string>Modifica</string>
-    </property>
-    <property name="shortcut">
-     <string>Ctrl+M</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="inputSearch">
-    <property name="geometry">
-     <rect>
-      <x>20</x>
-      <y>10</y>
-      <width>231</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>15</pointsize>
-     </font>
-    </property>
-    <property name="placeholderText">
-     <string>Contatto da cercare</string>
-    </property>
+    <widget class="QWidget" name="pageHome">
+     <widget class="QLineEdit" name="inputSearch">
+      <property name="geometry">
+       <rect>
+        <x>310</x>
+        <y>0</y>
+        <width>581</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>15</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string/>
+      </property>
+      <property name="placeholderText">
+       <string>🔎Cerca</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btnAggiungi">
+      <property name="geometry">
+       <rect>
+        <x>460</x>
+        <y>490</y>
+        <width>280</width>
+        <height>91</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Segoe UI</family>
+        <pointsize>15</pointsize>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="text">
+       <string>Aggiungi</string>
+      </property>
+      <property name="shortcut">
+       <string>Ctrl+P</string>
+      </property>
+     </widget>
+     <widget class="QTableWidget" name="tableWidget">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>50</y>
+        <width>1141</width>
+        <height>431</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>11</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string/>
+      </property>
+      <property name="editTriggers">
+       <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btnElimina">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>490</y>
+        <width>280</width>
+        <height>91</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>15</pointsize>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="text">
+       <string>Elimina</string>
+      </property>
+      <property name="shortcut">
+       <string>Ctrl+D</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btnModifica">
+      <property name="geometry">
+       <rect>
+        <x>880</x>
+        <y>490</y>
+        <width>280</width>
+        <height>91</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>15</pointsize>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="text">
+       <string>Modifica</string>
+      </property>
+      <property name="shortcut">
+       <string>Ctrl+M</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="pageAdd">
+     <property name="minimumSize">
+      <size>
+       <width>700</width>
+       <height>600</height>
+      </size>
+     </property>
+     <widget class="QLineEdit" name="inputTelefono">
+      <property name="geometry">
+       <rect>
+        <x>480</x>
+        <y>180</y>
+        <width>231</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>15</pointsize>
+       </font>
+      </property>
+      <property name="placeholderText">
+       <string>Numero di telefono</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btnConferma">
+      <property name="geometry">
+       <rect>
+        <x>400</x>
+        <y>300</y>
+        <width>141</width>
+        <height>91</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Segoe UI</family>
+        <pointsize>15</pointsize>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="text">
+       <string>Conferma</string>
+      </property>
+      <property name="shortcut">
+       <string>Ctrl+P</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="inputEmail">
+      <property name="geometry">
+       <rect>
+        <x>480</x>
+        <y>240</y>
+        <width>231</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>15</pointsize>
+       </font>
+      </property>
+      <property name="placeholderText">
+       <string>Email</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="inputNome">
+      <property name="geometry">
+       <rect>
+        <x>480</x>
+        <y>120</y>
+        <width>231</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>15</pointsize>
+       </font>
+      </property>
+      <property name="placeholderText">
+       <string>Nome e Cognome</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btnCancel">
+      <property name="geometry">
+       <rect>
+        <x>610</x>
+        <y>300</y>
+        <width>141</width>
+        <height>91</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Segoe UI</family>
+        <pointsize>15</pointsize>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="text">
+       <string>Cancella</string>
+      </property>
+      <property name="shortcut">
+       <string>Ctrl+P</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="pageChange">
+     <widget class="QLineEdit" name="inputNome_2">
+      <property name="geometry">
+       <rect>
+        <x>470</x>
+        <y>110</y>
+        <width>231</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>15</pointsize>
+       </font>
+      </property>
+      <property name="placeholderText">
+       <string>Nome e Cognome</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="inputTelefono_2">
+      <property name="geometry">
+       <rect>
+        <x>470</x>
+        <y>170</y>
+        <width>231</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>15</pointsize>
+       </font>
+      </property>
+      <property name="placeholderText">
+       <string>Numero di telefono</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="inputEmail_2">
+      <property name="geometry">
+       <rect>
+        <x>470</x>
+        <y>230</y>
+        <width>231</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>15</pointsize>
+       </font>
+      </property>
+      <property name="placeholderText">
+       <string>Email</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btnConferma_2">
+      <property name="geometry">
+       <rect>
+        <x>410</x>
+        <y>290</y>
+        <width>141</width>
+        <height>91</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Segoe UI</family>
+        <pointsize>15</pointsize>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="text">
+       <string>Conferma</string>
+      </property>
+      <property name="shortcut">
+       <string>Ctrl+P</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btnCancel_2">
+      <property name="geometry">
+       <rect>
+        <x>600</x>
+        <y>290</y>
+        <width>141</width>
+        <height>91</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Segoe UI</family>
+        <pointsize>15</pointsize>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="text">
+       <string>Cancella</string>
+      </property>
+      <property name="shortcut">
+       <string>Ctrl+P</string>
+      </property>
+     </widget>
+    </widget>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">

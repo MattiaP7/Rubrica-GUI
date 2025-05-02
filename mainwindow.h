@@ -56,6 +56,10 @@ private slots:
     void onAddButtonClicked();
 
 
+    void onConfirmButtonClicked();
+
+
+    void onCancelButtonClicked();
     /**
      * @brief Slot for handling the Remove button click
      * @brief Slot per gestire il click sul pulsante Rimuovi
@@ -90,6 +94,7 @@ private slots:
 private:
     Ui::MainWindow *ui;             /**< Pointer to the UI components / Puntatore ai componenti dell'interfaccia */
     ContactList m_contactList;      /**< The contact list instance / Istanza della lista contatti */
+    int m_editingRow = -1;
 
     QSortFilterProxyModel* m_proxyModel;
 
@@ -173,6 +178,13 @@ private:
      * @param originalName Il nome originale del contatto (per identificazione)
      */
     void confirmEdit(const QString& originalName);
+
+
+    void on_btnConferma_2_clicked();
+
+    void on_btnCancel_2_clicked();
+
+    void onCancelEditClicked();
 };
 
 #endif // MAINWINDOW_H

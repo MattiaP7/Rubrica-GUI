@@ -206,6 +206,12 @@ public:
      */
     bool loadFromFile(const QString& filePath = "contacts.csv");
 
+
+    Contact at(int index) const;
+
+
+    bool updateAt(int index, const Contact& updatedContact);
+
 signals:
     /**
      * @brief Signal emitted when the contact data changes
