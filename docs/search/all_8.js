@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['list_2ecpp_0',['list.cpp',['../list_8cpp.html',1,'']]],
-  ['list_2ehpp_1',['list.hpp',['../list_8hpp.html',1,'']]],
-  ['loadfromfile_2',['loadFromFile',['../class_contact_list.html#a4926f25de8933f202efc5b0902e39a7d',1,'ContactList']]]
+  ['name_0',['name',['../class_contact.html#a7994a4deabe6089561780ad057d6ce25',1,'Contact']]],
+  ['next_1',['next',['../struct_node.html#a2559a716f69ccaa76d648d9f1b83065e',1,'Node']]],
+  ['node_2',['Node',['../struct_node.html',1,'Node'],['../struct_node.html#a808b98b14155f913ee1d2b4225c27ae6',1,'Node::Node()']]]
 ];

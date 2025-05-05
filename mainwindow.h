@@ -1,7 +1,13 @@
 /**
  * @file mainwindow.h
- * @brief Main application window header
- * @brief Intestazione della finestra principale dell'applicazione
+ * @brief Finestra principale dell'applicazione rubrica
+ *
+ * @details
+ * Classe che gestisce l'interfaccia grafica principale e coordina:
+ * - Visualizzazione dei contatti
+ * - Gestione delle operazioni CRUD
+ * - Ricerca e filtraggio
+ * - Gestione degli stati dell'interfaccia
  */
 
 #ifndef MAINWINDOW_H
@@ -13,19 +19,26 @@
 #include "list.hpp"
 
 QT_BEGIN_NAMESPACE
-namespace Ui { class MainWindow; }
+namespace Ui {
+class MainWindow;
+}
 QT_END_NAMESPACE
 
 /**
  * @class MainWindow
- * @brief The main application window class
- * @brief La classe della finestra principale dell'applicazione
+ * @brief Classe principale dell'interfaccia grafica
  *
- * This class represents the main window of the application and handles
- * all user interface interactions and contact management operations.
+ * @details
+ * Responsabile di:
+ * - Gestire tutti gli elementi dell'UI
+ * - Coordinare le operazioni sulla lista contatti
+ * - Gestire la logica di visualizzazione
+ * - Fornire feedback all'utente
  *
- * Questa classe rappresenta la finestra principale dell'applicazione e gestisce
- * tutte le interazioni con l'interfaccia utente e le operazioni di gestione dei contatti.
+ * Implementa il pattern MVC come:
+ * - View: Interfaccia grafica
+ * - Controller: Gestione eventi
+ * - Model: ContactList (separato)
  */
 class MainWindow : public QMainWindow
 {
@@ -33,157 +46,166 @@ class MainWindow : public QMainWindow
 
 public:
     /**
-     * @brief Constructor
-     * @brief Costruttore
-     *
-     * @param parent The parent widget (default is nullptr)
-     *
-     * @param parent Il widget genitore (default è nullptr)
+     * @brief Costruttore della finestra principale
+     * @param[in] parent Widget genitore (opzionale)
      */
     explicit MainWindow(QWidget *parent = nullptr);
 
     /**
-     * @brief Destructor
-     * @brief Distruttore
+     * @brief Distruttore che gestisce la pulizia delle risorse
      */
     ~MainWindow();
 
 private slots:
     /**
-     * @brief Slot for handling the Add button click
-     * @brief Slot per gestire il click sul pulsante Aggiungi
+     * @brief Slot per l'aggiunta di un nuovo contatto
+     * @details
+     * Gestisce il click sul pulsante "Aggiungi":
+     * 1. Abilita la modalità inserimento
+     * 2. Sblocca i campi di input
+     * 3. Prepara l'interfaccia per l'inserimento
      */
     void onAddButtonClicked();
 
-
+    /**
+     * @brief Slot per la conferma dell'inserimento/modifica
+     * @details
+     * Gestisce il click su "Conferma":
+     * - In modalità aggiunta: crea nuovo contatto
+     * - In modalità modifica: applica cambiamenti
+     * - Esegue validazione input
+     * - Aggiorna l'interfaccia
+     */
     void onConfirmButtonClicked();
 
-
-    void onCancelButtonClicked();
     /**
-     * @brief Slot for handling the Remove button click
-     * @brief Slot per gestire il click sul pulsante Rimuovi
+     * @brief Slot per annullare l'operazione corrente
+     * @details
+     * Gestisce il click su "Annulla":
+     * - Ripristina lo stato iniziale
+     * - Pulisce i campi
+     * - Disabilita la modalità modifica/inserimento
+     */
+    void onCancelButtonClicked();
+
+    /**
+     * @brief Slot per la rimozione di un contatto
+     * @details
+     * Gestisce il click su "Rimuovi":
+     * - Elimina il contatto selezionato
+     * - Mostra conferma all'utente
+     * - Aggiorna la visualizzazione
      */
     void onRemoveButtonClicked();
 
     /**
-     * @brief Slot for handling the Edit button click
-     * @brief Slot per gestire il click sul pulsante Modifica
+     * @brief Slot per l'inizio modifica contatto
+     * @details
+     * Gestisce il click su "Modifica":
+     * 1. Abilita la modalità modifica
+     * 2. Carica i dati del contatto selezionato
+     * 3. Sblocca i campi di input
      */
     void onEditButtonClicked();
 
     /**
-     * @brief Slot called when the contact list changes
-     * @brief Slot chiamato quando la lista contatti cambia
-     *
-     * Updates the UI to reflect changes in the contact list.
-     * Aggiorna l'interfaccia utente per riflettere i cambiamenti nella lista contatti.
+     * @brief Slot per l'aggiornamento dell'interfaccia
+     * @details
+     * Chiamato quando la lista contatti cambia:
+     * - Ricarica la tabella
+     * - Aggiorna i contatori
+     * - Ripristina lo stato iniziale
      */
     void onContactListChanged();
 
-
     /**
-     * @brief slot called for searching and to filter the table widgets of contacts
-     * @brief slot chiamato per cercare e filtrare la tabella dei contatti
-     *
-     * @param query - parameter to search, it could be the name, the phone or the email
-     * @param query - parametro da cercare, puo' essere nome, telefono, email
+     * @brief Slot per la ricerca in tempo reale
+     * @param[in] query Testo da cercare
+     * @details
+     * Filtra i contatti in base a:
+     * - Nome (case-insensitive)
+     * - Telefono (parziale)
+     * - Email (parziale)
+     * Evidenzia i risultati nella tabella
      */
     void on_inputSearch_textChanged(const QString &query);
 
 private:
-    Ui::MainWindow *ui;             /**< Pointer to the UI components / Puntatore ai componenti dell'interfaccia */
-    ContactList m_contactList;      /**< The contact list instance / Istanza della lista contatti */
-    int m_editingRow = -1;
-
-    QSortFilterProxyModel* m_proxyModel;
+    Ui::MainWindow *ui;                  /**< Puntatore all'interfaccia generata da Qt Designer */
+    ContactList m_contactList;           /**< Istanza della lista contatti (model) */
+    int m_editingRow = -1;               /**< Riga in modifica (-1 = nessuna modifica) */
+    QVector<int> m_searchResultsIndices; /**< Indici dei risultati di ricerca */
+    QSortFilterProxyModel *m_proxyModel; /**< Modello per il filtraggio dei dati */
 
     /**
-     * @brief Initializes the user interface components
-     * @brief Inizializza i componenti dell'interfaccia utente
+     * @brief Inizializza l'interfaccia grafica
+     * @details
+     * Configura:
+     * - Connessioni segnali/slot
+     * - Stato iniziale dei widget
+     * - Intestazioni tabelle
+     * - Validatori di input
      */
     void initializeUI();
 
     /**
-     * @brief Refreshes the contact table with current data
-     * @brief Aggiorna la tabella contatti con i dati correnti
+     * @brief Aggiorna la tabella dei contatti
+     * @details
+     * Ricarica tutti i contatti:
+     * - Cancella il contenuto corrente
+     * - Ricostruisce le righe
+     * - Mantiene l'ordinamento
+     * - Ripristina le selezioni
      */
     void refreshContactTable();
 
     /**
-     * @brief Clears all input fields
-     * @brief Pulisce tutti i campi di input
+     * @brief Pulisce i campi di input
+     * @details
+     * Svuota e resetta:
+     * - Campo nome
+     * - Campo telefono
+     * - Campo email
+     * - Eventuali stati di errore
      */
     void clearInputFields();
 
     /**
-     * @brief Shows an error message dialog
-     * @brief Mostra una finestra di dialogo per messaggi di errore
-     *
-     * @param title The dialog title / Il titolo della finestra
-     * @param message The error message / Il messaggio di errore
+     * @brief Mostra un messaggio di errore
+     * @param[in] title Titolo della finestra
+     * @param[in] message Messaggio da visualizzare
      */
-    void showErrorMessage(const QString& title, const QString& message);
+    void showErrorMessage(const QString &title, const QString &message);
 
     /**
-     * @brief Creates a Contact object from input fields
-     * @brief Crea un oggetto Contact dai campi di input
-     *
-     * @return Contact object created from input fields
-     *
-     * @return Oggetto Contact creato dai campi di input
-     */
-    Contact getContactFromInput() const;
-
-    /**
-     * @brief Validates the user input
-     * @brief Valida l'input dell'utente
-     *
-     * @return true if input is valid, false otherwise
-     *
-     * @return true se l'input è valido, false altrimenti
-     */
-    bool validateInput() const;
-
-    /**
-     * @brief Highlights search results in the table
-     * @brief Evidenzia i risultati della ricerca nella tabella
-     *
-     * @param results The search results to highlight
-     *
-     * @param results I risultati della ricerca da evidenziare
-     */
-    void highlightSearchResults(const QVector<Contact>& results);
-
-    /**
-     * @brief Clears all highlights from the table
-     * @brief Rimuove tutte le evidenziazioni dalla tabella
-     */
-    void clearHighlights();
-
-
-
-    /**
-     * @brief Resets the form to its initial state
-     * @brief Riporta il form al suo stato iniziale
+     * @brief Ripristina il form allo stato iniziale
+     * @details
+     * - Pulisce i campi
+     * - Disabilita la modifica
+     * - Ripristina i pulsanti
+     * - Annulla la selezione
      */
     void resetForm();
 
     /**
-     * @brief Confirms and applies contact edits
-     * @brief Conferma e applica le modifiche al contatto
-     *
-     * @param originalName The original name of the contact (for identification)
-     *
-     * @param originalName Il nome originale del contatto (per identificazione)
+     * @brief Conferma le modifiche a un contatto
+     * @param[in] originalName Nome originale (per identificazione)
      */
-    void confirmEdit(const QString& originalName);
+    void confirmEdit(const QString &originalName);
 
-
+    /**
+     * @brief Slot alternativo per conferma modifica
+     */
     void on_btnConferma_2_clicked();
 
+    /**
+     * @brief Slot alternativo per annullamento
+     */
     void on_btnCancel_2_clicked();
 
+    /**
+     * @brief Slot per annullare la modifica
+     */
     void onCancelEditClicked();
 };
 

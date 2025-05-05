@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['refreshcontacttable_0',['refreshContactTable',['../class_main_window.html#ad2484230eb8ce1f2376675c335a27e01',1,'MainWindow']]],
-  ['removecontact_1',['removeContact',['../class_contact_list.html#a9e876ce2cbc858ce1abf98d0106a244e',1,'ContactList']]],
-  ['resetform_2',['resetForm',['../class_main_window.html#aca2106eb5187f0058b5ee53780e5502d',1,'MainWindow']]]
+  ['updateat_0',['updateAt',['../class_contact_list.html#accaaf2217ed41737cf2a5d08897109bd',1,'ContactList']]],
+  ['updatecontact_1',['updateContact',['../class_contact_list.html#a43851598be0676dd2b14eab622c903b6',1,'ContactList']]]
 ];

@@ -3,7 +3,7 @@ var class_contact =
     [ "Contact", "class_contact.html#ae39444f378e6de7fd6c3e60981949af5", null ],
     [ "Contact", "class_contact.html#a35d66158a972c914128c2f1e0be0f6bd", null ],
     [ "email", "class_contact.html#a23cd41bdb518dc514f597e207a9fb9f6", null ],
-    [ "isEmail", "class_contact.html#a2fdcd52720f00cffbdd56fd72fa8cc0b", null ],
+    [ "isEmail", "class_contact.html#a95e0830958231678836a6c65377fc677", null ],
     [ "name", "class_contact.html#a7994a4deabe6089561780ad057d6ce25", null ],
     [ "operator<", "class_contact.html#afce58a9215ddc0ed1cc43aa7eb66fc7f", null ],
     [ "operator==", "class_contact.html#aaa2d73a4c2a6e6680858a4841208d94b", null ],

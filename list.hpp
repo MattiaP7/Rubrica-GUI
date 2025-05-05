@@ -1,57 +1,58 @@
 /**
  * @file list.hpp
- * @brief Contact list management using a linked list structure
- * @brief Gestione della rubrica utilizzando una struttura a lista concatenata
+ * @brief Gestione di una rubrica utilizzando una linked list
+ *
+ * @details
+ * Implementazione di una linked list per la gestione di contatti anagrafici.
+ * La classe offre operazioni CRUD(Create, Read, Update, Delete), 
+ *  persistenza su file CSV e funzionalità di ricerca/ordinamento.
  */
 
 #ifndef LIST_HPP
 #define LIST_HPP
 
-#include "contatto.hpp"
 #include <QObject>
-#include <QVector>
 #include <QTableWidget>
+#include <QVector>
+#include "contatto.hpp"
 
 /**
  * @struct Node
- * @brief Node structure for the linked list implementation
- * @brief Struttura Node per l'implementazione della lista concatenata
+ * @brief Nodo base per l'implementazione della linked list
  *
- * This structure represents a single node in the linked list, containing
- * a Contact object and a pointer to the next node in the sequence.
- *
- * Questa struttura rappresenta un singolo nodo nella lista concatenata, contenente
- * un oggetto Contact e un puntatore al nodo successivo nella sequenza.
+ * @details
+ * Struttura fondamentale che contiene:
+ * - Un oggetto Contact con i dati del contatto
+ * - Un puntatore al nodo successivo (nullptr se è l'ultimo nodo)
  */
-struct Node {
-    Contact contact; /**< Contact data stored in the node / Dati del contatto memorizzati nel nodo */
-    Node* next;      /**< Pointer to the next node in the list / Puntatore al nodo successivo nella lista */
+struct Node
+{
+    Contact contact; /**< Dati anagrafici del contatto */
+    Node *next;      /**< Puntatore al nodo successivo (nullptr per fine lista) */
 
     /**
-     * @brief Constructor for Node structure
-     * @brief Costruttore per la struttura Node
-     *
-     * @param c Contact object to store in the node
-     * @param n Pointer to the next node (defaults to nullptr)
-     *
-     * @param c Oggetto Contact da memorizzare nel nodo
-     * @param n Puntatore al nodo successivo (default a nullptr)
+     * @brief Costruttore del nodo
+     * @param[in] c Contatto da memorizzare
+     * @param[in] n Puntatore al nodo successivo (default: nullptr)
      */
-    Node(const Contact& c, Node* n = nullptr) : contact(c), next(n) {}
+    Node(const Contact &c, Node *n = nullptr)
+        : contact(c)
+        , next(n)
+    {}
 };
 
 /**
  * @class ContactList
- * @brief A linked list implementation for managing Contact objects
- * @brief Implementazione di una lista concatenata per la gestione di oggetti Contact
+ * @brief linked list per la gestione avanzata di contatti
  *
- * This class provides functionality to manage a collection of contacts
- * using a singly linked list structure. It supports basic CRUD operations,
- * file I/O, and sorting capabilities.
+ * @details
+ * Classe derivata da QObject che implementa una linked list singola con:
+ * - Inserimento/rimozione/aggiornamento contatti
+ * - Ricerca case-insensitive
+ * - Ordinamento automatico
+ * - Persistenza su file CSV
+ * - Notifiche di cambiamento dati via segnali Qt
  *
- * Questa classe fornisce funzionalità per gestire una collezione di contatti
- * utilizzando una struttura a lista concatenata singola. Supporta operazioni CRUD(Create, Read, Update, Delete) di base,
- * I/O su file e capacità di ordinamento.
  */
 class ContactList : public QObject
 {
@@ -59,204 +60,173 @@ class ContactList : public QObject
 
 public:
     /**
-     * @brief Constructs an empty ContactList
-     * @brief Costruisce una ContactList vuota
-     *
-     * @param parent Parent QObject for Qt's object hierarchy
-     *
-     * @param parent QObject genitore per la gerarchia di oggetti Qt
+     * @brief Costruttore principale
+     * @param[in] parent Oggetto padre nella gerarchia Qt (opzionale)
      */
-    explicit ContactList(QObject* parent = nullptr);
+    explicit ContactList(QObject *parent = nullptr);
 
     /**
-     * @brief Destructor that cleans up all nodes
-     * @brief Distruttore che pulisce tutti i nodi
+     * @brief Distruttore che libera la memoria allocata
+     * @details
+     * Scorre tutta la lista e dealloca ogni singolo nodo
      */
     ~ContactList();
 
     /**
-     * @brief Adds a new contact to the list
      * @brief Aggiunge un nuovo contatto alla lista
-     *
-     * @param contact Contact object to add
-     * @return void
-     *
-     * @param contact Oggetto Contact da aggiungere
-     * @return void
+     * @param[in] contact Contatto da aggiungere
+     * @post La lista viene riordinata automaticamente
+     * @emits dataChanged()
      */
-    void addContact(const Contact& contact);
+    void addContact(const Contact &contact);
 
     /**
-     * @brief Removes a contact by name
      * @brief Rimuove un contatto per nome
-     *
-     * @param name Name of the contact to remove
-     * @return true if contact was found and removed, false otherwise
-     *
-     * @param name Nome del contatto da rimuovere
-     * @return true se il contatto è stato trovato e rimosso, false altrimenti
+     * @param[in] name Nome esatto del contatto da rimuovere (case-sensitive)
+     * @retval true Contatto trovato e rimosso
+     * @retval false Contatto non trovato
+     * @emits dataChanged() se la rimozione ha successo
      */
-    bool removeContact(const QString& name);
+    bool removeContact(const QString &name);
 
     /**
-     * @brief Updates an existing contact
      * @brief Aggiorna un contatto esistente
-     *
-     * @param originalName Current name of the contact to update
-     * @param updatedContact New contact data
-     * @return true if contact was found and updated, false otherwise
-     *
-     * @param originalName Nome attuale del contatto da aggiornare
-     * @param updatedContact Nuovi dati del contatto
-     * @return true se il contatto è stato trovato e aggiornato, false altrimenti
+     * @param[in] originalName Nome attuale del contatto da modificare
+     * @param[in] updatedContact Nuovi dati del contatto
+     * @retval true Contatto trovato e aggiornato
+     * @retval false Contatto non trovato
+     * @post La lista viene riordinata automaticamente
+     * @emits dataChanged() se l'aggiornamento ha successo
      */
-    bool updateContact(const QString& originalName, const Contact& updatedContact);
+    bool updateContact(const QString &originalName, const Contact &updatedContact);
 
     /**
-     * @brief Searches contacts matching a query string
-     * @brief Cerca contatti che corrispondono a una stringa di ricerca
-     *
-     * The search is case-insensitive and looks for matches in name, phone, or email.
-     * La ricerca è case-insensitive e cerca corrispondenze in nome, telefono o email.
-     *
-     * @param query Search string
-     * @return QVector<Contact> of matching contacts
-     *
-     * @param query Stringa di ricerca
-     * @return QVector<Contact> di contatti corrispondenti
+     * @brief Ricerca avanzata nella rubrica
+     * @param[in] query Stringa di ricerca (case-insensitive)
+     * @param[in] table Widget tabella per visualizzazione risultati (può essere nullptr)
+     * @return Vector di indici dei contatti trovati
+     * @details
+     * Cerca la stringa in:
+     * - Nome completo
+     * - Numero di telefono
+     * - Indirizzo email
      */
-    //QVector<Contact> searchContacts(const QString& query) const;
+    QVector<int> search(const QString &query, QTableWidget *table);
 
     /**
-     * @brief search
-     * @param str
-     * @param table
-     */
-    void search(const QString& str, QTableWidget* table);
-
-    /**
-     * @brief Gets all contacts in the list
-     * @brief Ottiene tutti i contatti nella lista
-     *
-     * @return QVector<Contact> containing all contacts
-     *
-     * @return QVector<Contact> contenente tutti i contatti
+     * @brief Restituisce tutti i contatti
+     * @return Vector con copia di tutti i contatti
+     * @note Complessità O(n) visto che deve scorrere tutta la lista
      */
     QVector<Contact> allContacts() const;
 
     /**
-     * @brief Checks if a contact exists in the list
-     * @brief Verifica se un contatto esiste nella lista
-     *
-     * @param name Name to check
-     * @return true if contact exists, false otherwise
-     *
-     * @param name Nome da verificare
-     * @return true se il contatto esiste, false altrimenti
+     * @brief Verifica l'esistenza di un contatto
+     * @param[in] name Nome esatto da cercare (case-sensitive)
+     * @retval true Contatto presente
+     * @retval false Contatto assente
      */
-    constexpr bool contains(const QString& name) const;
+    constexpr bool contains(const QString &name) const;
 
     /**
-     * @brief Gets the number of contacts in the list
-     * @brief Ottiene il numero di contatti nella lista
-     *
-     * @return int count of contacts
-     *
-     * @return int conteggio dei contatti
+     * @brief Conta i contatti presenti
+     * @return Numero di contatti nella lista
      */
-    constexpr int count() const;
+    constexpr size_t size() const;
 
     /**
-     * @brief Checks if the list is empty
      * @brief Verifica se la lista è vuota
-     *
-     * @return true if list is empty, false otherwise
-     *
-     * @return true se la lista è vuota, false altrimenti
+     * @retval true Lista vuota
+     * @retval false Lista contiene elementi
      */
     constexpr bool isEmpty() const;
 
     /**
-     * @brief Saves contacts to a CSV file
-     * @brief Salva i contatti in un file CSV
-     *
-     * The file format is: Name,Phone,Email (one contact per line)
-     * Il formato del file è: Nome,Telefono,Email (un contatto per riga)
-     *
-     * @param filePath Path to the output file (default: "contacts.csv")
-     * @return true if save succeeded, false otherwise
-     *
-     * @param filePath Percorso al file di output (default: "contacts.csv")
-     * @return true se il salvataggio è riuscito, false altrimenti
+     * @brief Salvataggio su file CSV
+     * @param[in] filePath Percorso del file (default: "contacts.csv")
+     * @retval true Salvataggio riuscito
+     * @retval false Errore nel salvataggio
+     * @details Formato file:
+     * Nome,Telefono,Email\n
+     * (Un contatto per riga senza intestazione)
+     * 
+     * @copydoc std::cout << a
+     * 
+     * 
+     * @code std::cout << a
      */
-    bool saveToFile(const QString& filePath = "contacts.csv") const;
+    bool saveToFile(const QString &filePath = "contacts.csv") const;
 
     /**
-     * @brief Loads contacts from a CSV file
-     * @brief Carica i contatti da un file CSV
-     *
-     * The file format should be: Name,Phone,Email (one contact per line)
-     * Il formato del file dovrebbe essere: Nome,Telefono,Email (un contatto per riga)
-     *
-     * @param filePath Path to the input file (default: "contacts.csv")
-     * @return true if load succeeded, false otherwise
-     *
-     * @param filePath Percorso al file di input (default: "contacts.csv")
-     * @return true se il caricamento è riuscito, false altrimenti
+     * @brief Caricamento da file CSV
+     * @param[in] filePath Percorso del file (default: "contacts.csv")
+     * @retval true Caricamento riuscito
+     * @retval false Errore nel caricamento
+     * @details
+     * Il file deve avere il formato:
+     * Nome,Telefono,Email\n
+     * (Un contatto per riga senza intestazione)
+     * @note Sostituisce tutti i contatti esistenti
+     * @emits dataChanged() se il caricamento ha successo
      */
-    bool loadFromFile(const QString& filePath = "contacts.csv");
+    bool loadFromFile(const QString &filePath = "contacts.csv");
 
+    /**
+     * @brief Accesso diretto a un contatto per indice
+     * @param[in] index Posizione nella lista (partendo da 0)
+     * @return Contatto alla posizione richiesta
+     * @throw Contact vuoto Se l'indice è invalido
+     */
+    Contact at(size_t index) const;
 
-    Contact at(int index) const;
-
-
-    bool updateAt(int index, const Contact& updatedContact);
+    /**
+     * @brief Aggiornamento per indice
+     * @param[in] index Posizione da aggiornare (partendo da 0)
+     * @param[in] updatedContact Nuovi dati del contatto
+     * @retval true Aggiornamento riuscito
+     * @retval false Indice non valido
+     * @post La lista viene riordinata automaticamente
+     * @emits dataChanged() se l'aggiornamento ha successo
+     */
+    bool updateAt(size_t index, const Contact &updatedContact);
 
 signals:
     /**
-     * @brief Signal emitted when the contact data changes
-     * @brief Segnale emesso quando i dati dei contatti cambiano
-     *
-     * This signal is used to notify observers (like UI components)
-     * that the underlying data has changed and needs refreshing.
-     *
-     * Questo segnale è usato per notificare agli osservatori (come componenti UI)
-     * che i dati sottostanti sono cambiati e necessitano di aggiornamento.
+     * @brief Segnale di cambiamento dati
+     * @details
+     * Emesso quando:
+     * - Viene aggiunto/rimosso un contatto
+     * - Un contatto viene modificato
+     * - La lista viene caricata da file
      */
     void dataChanged();
 
 private:
-    Node* m_head; /**< Pointer to the first node in the list / Puntatore al primo nodo nella lista */
-    int m_count;  /**< Number of contacts in the list / Numero di contatti nella lista */
+    Node *m_head; /**< Puntatore alla testa della lista */
+    size_t m_count;  /**< Contatore dei nodi presenti */
 
     /**
-     * @brief Clears all nodes from the list
-     * @brief Svuota tutti i nodi dalla lista
-     *
-     * This method deallocates all nodes but keeps the ContactList object valid.
-     *
-     * Questo metodo dealloca tutti i nodi ma mantiene valido l'oggetto ContactList.
+     * @brief Svuota completamente la lista
+     * @details
+     * Dealloca tutti i nodi e reimposta lo stato iniziale
      */
     void clear();
 
     /**
-     * @brief Finds a node by contact name
-     * @brief Trova un nodo per nome del contatto
-     *
-     * @param name Name to search for
-     * @return Node* Pointer to the found node, or nullptr if not found
-     *
-     * @param name Nome da cercare
-     * @return Node* Puntatore al nodo trovato, o nullptr se non trovato
+     * @brief Ricerca un nodo per nome
+     * @param[in] name Nome esatto da cercare (case-sensitive)
+     * @return Puntatore al nodo trovato o nullptr
      */
-    Node* findNode(const QString& name) const;
+    Node *findNode(const QString &name) const;
 
     /**
-     * @brief Sorts the list using merge sort algorithm
-     * @brief Ordina la lista usando l'algoritmo merge sort
-     *
-     * Contacts are sorted alphabetically by name in ascending order.
-     * I contatti sono ordinati alfabeticamente per nome in ordine crescente.
+     * @brief Ordina la lista per nome
+     * @details
+     * Implementa l'algoritmo merge sort ricorsivo.
+     * L'ordinamento è:
+     * - Crescente
+     * - Case-insensitive
+     * - Basato sul nome completo
      */
     void sort();
 };

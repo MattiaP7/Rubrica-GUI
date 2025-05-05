@@ -23,3 +23,8 @@ EXTRACT_STATIC = YES
 GENERATE_TREEVIEW = YES
 FULL_SIDEBAR = YES
 ENABLE_NAMESPACES = YES
+
+HTML_EXTRA_STYLESHEET  = docs/doxygen-awesome.css
+HTML_EXTRA_FILES      = docs/doxygen-awesome-darkmode-toggle.js
+HTML_EXTRA_STYLESHEET += docs/doxygen-awesome-sidebar-only.css
+HTML_EXTRA_STYLESHEET += docs/doxygen-awesome-fragment-copy-button.css

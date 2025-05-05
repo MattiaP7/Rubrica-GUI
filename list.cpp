@@ -14,98 +14,136 @@
  * @brief namespace for utility function used ONLY in this file.
  * @brief namespace per funzioni utilizzate UNICAMENTE in questo file.
  */
-namespace m_list_namespace{
-    // Soglia per utilizzare i thread
-    #define THRESHOLD 1000
+namespace m_list_namespace {
+// Soglia per l'utilizzo della parallelizzazione
+#define THRESHOLD 500
 
-    /**
-    * @brief Unisce due liste ordinate in una singola lista ordinata.
-    *
-    * @param left Puntatore alla testa della prima lista ordinata.
-    * @param right Puntatore alla testa della seconda lista ordinata.
-    * @return `Node*` Puntatore alla testa della lista risultante ordinata.
-    */
-    Node* merge(Node* left, Node* right) {
-        if (!left) return right;
-        if (!right) return left;
+/**
+ * @brief Unisce due liste ordinate in una singola lista ordinata (ricorsiva)
+ * 
+ * Algoritmo:
+ * 1. Confronta i nodi testa delle due liste
+ * 2. Sceglie il nodo minore come prossimo elemento
+ * 3. Richiama ricorsivamente merge sul resto delle liste
+ * 4. Concatena il risultato
+ * 
+ */
+Node *merge(Node *left, Node *right)
+{
+    // Caso base: se una lista è vuota, ritorna l'altra
+    if (!left)
+        return right;
+    if (!right)
+        return left;
 
-
-        if (left->contact.name().toLower() < right->contact.name().toLower()) {
-            left->next = merge(left->next, right);
-            return left;
-        } else {
-            right->next = merge(left, right->next);
-            return right;
-        }
-    }
-
-    /**
-    * @brief Divide una lista in due sottoliste di dimensione simile.
-    *
-    * @param head Puntatore alla testa della lista da dividere.
-    * @param left Puntatore al puntatore che riceverà la testa della prima metà.
-    * @param right Puntatore al puntatore che riceverà la testa della seconda metà.
-    */
-    void split(Node* head, Node** left, Node** right) {
-        if (!head || !head->next) {
-            *left = head;
-            *right = nullptr;
-            return;
-        }
-
-        Node* slow = head;
-        Node* fast = head->next;
-
-        while (fast && fast->next) {
-            slow = slow->next;
-            fast = fast->next->next;
-        }
-
-        *left = head;
-        *right = slow->next;
-        slow->next = nullptr;
-    }
-
-    /**
-    * @brief Ordina una lista collegata utilizzando Merge Sort.
-    *
-    * @param head Puntatore alla testa della lista da ordinare.
-    * @return `Node*` Puntatore alla testa della lista ordinata.
-    */
-    Node* merge_sort(Node* head, int depth = 0) {
-        if (!head || !head->next) return head;
-
-        Node* left;
-        Node* right;
-        split(head, &left, &right);
-
-        if (depth < THRESHOLD){
-            left = merge_sort(left, depth + 1);
-            right = merge_sort(right, depth + 1);
-        } else {
-            Node* sorted_left = nullptr;
-            Node* sorted_right = nullptr;
-
-            std::thread left_thread([&](){
-                sorted_left = merge_sort(left, depth + 1);
-            });
-            std::thread right_thread([&](){
-                sorted_right = merge_sort(right, depth + 1);
-            });
-
-            left_thread.join();
-            right_thread.join();
-
-            left = sorted_left;
-            right = sorted_right;
-        }
-
-        return merge(left, right);
+    // Confronto case-insensitive dei nomi
+    if (left->contact.name().toLower() < right->contact.name().toLower()) {
+        // Il nodo left è minore, diventa il prossimo
+        left->next = merge(left->next, right); // Ricorsione sul resto
+        return left;                           // Ritorno la nuova lista
+    } else {
+        // Il nodo right è minore o uguale
+        right->next = merge(left, right->next); // Ricorsione sul resto
+        return right;                           // Ritorno la nuova testa
     }
 }
 
-ContactList::ContactList(QObject* parent)
-    : QObject(parent), m_head(nullptr), m_count(0) {}
+/**
+ * @brief Divide la lista in due sottoliste 
+* 
+ * Algoritmo:
+ * 1. Usa due puntatori: slow (avanza di 1) e fast (avanza di 2)
+ * 2. Quando fast raggiunge la fine, slow è a metà
+ * 3. Divide la lista in corrispondenza di slow
+ * 
+ */
+void split(Node *head, Node **left, Node **right)
+{
+    // Caso base: lista vuota o con un solo elemento
+    if (!head || !head->next) {
+        *left = head;
+        *right = nullptr;
+        return;
+    }
+
+    Node *slow = head;       // Puntatore lento (avanza di 1 nodo)
+    Node *fast = head->next; // Puntatore veloce (avanza di 2 nodi)
+
+    // Avanza finché fast non raggiunge la fine
+    while (fast && fast->next) {
+        slow = slow->next;
+        fast = fast->next->next;
+    }
+
+    // Imposta le due metà:
+    *left = head;         // Prima metà dall'inizio
+    *right = slow->next;  // Seconda metà dopo slow
+    slow->next = nullptr; // Termina la prima metà
+}
+
+/**
+ * @brief Implementa il merge sort ricorsivo con thread
+ * 
+ * Algoritmo:
+ * 1. Divide la lista in due metà (split)
+ * 2. Ordina ricorsivamente ciascuna metà
+ * 3. Fonde le metà ordinate (merge)
+ * 
+ * Versione parallela:
+ * - Usa thread separati per metà grandi (THRESHOLD)
+ * - Limita la profondità ricorsiva per overhead thread
+ * 
+ */
+Node *merge_sort(Node *head, int depth = 0)
+{
+    // Caso base: lista vuota o con un solo elemento
+    if (!head || !head->next)
+        return head;
+
+    Node *left;
+    Node *right;
+
+    // Divide la lista in due metà
+    split(head, &left, &right);
+
+    // In base la grandezza della lista utilizzo i thread o meno
+    if (depth < THRESHOLD) {
+        left = merge_sort(left, depth + 1);
+        right = merge_sort(right, depth + 1);
+    } else {
+        Node *sorted_left = nullptr;
+        Node *sorted_right = nullptr;
+
+        std::thread left_thread([&]() { sorted_left = merge_sort(left, depth + 1); });
+
+        std::thread right_thread([&]() { sorted_right = merge_sort(right, depth + 1); });
+
+        // Attesa completamento thread
+        left_thread.join();
+        right_thread.join();
+
+        left = sorted_left;
+        right = sorted_right;
+
+        /* 
+         * A cosa servono i thread
+         * - Parallelizza l'ordinamento delle due metà
+         * - Sfrutta i core multipli della CPU
+         * - Riduce il tempo totale di esecuzione
+         * - solo per liste grandi (THRESHOLD)
+         */
+    }
+
+    // Fusione delle due metà ordinate
+    return merge(left, right);
+}
+} // namespace m_list_namespace
+
+ContactList::ContactList(QObject *parent)
+    : QObject(parent)
+    , m_head(nullptr)
+    , m_count(0)
+{}
 
 ContactList::~ContactList()
 {
@@ -158,64 +196,56 @@ bool ContactList::removeContact(const QString& name)
 
 bool ContactList::updateContact(const QString& originalName, const Contact& updatedContact)
 {
+    // cerco il contatto in base al nome originale
     Node* node = findNode(originalName);
     if (!node) return false;
 
+    // aggiorno le informazioni del contatto con il nuovo contatto
     node->contact = updatedContact;
     sort();
     emit dataChanged();
     return true;
 }
 
-// QVector<Contact> ContactList::searchContacts(const QString& query) const
-// {
-//     QVector<Contact> results; // vettore di contatti contenente i contatti trovati
-//     Node* current = m_head;
+QVector<int> ContactList::search(const QString &query, QTableWidget *table)
+{
+    QVector<int> originalIndices; // Conserverà gli indici ORIGINALI dei contatti trovati
+    table->setRowCount(0);
 
-//     while (current /* !=nullptr */) {
-//         // cerca contatti che corrispondano per nome(case insensitive) , telefono o email
-//         if (current->contact.name().contains(query, Qt::CaseInsensitive) ||
-//             current->contact.phone().contains(query) ||
-//             current->contact.email().contains(query)
-//         ) {
-//             // se trovato appendo il contatto Al vettore di contatti
-//             results.append(current->contact);
-//         }
-//         // se non trovato vado al prossimo contatto
-//         current = current->next;
-//     }
-
-//     return results;
-// }
-
-void ContactList::search(const QString& query, QTableWidget* table) {
-    Node* current = m_head;
+    Node *current = m_head;
+    int originalIndex = 0;
+    int displayedRow = 0;
     QString searchStr = query.toUpper();
-    int row = 0;
 
-    while (current != nullptr) {
+    while (current) {
         QString name = current->contact.name().toUpper();
         QString email = current->contact.email().toUpper();
         QString phone = current->contact.phone().toUpper();
 
         if (name.contains(searchStr) || email.contains(searchStr) || phone.contains(searchStr)) {
-            table->insertRow(row);
+            table->insertRow(displayedRow);
 
-            QTableWidgetItem* nameItem  = new QTableWidgetItem(capitalize(current->contact.name()));
-            QTableWidgetItem* emailItem = new QTableWidgetItem(current->contact.email());
-            QTableWidgetItem* phoneItem = new QTableWidgetItem(capitalize(current->contact.phone()));
+            // Salva l'indice ORIGINALE nell'item
+            QTableWidgetItem *nameItem = new QTableWidgetItem(current->contact.name());
+            nameItem->setData(Qt::UserRole, originalIndex);
 
-            table->setItem(row, 0, nameItem);
-            table->setItem(row, 1, phoneItem);
-            table->setItem(row, 2, emailItem);
+            QTableWidgetItem *phoneItem = new QTableWidgetItem(current->contact.phone());
+            QTableWidgetItem *emailItem = new QTableWidgetItem(current->contact.email());
 
-            row++;
+            table->setItem(displayedRow, 0, nameItem);
+            table->setItem(displayedRow, 1, phoneItem);
+            table->setItem(displayedRow, 2, emailItem);
+
+            originalIndices.append(originalIndex); // Aggiungi alla lista degli indici
+
+            displayedRow++;
         }
-
         current = current->next;
+        originalIndex++;
     }
-}
 
+    return originalIndices; // Ritorna tutti gli indici originali dei risultati
+}
 
 QVector<Contact> ContactList::allContacts() const
 {
@@ -235,7 +265,10 @@ constexpr bool ContactList::contains(const QString& name) const
     return findNode(name) != nullptr;
 }
 
-constexpr int ContactList::count() const { return m_count; }
+constexpr size_t ContactList::size() const
+{
+    return m_count;
+}
 
 constexpr bool ContactList::isEmpty() const { return m_count == 0; }
 
@@ -245,7 +278,7 @@ bool ContactList::saveToFile(const QString& filePath) const
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
         return false;
 
-    QTextStream out(&file);
+    QTextStream out(&file); // Stream di scrittura per il file
     Node* current = m_head;
 
     while (current) {
@@ -253,6 +286,7 @@ bool ContactList::saveToFile(const QString& filePath) const
         if(!current->contact.name().isEmpty() ||
             !current->contact.phone().isEmpty() ||
             !current->contact.email().isEmpty()) {
+            // scrivo i contatti nel file
             out << current->contact.name() << ","
                 << current->contact.phone() << ","
                 << current->contact.email() << "\n";
@@ -272,7 +306,7 @@ bool ContactList::loadFromFile(const QString& filePath)
 
     this->clear(); // Pulisci la lista corrente
 
-    QTextStream in(&file);
+    QTextStream in(&file); // stream di input per il file
     while (!in.atEnd()) {
         QString line = in.readLine().trimmed();
         if(line.isEmpty()) continue;
@@ -321,16 +355,16 @@ Node* ContactList::findNode(const QString& name) const
 
 void ContactList::sort()
 {
-    // se this->count() > 1000 attiverà l'ordinamento con i thread
+    // se this->size() > 1000 attiverà l'ordinamento con i thread
     // altrimenti fare un merge sort classico
-    m_head = m_list_namespace::merge_sort(m_head, this->count());
+    m_head = m_list_namespace::merge_sort(m_head, this->size());
 
     /*
-        il merge sort funziona così. 
+        il merge sort funziona così.
         dato un container, esso viene diviso in due metà con stesso numero di elementi (se possibile)[1], a questo punto facciamo ricorsivamente la stessa cosa finchè non ci troviamo ad avere sotto container formati da un elemento. Una volta fatto ciò uniamo i sotto continer di singoli elementi nei precedenti sotto container da 2 elementi ma ordinati, facciamo questo cosa ricorsivamente finchè non abbiamo il container originale tutto ordinato[2]
 
 
-        [1] => continer [38, 27, 43, 10]   
+        [1] => continer [38, 27, 43, 10]
                         /               \
                     [38, 27]            [43, 10]
                       /  \                /  \
@@ -340,36 +374,41 @@ void ContactList::sort()
     */
 }
 
-
-Contact ContactList::at(int index) const {
+Contact ContactList::at(size_t index) const
+{
+    // controllo per verifica se l'indici non è al difuori dei limiti
     if (index < 0 || index >= m_count) {
-        return Contact{};  // oppure solleva un'eccezione o usa std::optional
+        return Contact{};
     }
 
     Node* current = m_head;
-    int i = 0;
+    size_t i = 0;
     while (current != nullptr && i < index) {
         current = current->next;
         ++i;
     }
 
+    // se il contatto è stato trovato lo ritorno, altrimenti no
     if (current)
         return current->contact;
     return Contact{};
 }
 
-bool ContactList::updateAt(int index, const Contact& updatedContact) {
+bool ContactList::updateAt(size_t index, const Contact &updatedContact)
+{
+    // controllo dei limiti
     if (index < 0 || index >= m_count) {
         return false;
     }
 
     Node* current = m_head;
-    int i = 0;
+    size_t i = 0;
     while (current != nullptr && i < index) {
         current = current->next;
         ++i;
     }
 
+    // se il contatto è stato trovato, aggiorno i suoi dati
     if (current) {
         current->contact = updatedContact;
         emit dataChanged();
@@ -378,4 +417,3 @@ bool ContactList::updateAt(int index, const Contact& updatedContact) {
 
     return false;
 }
-

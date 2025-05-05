@@ -18,7 +18,7 @@ QString capitalize(const QString& str){
      * 1 - spezzo la stringa in parole, ovvero quando incontro uno spazio,
      *      contenuta in una lista di QString
      * 2 - per ogni parola nella lista, prendo il suo primo carattere e lo rendo ::toUpper()
-     * 3 - ritorno l'insieme di parole (della lista) in una unica parola separata dallo spazio
+     * 3 - ritorno l'insieme di parole (della lista) in una unica parola separata dallo spazio ::join(" ")
      */
 
     QStringList words = str.split(" ", Qt::SkipEmptyParts);
@@ -29,113 +29,262 @@ QString capitalize(const QString& str){
     return words.join(" ");
 }
 
-
-
-
-QString applyStyleSheet(bool isDarkMode){
+QString applyStyleSheet(bool isDarkMode)
+{
     QString style;
+
+    // le "Raw string" R"()" servono a rendere piu' facile l'inserimento di spazi, caratteri speciali, etc...
     if (isDarkMode) {
         style += R"(
+            QWidget {
+                background-color: #121212;
+                color: #f0f0f0;
+            }
+
+            QLineEdit {
+                background-color: #1e1e1e;
+                color: #f0f0f0;
+                border: 1px solid #555;
+                border-radius: 6px;
+                padding: 6px;
+            }
+
+            QLineEdit:focus {
+                border: 1px solid #2196f3;
+            }
+
+            QTableWidget {
+                background-color: #1e1e1e;
+                color: #f0f0f0;
+                alternate-background-color: #2c2c2c;
+                gridline-color: #444;
+                border: 1px solid #333;
+            }
+
+            QTableWidget::item:selected {
+                background-color: #3949ab;
+                color: #ffffff;
+            }
+
+            QHeaderView::section {
+                background-color: #222831;
+                color: #f0f0f0;
+                border: 1px solid #444;
+                padding: 6px;
+            }
+
+            QScrollBar:vertical, QScrollBar:horizontal {
+                background: #2c2c2c;
+                border: none;
+                width: 12px;
+            }
+
+            QScrollBar::handle {
+                background: #888; /* più visibile */
+                border-radius: 6px;
+            }
+
+            QScrollBar::handle:hover {
+                background: #aaa;
+            }
+
+            /* === Bottoni Principali === */
             QPushButton#btnAggiungi {
-                background-color: #2e8b57; /* Verde scuro */
+                background-color: #2e7d32;
                 color: white;
-                border-radius: 5px;
-                padding: 10px;
+                border: none;
+                border-radius: 6px;
+                padding: 10px 16px;
+                font-weight: bold;
+                font-size: 16px;
             }
+
             QPushButton#btnAggiungi:hover {
-                background-color: #256e44; /* Verde più scuro */
-            }
-
-            QPushButton#btnConferma {
-                background-color: #006400; /* Verde più intenso */
-                color: white;
-                border-radius: 5px;
-                padding: 10px;
-            }
-            QPushButton#btnConferma:hover {
-                background-color: #004d00; /* Verde scuro */
-            }
-
-            QPushButton#btnCancel {
-                background-color: #8b0000; /* Rosso scuro */
-                color: white;
-                border-radius: 5px;
-                padding: 10px;
-            }
-            QPushButton#btnCancel:hover {
-                background-color: #6b0000; /* Rosso più scuro */
+                background-color: #388e3c;
             }
 
             QPushButton#btnElimina {
-                background-color: #b22222; /* Rosso fuoco */
+                background-color: #c62828;
                 color: white;
-                border-radius: 5px;
-                padding: 10px;
+                border: none;
+                border-radius: 6px;
+                padding: 10px 16px;
+                font-weight: bold;
+                font-size: 16px;
             }
+
             QPushButton#btnElimina:hover {
-                background-color: #9e1c1c; /* Rosso più scuro */
+                background-color: #e53935;
             }
 
             QPushButton#btnModifica {
-                background-color: #4682b4; /* Blu acciaio */
+                background-color: #0277bd;
                 color: white;
-                border-radius: 5px;
-                padding: 10px;
+                border: none;
+                border-radius: 6px;
+                padding: 10px 16px;
+                font-weight: bold;
+                font-size: 16px;
             }
+
             QPushButton#btnModifica:hover {
-                background-color: #3b6a8c; /* Blu scuro */
+                background-color: #039be5;
+            }
+
+            /* === Bottoni Conferma/Annulla === */
+            QPushButton#btnConferma, QPushButton#btnConferma_2 {
+                background-color: #2e7d32;
+                color: white;
+                border: none;
+                border-radius: 6px;
+                padding: 8px 14px;
+                font-weight: bold;
+                font-size: 15px;
+            }
+
+            QPushButton#btnConferma:hover, QPushButton#btnConferma_2:hover {
+                background-color: #388e3c;
+            }
+
+            QPushButton#btnCancel, QPushButton#btnCancel_2 {
+                background-color: #c62828;
+                color: white;
+                border: none;
+                border-radius: 6px;
+                padding: 8px 14px;
+                font-weight: bold;
+                font-size: 15px;
+            }
+
+            QPushButton#btnCancel:hover, QPushButton#btnCancel_2:hover {
+                background-color: #e53935;
             }
         )";
     } else {
         style += R"(
+            QWidget {
+                background-color: #ffffff;
+                color: #000000;
+            }
+
+            QLineEdit {
+                background-color: #ffffff;
+                color: #000000;
+                border: 1px solid #aaa;
+                border-radius: 6px;
+                padding: 6px;
+            }
+
+            QLineEdit:focus {
+                border: 1px solid #3498db;
+                background-color: #f0f8ff;
+            }
+
+            QTableWidget {
+                background-color: #ffffff;
+                color: #000000;
+                alternate-background-color: #f9f9f9;
+                gridline-color: #ccc;
+                border: 1px solid #ddd;
+            }
+
+            QTableWidget::item:selected {
+                background-color: #aed6f1;
+                color: #000000;
+            }
+
+            QHeaderView::section {
+                background-color: #d6eaf8;
+                color: #154360;
+                border: 1px solid #ccc;
+                padding: 6px;
+            }
+
+            QScrollBar:vertical, QScrollBar:horizontal {
+                background: #f0f0f0;
+                border: none;
+                width: 12px;
+            }
+
+            QScrollBar::handle {
+                background: #bbb;
+                border-radius: 6px;
+            }
+
+            QScrollBar::handle:hover {
+                background: #888;
+            }
+
+            /* === Bottoni Principali === */
             QPushButton#btnAggiungi {
-                background-color: #90ee90; /* Verde chiaro */
+                background-color: #81c784;
                 color: black;
-                border-radius: 5px;
-                padding: 10px;
+                border: none;
+                border-radius: 6px;
+                padding: 10px 16px;
+                font-weight: bold;
+                font-size: 16px;
             }
+
             QPushButton#btnAggiungi:hover {
-                background-color: #80e080; /* Verde chiaro scuro */
-            }
-
-            QPushButton#btnConferma {
-                background-color: #32cd32; /* Verde lime */
-                color: black;
-                border-radius: 5px;
-                padding: 10px;
-            }
-            QPushButton#btnConferma:hover {
-                background-color: #28a428; /* Verde più scuro */
-            }
-
-            QPushButton#btnCancel {
-                background-color: #ff7f7f; /* Rosso chiaro */
-                color: black;
-                border-radius: 5px;
-                padding: 10px;
-            }
-            QPushButton#btnCancel:hover {
-                background-color: #ff6a6a; /* Rosso più scuro */
+                background-color: #66bb6a;
             }
 
             QPushButton#btnElimina {
-                background-color: #ff4c4c; /* Rosso vivo */
+                background-color: #ef9a9a;
                 color: black;
-                border-radius: 5px;
-                padding: 10px;
+                border: none;
+                border-radius: 6px;
+                padding: 10px 16px;
+                font-weight: bold;
+                font-size: 16px;
             }
+
             QPushButton#btnElimina:hover {
-                background-color: #e64a4a; /* Rosso più scuro */
+                background-color: #e57373;
             }
 
             QPushButton#btnModifica {
-                background-color: #add8e6; /* Azzurro */
+                background-color: #81d4fa;
                 color: black;
-                border-radius: 5px;
-                padding: 10px;
+                border: none;
+                border-radius: 6px;
+                padding: 10px 16px;
+                font-weight: bold;
+                font-size: 16px;
             }
+
             QPushButton#btnModifica:hover {
-                background-color: #99c2d9; /* Azzurro più scuro */
+                background-color: #4fc3f7;
+            }
+
+            /* === Bottoni Conferma/Annulla === */
+            QPushButton#btnConferma, QPushButton#btnConferma_2 {
+                background-color: #81c784;
+                color: black;
+                border: none;
+                border-radius: 6px;
+                padding: 8px 14px;
+                font-weight: bold;
+                font-size: 15px;
+            }
+
+            QPushButton#btnConferma:hover, QPushButton#btnConferma_2:hover {
+                background-color: #66bb6a;
+            }
+
+            QPushButton#btnCancel, QPushButton#btnCancel_2 {
+                background-color: #ef9a9a;
+                color: black;
+                border: none;
+                border-radius: 6px;
+                padding: 8px 14px;
+                font-weight: bold;
+                font-size: 15px;
+            }
+
+            QPushButton#btnCancel:hover, QPushButton#btnCancel_2:hover {
+                background-color: #e57373;
             }
         )";
     }

@@ -19,6 +19,8 @@
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -102,27 +104,24 @@ $(function(){initNavTree('list_8hpp.html',''); initResizable(true); });
 </div><!--header-->
 <div class="contents">
 
-<p><a class="el" href="class_contact.html" title="Represents a contact entry with name, phone number and optional email.">Contact</a> list management using a linked list structure.  
+<p>Gestione di una rubrica utilizzando una linked list.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &quot;<a class="el" href="contatto_8hpp_source.html">contatto.hpp</a>&quot;</code><br />
-<code>#include &lt;QObject&gt;</code><br />
-<code>#include &lt;QVector&gt;</code><br />
+<div class="textblock"><code>#include &lt;QObject&gt;</code><br />
 <code>#include &lt;QTableWidget&gt;</code><br />
+<code>#include &lt;QVector&gt;</code><br />
+<code>#include &quot;<a class="el" href="contatto_8hpp_source.html">contatto.hpp</a>&quot;</code><br />
 </div>
 <p><a href="list_8hpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_node.html">Node</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="struct_node.html" title="Node structure for the linked list implementation.">Node</a> structure for the linked list implementation.  <a href="struct_node.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_contact_list.html">ContactList</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A linked list implementation for managing <a class="el" href="class_contact.html" title="Represents a contact entry with name, phone number and optional email.">Contact</a> objects.  <a href="class_contact_list.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Nodo base per l'implementazione della linked list.  <a href="struct_node.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p><a class="el" href="class_contact.html" title="Represents a contact entry with name, phone number and optional email.">Contact</a> list management using a linked list structure. </p>
-<p>Gestione della rubrica utilizzando una struttura a lista concatenata </p>
+<div class="textblock"><p>Gestione di una rubrica utilizzando una linked list. </p>
+<p>Implementazione di una linked list per la gestione di contatti anagrafici. La classe offre operazioni CRUD(Create, Read, Update, Delete), persistenza su file CSV e funzionalità di ricerca/ordinamento. </p>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

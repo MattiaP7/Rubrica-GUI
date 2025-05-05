@@ -1,6 +1,8 @@
 var searchData=
 [
-  ['mainwindow_0',['MainWindow',['../class_main_window.html#a996c5a2b6f77944776856f08ec30858d',1,'MainWindow']]],
-  ['merge_1',['merge',['../namespacem__list__namespace.html#a17b1d543ef717d2907c3f3871a413097',1,'m_list_namespace']]],
-  ['merge_5fsort_2',['merge_sort',['../namespacem__list__namespace.html#a8624fde3cbe45f50e9905ca4cd453a2a',1,'m_list_namespace']]]
+  ['setemail_0',['setEmail',['../class_contact.html#a4a8d381b38663c5886b4a40f1a0b7f99',1,'Contact']]],
+  ['setname_1',['setName',['../class_contact.html#a7d924be8ba2f54fec765ed5ea5272ae3',1,'Contact']]],
+  ['setphone_2',['setPhone',['../class_contact.html#abf8651aa6caf3c93e8eedbef3eb67f13',1,'Contact']]],
+  ['showerrormessage_3',['showErrorMessage',['../class_main_window.html#a2400bb422d07e5e1c9d881778d1aec9f',1,'MainWindow']]],
+  ['split_4',['split',['../namespacem__list__namespace.html#a4faf0fe3af81a69de5ca7a618717834e',1,'m_list_namespace']]]
 ];

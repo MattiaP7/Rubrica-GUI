@@ -19,6 +19,8 @@
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -102,29 +104,33 @@ $(function(){initNavTree('utils_8hpp.html',''); initResizable(true); });
 </div><!--header-->
 <div class="contents">
 
-<p>Utility function definitions.  
+<p>Funzioni di utilità generiche per l'applicazione.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;QGuiApplication&gt;</code><br />
 <code>#include &lt;QPalette&gt;</code><br />
-<code>#include &lt;QStyleHints&gt;</code><br />
 <code>#include &lt;QString&gt;</code><br />
+<code>#include &lt;QStyleHints&gt;</code><br />
 </div>
 <p><a href="utils_8hpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a36044a6efa9c4e015378e56c3e37181d" id="r_a36044a6efa9c4e015378e56c3e37181d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a36044a6efa9c4e015378e56c3e37181d">isDarkMode</a> ()</td></tr>
-<tr class="memdesc:a36044a6efa9c4e015378e56c3e37181d"><td class="mdescLeft">&#160;</td><td class="mdescRight">utility function to check the color scheme of the system  <br /></td></tr>
+<tr class="memdesc:a36044a6efa9c4e015378e56c3e37181d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Verifica se il sistema utilizza il tema scuro.  <br /></td></tr>
 <tr class="separator:a36044a6efa9c4e015378e56c3e37181d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a67f045b9f8cb07c788cad61890f875ae" id="r_a67f045b9f8cb07c788cad61890f875ae"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a67f045b9f8cb07c788cad61890f875ae">capitalize</a> (const QString &amp;str)</td></tr>
-<tr class="memdesc:a67f045b9f8cb07c788cad61890f875ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">function for capitalize every word in a QString.  <br /></td></tr>
 <tr class="separator:a67f045b9f8cb07c788cad61890f875ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a36b27d2bbc6c9bc948b2b2b63d1dd174" id="r_a36b27d2bbc6c9bc948b2b2b63d1dd174"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a36b27d2bbc6c9bc948b2b2b63d1dd174">applyStyleSheet</a> (bool isDarkMode)</td></tr>
-<tr class="memdesc:a36b27d2bbc6c9bc948b2b2b63d1dd174"><td class="mdescLeft">&#160;</td><td class="mdescRight">applyStyleSheet  <br /></td></tr>
+<tr class="memdesc:a36b27d2bbc6c9bc948b2b2b63d1dd174"><td class="mdescLeft">&#160;</td><td class="mdescRight">Genera un foglio di stile CSS in base al tema.  <br /></td></tr>
 <tr class="separator:a36b27d2bbc6c9bc948b2b2b63d1dd174"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Utility function definitions. </p>
+<div class="textblock"><p>Funzioni di utilità generiche per l'applicazione. </p>
+<p>Raccolta di funzioni helper per:</p><ul>
+<li>Gestione temi grafici (light/dark mode)</li>
+<li>Formattazione testo</li>
+<li>Utility varie </li>
+</ul>
 </div><h2 class="groupheader">Function Documentation</h2>
 <a id="a36b27d2bbc6c9bc948b2b2b63d1dd174" name="a36b27d2bbc6c9bc948b2b2b63d1dd174"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a36b27d2bbc6c9bc948b2b2b63d1dd174">&#9670;&#160;</a></span>applyStyleSheet()</h2>
@@ -141,14 +147,21 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>applyStyleSheet </p>
+<p>Genera un foglio di stile CSS in base al tema. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">isDarkMode</td><td></td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">isDarkMode</td><td>Se generare lo stile per dark mode </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Stringa CSS completa</dd></dl>
+<p>Produce uno stylesheet che include:</p><ul>
+<li>Colori di sfondo/testo</li>
+<li>Stili per QWidget, QMenu, QLineEdit</li>
+<li>Effetti di hover/pressione</li>
+<li>Regole per la dark/light mode</li>
+</ul>
+<dl class="section note"><dt>Note</dt><dd>Lo stylesheet è ottimizzato per prestazioni </dd></dl>
 
 </div>
 </div>
@@ -166,16 +179,7 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>function for capitalize every word in a QString. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">str</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>the same string but capitalize </dd></dl>
-<p>1 - spezzo la stringa in parole, ovvero quando incontro uno spazio, contenuta in una lista di QString 2 - per ogni parola nella lista, prendo il suo primo carattere e lo rendo ::toUpper() 3 - ritorno l'insieme di parole (della lista) in una unica parola separata dallo spazio</p>
+<p>1 - spezzo la stringa in parole, ovvero quando incontro uno spazio, contenuta in una lista di QString 2 - per ogni parola nella lista, prendo il suo primo carattere e lo rendo ::toUpper() 3 - ritorno l'insieme di parole (della lista) in una unica parola separata dallo spazio ::join(" ")</p>
 
 </div>
 </div>
@@ -194,10 +198,16 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>utility function to check the color scheme of the system </p>
-<dl class="section return"><dt>Returns</dt><dd>true - colorscheme is dark mode </dd>
-<dd>
-false - colorscheme isn't dark mode </dd></dl>
+<p>Verifica se il sistema utilizza il tema scuro. </p>
+<dl class="section return"><dt>Returns</dt><dd>Stato del tema del sistema </dd></dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">true</td><td>Tema scuro attivo </td></tr>
+    <tr><td class="paramname">false</td><td>Tema chiaro attivo</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>Utilizza le API Qt per la rilevazione </dd></dl>
 
 </div>
 </div>

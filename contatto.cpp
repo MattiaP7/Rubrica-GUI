@@ -39,7 +39,8 @@ bool Contact::operator<(const Contact& other) const
 }
 
 // funzione per controllare se la email e' valida
-bool Contact::isEmail(){
+bool Contact::isEmail() const
+{
     // essendo la email opzionale, se il suo campo e' vuoto ritorno true,
     //  altrimenti continuo il controllo
     if(m_email.isEmpty()) return true;

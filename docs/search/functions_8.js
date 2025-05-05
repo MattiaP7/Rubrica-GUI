@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['loadfromfile_0',['loadFromFile',['../class_contact_list.html#a4926f25de8933f202efc5b0902e39a7d',1,'ContactList']]]
+  ['refreshcontacttable_0',['refreshContactTable',['../class_main_window.html#ad2484230eb8ce1f2376675c335a27e01',1,'MainWindow']]],
+  ['resetform_1',['resetForm',['../class_main_window.html#aca2106eb5187f0058b5ee53780e5502d',1,'MainWindow']]]
 ];

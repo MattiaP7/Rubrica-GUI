@@ -19,6 +19,8 @@
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -100,27 +102,24 @@ $(function(){initNavTree('utils_8hpp_source.html',''); initResizable(true); });
 </div><!--header-->
 <div class="contents">
 <a href="utils_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#ifndef UTILS_HPP</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#define UTILS_HPP</span></div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#pragma once</span></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;QGuiApplication&gt;</span></div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;QPalette&gt;</span></div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;QStyleHints&gt;</span></div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;QString&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#ifndef UTILS_HPP</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#define UTILS_HPP</span></div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keywordtype">bool</span> <a class="code hl_function" href="utils_8hpp.html#a36044a6efa9c4e015378e56c3e37181d">isDarkMode</a>();</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>QString <a class="code hl_function" href="utils_8hpp.html#a67f045b9f8cb07c788cad61890f875ae">capitalize</a>(<span class="keyword">const</span> QString &amp;str);</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &lt;QGuiApplication&gt;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &lt;QPalette&gt;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;QString&gt;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &lt;QStyleHints&gt;</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="keywordtype">bool</span> <a class="code hl_function" href="utils_8hpp.html#a36044a6efa9c4e015378e56c3e37181d">isDarkMode</a>();</div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>QString <a class="code hl_function" href="utils_8hpp.html#a36b27d2bbc6c9bc948b2b2b63d1dd174">applyStyleSheet</a>(<span class="keywordtype">bool</span> <a class="code hl_function" href="utils_8hpp.html#a36044a6efa9c4e015378e56c3e37181d">isDarkMode</a>);</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="preprocessor">#endif </span><span class="comment">// UTILS_HPP</span></div>
-<div class="ttc" id="autils_8hpp_html_a36044a6efa9c4e015378e56c3e37181d"><div class="ttname"><a href="utils_8hpp.html#a36044a6efa9c4e015378e56c3e37181d">isDarkMode</a></div><div class="ttdeci">bool isDarkMode()</div><div class="ttdoc">utility function to check the color scheme of the system</div><div class="ttdef"><b>Definition</b> utils.cpp:3</div></div>
-<div class="ttc" id="autils_8hpp_html_a36b27d2bbc6c9bc948b2b2b63d1dd174"><div class="ttname"><a href="utils_8hpp.html#a36b27d2bbc6c9bc948b2b2b63d1dd174">applyStyleSheet</a></div><div class="ttdeci">QString applyStyleSheet(bool isDarkMode)</div><div class="ttdoc">applyStyleSheet</div><div class="ttdef"><b>Definition</b> utils.cpp:35</div></div>
-<div class="ttc" id="autils_8hpp_html_a67f045b9f8cb07c788cad61890f875ae"><div class="ttname"><a href="utils_8hpp.html#a67f045b9f8cb07c788cad61890f875ae">capitalize</a></div><div class="ttdeci">QString capitalize(const QString &amp;str)</div><div class="ttdoc">function for capitalize every word in a QString.</div><div class="ttdef"><b>Definition</b> utils.cpp:16</div></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>QString <a class="code hl_function" href="utils_8hpp.html#a67f045b9f8cb07c788cad61890f875ae">capitalize</a>(<span class="keyword">const</span> QString &amp;str);</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>QString <a class="code hl_function" href="utils_8hpp.html#a36b27d2bbc6c9bc948b2b2b63d1dd174">applyStyleSheet</a>(<span class="keywordtype">bool</span> <a class="code hl_function" href="utils_8hpp.html#a36044a6efa9c4e015378e56c3e37181d">isDarkMode</a>);</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="preprocessor">#endif </span><span class="comment">// UTILS_HPP</span></div>
+<div class="ttc" id="autils_8hpp_html_a36044a6efa9c4e015378e56c3e37181d"><div class="ttname"><a href="utils_8hpp.html#a36044a6efa9c4e015378e56c3e37181d">isDarkMode</a></div><div class="ttdeci">bool isDarkMode()</div><div class="ttdoc">Verifica se il sistema utilizza il tema scuro.</div><div class="ttdef"><b>Definition</b> utils.cpp:3</div></div>
+<div class="ttc" id="autils_8hpp_html_a36b27d2bbc6c9bc948b2b2b63d1dd174"><div class="ttname"><a href="utils_8hpp.html#a36b27d2bbc6c9bc948b2b2b63d1dd174">applyStyleSheet</a></div><div class="ttdeci">QString applyStyleSheet(bool isDarkMode)</div><div class="ttdoc">Genera un foglio di stile CSS in base al tema.</div><div class="ttdef"><b>Definition</b> utils.cpp:32</div></div>
+<div class="ttc" id="autils_8hpp_html_a67f045b9f8cb07c788cad61890f875ae"><div class="ttname"><a href="utils_8hpp.html#a67f045b9f8cb07c788cad61890f875ae">capitalize</a></div><div class="ttdeci">QString capitalize(const QString &amp;str)</div><div class="ttdef"><b>Definition</b> utils.cpp:16</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

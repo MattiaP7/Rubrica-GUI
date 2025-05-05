@@ -19,6 +19,8 @@
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -98,19 +100,14 @@ $(function(){initNavTree('list_8cpp.html',''); initResizable(true); });
 <div class="header">
   <div class="summary">
 <a href="#namespaces">Namespaces</a> &#124;
-<a href="#define-members">Macros</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">list.cpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p><a class="el" href="class_contact_list.html" title="A linked list implementation for managing Contact objects.">ContactList</a> class implementation.  
+<p><a class="el" href="class_contact_list.html" title="linked list per la gestione avanzata di contatti">ContactList</a> class implementation.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="list_8hpp_source.html">list.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="utils_8hpp_source.html">utils.hpp</a>&quot;</code><br />
-<code>#include &lt;QFile&gt;</code><br />
-<code>#include &lt;QTextStream&gt;</code><br />
-<code>#include &lt;thread&gt;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
@@ -118,26 +115,20 @@ Namespaces</h2></td></tr>
 <tr class="memdesc:namespacem__list__namespace"><td class="mdescLeft">&#160;</td><td class="mdescRight">namespace for utility function used ONLY in this file. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
-Macros</h2></td></tr>
-<tr class="memitem:a4679d8ea8690999a6c6c7c0cb245c879" id="r_a4679d8ea8690999a6c6c7c0cb245c879"><td class="memItemLeft" align="right" valign="top"><a id="a4679d8ea8690999a6c6c7c0cb245c879" name="a4679d8ea8690999a6c6c7c0cb245c879"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>THRESHOLD</b>&#160;&#160;&#160;1000</td></tr>
-<tr class="separator:a4679d8ea8690999a6c6c7c0cb245c879"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a17b1d543ef717d2907c3f3871a413097" id="r_a17b1d543ef717d2907c3f3871a413097"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_node.html">Node</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacem__list__namespace.html#a17b1d543ef717d2907c3f3871a413097">m_list_namespace::merge</a> (<a class="el" href="struct_node.html">Node</a> *left, <a class="el" href="struct_node.html">Node</a> *right)</td></tr>
-<tr class="memdesc:a17b1d543ef717d2907c3f3871a413097"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unisce due liste ordinate in una singola lista ordinata.  <br /></td></tr>
+<tr class="memdesc:a17b1d543ef717d2907c3f3871a413097"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unisce due liste ordinate in una singola lista ordinata (ricorsiva)  <br /></td></tr>
 <tr class="separator:a17b1d543ef717d2907c3f3871a413097"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4faf0fe3af81a69de5ca7a618717834e" id="r_a4faf0fe3af81a69de5ca7a618717834e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacem__list__namespace.html#a4faf0fe3af81a69de5ca7a618717834e">m_list_namespace::split</a> (<a class="el" href="struct_node.html">Node</a> *head, <a class="el" href="struct_node.html">Node</a> **left, <a class="el" href="struct_node.html">Node</a> **right)</td></tr>
-<tr class="memdesc:a4faf0fe3af81a69de5ca7a618717834e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Divide una lista in due sottoliste di dimensione simile.  <br /></td></tr>
+<tr class="memdesc:a4faf0fe3af81a69de5ca7a618717834e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Divide la lista in due sottoliste.  <br /></td></tr>
 <tr class="separator:a4faf0fe3af81a69de5ca7a618717834e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8624fde3cbe45f50e9905ca4cd453a2a" id="r_a8624fde3cbe45f50e9905ca4cd453a2a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_node.html">Node</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacem__list__namespace.html#a8624fde3cbe45f50e9905ca4cd453a2a">m_list_namespace::merge_sort</a> (<a class="el" href="struct_node.html">Node</a> *head, int depth=0)</td></tr>
-<tr class="memdesc:a8624fde3cbe45f50e9905ca4cd453a2a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ordina una lista collegata utilizzando Merge Sort.  <br /></td></tr>
+<tr class="memdesc:a8624fde3cbe45f50e9905ca4cd453a2a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implementa il merge sort ricorsivo con thread.  <br /></td></tr>
 <tr class="separator:a8624fde3cbe45f50e9905ca4cd453a2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p><a class="el" href="class_contact_list.html" title="A linked list implementation for managing Contact objects.">ContactList</a> class implementation. </p>
+<div class="textblock"><p><a class="el" href="class_contact_list.html" title="linked list per la gestione avanzata di contatti">ContactList</a> class implementation. </p>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

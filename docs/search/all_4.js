@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['findnode_0',['findNode',['../class_contact_list.html#a63aba1d0b041bb6923cec7d2254e6ff3',1,'ContactList']]],
-  ['funzionalità_1',['Funzionalità',['../index.html#features',1,'']]]
+  ['gui_20tramite_20qt_20creator_0',['Rubruca GUI tramite Qt creator',['../index.html',1,'']]]
 ];

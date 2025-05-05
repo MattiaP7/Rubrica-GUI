@@ -9,7 +9,6 @@
 #include <QMessageBox>
 #include <QInputDialog>
 
-
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -18,18 +17,17 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     initializeUI();
 
-    // Connect contact list changes to refresh function
     connect(&m_contactList, &ContactList::dataChanged,
             this, &MainWindow::onContactListChanged);
 
-    // Load any existing contacts
+    // Carico i contatti se esistenti e aggiorno la tabella
     m_contactList.loadFromFile();
     refreshContactTable();
 }
 
 MainWindow::~MainWindow()
 {
-    // Save contacts when window closes
+    // Salvo i contatti quando chiudo l'applicazione
     m_contactList.saveToFile();
     delete ui;
 }
@@ -37,127 +35,63 @@ MainWindow::~MainWindow()
 void MainWindow::initializeUI()
 {
     // Configuro la tabella, 3 colonne Nome, Telefono, Email
+    // imposto che nella tabella si può selezionare una riga
     ui->tableWidget->setColumnCount(3);
     QStringList headers{"Nome", "Telefono", "Email"};
     ui->tableWidget->setHorizontalHeaderLabels(headers);
-
-/*
- * se volessi applicare uno stile per gli headers...
-    QStringList headers{"Nome", "Telefono", "Email"};
-    QStringList colors{"#FFD700", "#87CEEB", "#90EE90"}; // oro, azzurro, verde chiaro
-
-    ui->tableWidget->setColumnCount(headers.size());
-
-    for (int i = 0; i < headers.size(); ++i) {
-        QTableWidgetItem* headerItem = new QTableWidgetItem(headers[i]);
-        headerItem->setBackground(QColor(colors[i]));
-        headerItem->setTextAlignment(Qt::AlignCenter);
-        headerItem->setForeground(QBrush(Qt::black)); // colore del testo
-        ui->tableWidget->setHorizontalHeaderItem(i, headerItem);
-    }
-
-    // IN CASO TOGLI LE LINEE, IMPOSTA NEI BUTTON DEI COLOR
-*/
     ui->tableWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->tableWidget->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 
 
 
     // Connetto l'input della ricerca
-    connect(
-        ui->inputSearch,
-        &QLineEdit::textChanged,
-        this,
-        &MainWindow::on_inputSearch_textChanged
-    );
-
+    connect(ui->inputSearch, &QLineEdit::textChanged, this, &MainWindow::on_inputSearch_textChanged);
 
     // Connetto tutti pulsanti della UI
-    connect(
-        ui->btnAggiungi,
-        &QPushButton::clicked,
-        this,
-        &MainWindow::onAddButtonClicked
-    );
-    connect(
-        ui->btnConferma,
-        &QPushButton::clicked,
-        this,
-        &MainWindow::onConfirmButtonClicked
-    );
-    connect(
-        ui->btnCancel,
-        &QPushButton::clicked,
-        this,
-        &MainWindow::onCancelButtonClicked
-    );
-    connect(
-        ui->btnElimina,
-        &QPushButton::clicked,
-        this,
-        &MainWindow::onRemoveButtonClicked
-    );
-    connect(
-        ui->btnModifica,
-        &QPushButton::clicked,
-        this,
-        &MainWindow::onEditButtonClicked
-    );
-    connect(
-        ui->btnConferma_2,
-        &QPushButton::clicked,
-        this,
-        &MainWindow::on_btnConferma_2_clicked
-    );
-    connect(
-        ui->btnCancel_2,
-        &QPushButton::clicked,
-        this,
-        &MainWindow::on_btnCancel_2_clicked
-    );
+    connect(ui->btnAggiungi, &QPushButton::clicked, this, &MainWindow::onAddButtonClicked);
+    connect(ui->btnConferma, &QPushButton::clicked, this, &MainWindow::onConfirmButtonClicked);
+    connect(ui->btnCancel, &QPushButton::clicked, this, &MainWindow::onCancelButtonClicked);
+    connect(ui->btnElimina, &QPushButton::clicked, this, &MainWindow::onRemoveButtonClicked);
+    connect(ui->btnModifica, &QPushButton::clicked, this, &MainWindow::onEditButtonClicked);
+    connect(ui->btnConferma_2, &QPushButton::clicked, this, &MainWindow::on_btnConferma_2_clicked);
+    connect(ui->btnCancel_2, &QPushButton::clicked, this, &MainWindow::on_btnCancel_2_clicked);
 
-
+    // Applico lo stile
     QString style = applyStyleSheet(isDarkMode());
     this->setStyleSheet(style);
+
+    ui->tableWidget->viewport()->update();
+    ui->tableWidget->update();
+    ui->inputSearch->update();
 }
 
 void MainWindow::refreshContactTable()
 {
-    // Salva la selezione corrente
-    int currentRow = ui->tableWidget->currentRow();
-
-    // Pulisci e ripopola la tabella
+    m_searchResultsIndices.clear(); // Resetta gli indici
     ui->tableWidget->setRowCount(0);
 
-    // contacts contiene tutti i contatti della lista
     const auto contacts = m_contactList.allContacts();
-    for (const auto& contact : contacts) {
-        // Salta i contatti vuoti
-        if(
-            contact.name().isEmpty() &&
-            contact.phone().isEmpty() &&
-            contact.email().isEmpty()
-        ) continue;
+    for (size_t originalIndex = 0; originalIndex < contacts.size(); ++originalIndex) {
+        const auto &contact = contacts[originalIndex];
 
-        int row = ui->tableWidget->rowCount();
+        // Aggiungi riga alla tabella
+        size_t row = ui->tableWidget->rowCount();
         ui->tableWidget->insertRow(row);
 
-        auto nameItem = new QTableWidgetItem(capitalize(contact.name()));
-        nameItem->setFlags(nameItem->flags() | Qt::ItemIsSelectable | Qt::ItemIsEnabled);
+        // Salva l'indice ORIGINALE
+        QTableWidgetItem *nameItem = new QTableWidgetItem(contact.name());
+        nameItem->setData(Qt::UserRole, originalIndex); // Salva indice originale
         ui->tableWidget->setItem(row, 0, nameItem);
 
-        auto phoneItem = new QTableWidgetItem(contact.phone());
-        phoneItem->setFlags(phoneItem->flags() | Qt::ItemIsSelectable | Qt::ItemIsEnabled);
+        // Popola gli altri campi
+        QTableWidgetItem *phoneItem = new QTableWidgetItem(contact.phone());
+        QTableWidgetItem *emailItem = new QTableWidgetItem(contact.email());
+
         ui->tableWidget->setItem(row, 1, phoneItem);
-
-        auto emailItem = new QTableWidgetItem(contact.email());
-        emailItem->setFlags(emailItem->flags() | Qt::ItemIsSelectable | Qt::ItemIsEnabled);
         ui->tableWidget->setItem(row, 2, emailItem);
-    }
 
-    // Ripristina la selezione se possibile
-    if (currentRow >= 0 && currentRow < ui->tableWidget->rowCount()) {
-        ui->tableWidget->setCurrentCell(currentRow, 0);
+        // Memorizza l'indice originale
+        m_searchResultsIndices.append(originalIndex); // Riempie il vettore
     }
 }
 
@@ -189,7 +123,7 @@ void MainWindow::onConfirmButtonClicked(){
 
     // converto la stringa del telefono in un numero
     // toULongLong ritorna il valore di ok_phone,
-    // se false vuol dire che la stringa non era composta da soli numeri = errore
+    // se ok_phone == false vuol dire che la stringa non era composta da soli numeri
     bool ok_phone;
     currentPhone.toULongLong(&ok_phone, 10);
     if(!ok_phone){
@@ -213,10 +147,8 @@ void MainWindow::onConfirmButtonClicked(){
     if(!currentEmail.isEmpty()) {
         Contact tempContact("", "", currentEmail);
         if(!tempContact.isEmail()) {
-            showErrorMessage(
-                "Errore",
-                "Inserisci un indirizzo email valido o lascia il campo vuoto"
-                );
+            showErrorMessage("Errore",
+                             "Inserisci un indirizzo email valido o lascia il campo vuoto");
             ui->inputEmail->selectAll();
             ui->inputEmail->setFocus();
             return;
@@ -235,7 +167,7 @@ void MainWindow::onConfirmButtonClicked(){
 }
 
 void MainWindow::onCancelButtonClicked(){
-    //QMessageBox::information(this, "Successo", "Operazione cancellata");
+    // torno alla pagina di home
     ui->stackedWidget->setCurrentIndex(0);
 }
 
@@ -257,103 +189,64 @@ void MainWindow::onRemoveButtonClicked()
     }
 }
 
-void MainWindow::onEditButtonClicked() {
+void MainWindow::onEditButtonClicked()
+{
     int row = ui->tableWidget->currentRow();
-    if (row < 0 || row >= m_contactList.count()) {
-        showErrorMessage("Errore", "Seleziona un contatto da modificare.");
+    if (row < 0 || row >= ui->tableWidget->rowCount()) {
+        showErrorMessage("Errore", "Seleziona un contatto valido");
         return;
     }
 
-    const Contact& contact = m_contactList.at(row);
+    // Ottieni l'indice ORIGINALE dalla colonna "Nome"
+    QTableWidgetItem *nameItem = ui->tableWidget->item(row, 0);
+    int originalIndex = nameItem->data(Qt::UserRole).toInt();
+
+    // Popola i campi di modifica
+    Contact contact = m_contactList.at(originalIndex);
     ui->inputNome_2->setText(contact.name());
     ui->inputTelefono_2->setText(contact.phone());
     ui->inputEmail_2->setText(contact.email());
 
-    m_editingRow = row;
-    ui->stackedWidget->setCurrentIndex(2); // vai alla pagina modifica
+    m_editingRow = originalIndex; // Conserva per la conferma
+    ui->stackedWidget->setCurrentIndex(2);
 }
 
-void MainWindow::on_btnConferma_2_clicked() {
-    if (m_editingRow < 0 || m_editingRow >= m_contactList.count()) return;
-
-    QString name = capitalize(ui->inputNome_2->text().trimmed());
-    QString phone = ui->inputTelefono_2->text().trimmed();
-    QString email = ui->inputEmail_2->text().trimmed();
-
-    if(name.isEmpty()) {
-        showErrorMessage("Errore", "Il nome è obbligatorio");
-        return;
-    }
-
-    if(phone.isEmpty() || phone.size() != 10 || !phone.toULongLong()) {
-        showErrorMessage("Errore", "Numero di telefono non valido");
-        return;
-    }
-
-    if(!email.isEmpty() && !email.contains('@')) {
-        showErrorMessage("Errore", "Email non valida");
-        return;
-    }
-
-    Contact newContact{name, phone, email};
-    m_contactList.updateAt(m_editingRow, newContact);
-
-    m_editingRow = -1;
-    refreshContactTable();
-    ui->stackedWidget->setCurrentIndex(0); // torna alla pagina principale
-}
-
-void MainWindow::on_btnCancel_2_clicked() {
-    m_editingRow = -1;
-    ui->stackedWidget->setCurrentIndex(0);
-}
-
-
-void MainWindow::confirmEdit(const QString& originalName)
+void MainWindow::on_btnConferma_2_clicked()
 {
-    // 1. Ottieni nuovi valori
-    QString newName = ui->inputNome->text().trimmed();
-    QString newPhone = ui->inputTelefono->text().trimmed();
-    QString newEmail = ui->inputEmail->text().trimmed();
-
-    // 2. Validazione
-    if(newName.isEmpty() || newPhone.isEmpty()) {
+    QString nome = ui->inputNome_2->text();
+    QString telefono = ui->inputTelefono_2->text();
+    QString email = ui->inputEmail_2->text();
+    if (nome.isEmpty() || telefono.isEmpty()) {
         showErrorMessage("Errore", "Nome e telefono sono obbligatori");
         return;
     }
 
-    if(newPhone.size() != 10 || !newPhone.toLongLong()) {
+    if (telefono.size() != 10 || !telefono.toLongLong()) {
         showErrorMessage("Errore", "Telefono deve avere 10 cifre");
         ui->inputTelefono->setFocus();
         return;
     }
 
-    if(!newEmail.isEmpty() && !Contact("", "", newEmail).isEmail()) {
+    if (!email.isEmpty() && !Contact("", "", email).isEmail()) {
         showErrorMessage("Errore", "Email non valida");
         ui->inputEmail->setFocus();
         return;
     }
 
-    // 3. Esegui modifica
-    Contact updatedContact(newName, newPhone, newEmail);
-    if(m_contactList.updateContact(originalName, updatedContact)) {
-        QMessageBox::information(this, "Successo", "Contatto modificato");
-        refreshContactTable();
-        resetForm();
-    } else {
-        showErrorMessage("Errore", "Modifica fallita");
-    }
+    Contact updatedContact(nome, telefono, email);
 
-    // Dopo avere eseguito la modifica ripristino i bottoni
-    ui->btnElimina->show();
-    ui->btnModifica->show();
+    // Usa l'indice originale conservato
+    m_contactList.updateAt(m_editingRow, updatedContact);
 
-    // Reimposta il testo del pulsante "Aggiungi" se necessario
-    ui->btnAggiungi->setText("Aggiungi");
+    // Ri-applica la ricerca per aggiornare la vista
+    m_contactList.search(ui->inputSearch->text(), ui->tableWidget);
+    ui->stackedWidget->setCurrentIndex(0);
+}
 
-    // Puoi anche ricollegare il segnale del pulsante "Aggiungi" se necessario
-    ui->btnAggiungi->disconnect();
-    connect(ui->btnAggiungi, &QPushButton::clicked, this, &MainWindow::onAddButtonClicked);
+void MainWindow::on_btnCancel_2_clicked() {
+    // imposto l'indice di selezioni a -1 e torno alla home page
+    m_editingRow = -1;
+    ui->stackedWidget->setCurrentIndex(0);
 }
 
 void MainWindow::onCancelEditClicked()
@@ -373,22 +266,6 @@ void MainWindow::resetForm()
 void MainWindow::onContactListChanged()
 {
     refreshContactTable();
-    clearHighlights(); // Rimuovi evidenziazioni quando i dati cambiano
-}
-
-Contact MainWindow::getContactFromInput() const
-{
-    return Contact(
-        ui->inputNome->text().trimmed(),
-        ui->inputTelefono->text().trimmed(),
-        ui->inputEmail->text().trimmed()
-    );
-}
-
-bool MainWindow::validateInput() const
-{
-    return !ui->inputNome->text().trimmed().isEmpty() &&
-           !ui->inputTelefono->text().trimmed().isEmpty();
 }
 
 void MainWindow::clearInputFields()
@@ -414,47 +291,9 @@ void MainWindow::showErrorMessage(const QString& title, const QString& message)
     msgBox.exec();
 }
 
-
-void MainWindow::highlightSearchResults(const QVector<Contact>& results)
-{
-    // Nasconde tutte le righe inizialmente
-    for(int i = 0; i < ui->tableWidget->rowCount(); ++i) {
-        ui->tableWidget->setRowHidden(i, true);
-    }
-
-    // Mostra solo le righe che corrispondono ai risultati trovati
-    for(int i = 0; i < ui->tableWidget->rowCount(); ++i) {
-        QString name = ui->tableWidget->item(i, 0)->text();
-        QString phone = ui->tableWidget->item(i, 1)->text();
-
-        for(const auto& contact : results) {
-            if(name == contact.name() || phone == contact.phone()) {
-                ui->tableWidget->setRowHidden(i, false);
-                break;
-            }
-        }
-    }
-}
-
-void MainWindow::clearHighlights()
-{
-    // Mostra tutte le righe e resetta i colori
-    for(int i = 0; i < ui->tableWidget->rowCount(); ++i) {
-        ui->tableWidget->setRowHidden(i, false);
-        for(int j = 0; j < ui->tableWidget->columnCount(); ++j) {
-            if(isDarkMode()) {
-                ui->tableWidget->item(i, j)->setForeground(Qt::white);
-            } else {
-                ui->tableWidget->item(i, j)->setBackground(Qt::white);
-            }
-        }
-    }
-}
-
 void MainWindow::on_inputSearch_textChanged(const QString &query)
 {
-    ui->tableWidget->setRowCount(0);
-    m_contactList.search(query, ui->tableWidget);
+    m_searchResultsIndices = m_contactList.search(query, ui->tableWidget);
 }
 
 

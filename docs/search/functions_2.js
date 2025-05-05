@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['datachanged_0',['dataChanged',['../class_contact_list.html#ace1994978f8812b79d585047348dc38d',1,'ContactList']]]
+  ['email_0',['email',['../class_contact.html#a23cd41bdb518dc514f597e207a9fb9f6',1,'Contact']]]
 ];

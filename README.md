@@ -5,7 +5,7 @@
 
 Un'applicazione desktop per la gestione di una rubrica contatti sviluppata con Qt C++.
 
-![image alt text](https://mgdanv9sq0.ufs.sh/f/UyBJYEvFMyYw0FWf84QsagDFYmt5o3PjNecOE4XdTJkBCU6b "Interfaccia applicazione")
+![image alt text](app.png "Interfaccia applicazione")
 
 ## Caratteristiche Principali
 
@@ -25,31 +25,35 @@ Un'applicazione desktop per la gestione di una rubrica contatti sviluppata con Q
 ## Installazione
 
 1. Clonare il repository:
+
 ```bash
 git clone https://github.com/MattiaP7/Rubrica-GUI
 cd rubrica-qt
 ```
-ricorda di eliminare la cartella `.git`
-2. Compilare con CMake
+
+ricorda di eliminare la cartella `.git` 2. Compilare con CMake
+
 ```bash
 mkdir build
 cd build
 cmake ..
 make
 ```
+
 3. Esegui l'applicazione
 
 # Utilizzo
+
 1. Aggiungere un contatto
-	- Compilare i campi Nome, Telefono e (opzionale) Email
-	- Cliccare "Aggiungi"
+   - Compilare i campi Nome, Telefono e (opzionale) Email
+   - Cliccare "Aggiungi"
 2. Cercare contatti
-	- Inserire testo nella barra di ricerca
-	- I risultati verranno evidenziati
+   - Inserire testo nella barra di ricerca
+   - I risultati verranno evidenziati
 3. Modificare un contatto
-	- Selezionare il contatto dalla tabella
-	- Modificare i campi desiderati
-	- Cliccare "Modifica"
+   - Selezionare il contatto dalla tabella
+   - Modificare i campi desiderati
+   - Cliccare "Modifica"
 4. Eliminare un contatto
-	- Selezionare il contatto dalla tabella
-	- Cliccare "Rimuovi"
+   - Selezionare il contatto dalla tabella
+   - Cliccare "Rimuovi"

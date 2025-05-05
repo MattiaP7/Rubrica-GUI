@@ -19,6 +19,8 @@
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -104,7 +106,7 @@ $(function(){initNavTree('struct_node.html',''); initResizable(true); });
 </div><!--header-->
 <div class="contents">
 
-<p><a class="el" href="struct_node.html" title="Node structure for the linked list implementation.">Node</a> structure for the linked list implementation.  
+<p>Nodo base per l'implementazione della linked list.  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="list_8hpp_source.html">list.hpp</a>&gt;</code></p>
@@ -112,7 +114,7 @@ $(function(){initNavTree('struct_node.html',''); initResizable(true); });
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a808b98b14155f913ee1d2b4225c27ae6" id="r_a808b98b14155f913ee1d2b4225c27ae6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a808b98b14155f913ee1d2b4225c27ae6">Node</a> (const <a class="el" href="class_contact.html">Contact</a> &amp;c, <a class="el" href="struct_node.html">Node</a> *n=nullptr)</td></tr>
-<tr class="memdesc:a808b98b14155f913ee1d2b4225c27ae6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for <a class="el" href="struct_node.html" title="Node structure for the linked list implementation.">Node</a> structure.  <br /></td></tr>
+<tr class="memdesc:a808b98b14155f913ee1d2b4225c27ae6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Costruttore del nodo.  <br /></td></tr>
 <tr class="separator:a808b98b14155f913ee1d2b4225c27ae6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
@@ -123,10 +125,11 @@ Public Attributes</h2></td></tr>
 <tr class="separator:a2559a716f69ccaa76d648d9f1b83065e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p><a class="el" href="struct_node.html" title="Node structure for the linked list implementation.">Node</a> structure for the linked list implementation. </p>
-<p>Struttura <a class="el" href="struct_node.html" title="Node structure for the linked list implementation.">Node</a> per l'implementazione della lista concatenata</p>
-<p>This structure represents a single node in the linked list, containing a <a class="el" href="class_contact.html" title="Represents a contact entry with name, phone number and optional email.">Contact</a> object and a pointer to the next node in the sequence.</p>
-<p>Questa struttura rappresenta un singolo nodo nella lista concatenata, contenente un oggetto <a class="el" href="class_contact.html" title="Represents a contact entry with name, phone number and optional email.">Contact</a> e un puntatore al nodo successivo nella sequenza. </p>
+<div class="textblock"><p>Nodo base per l'implementazione della linked list. </p>
+<p>Struttura fondamentale che contiene:</p><ul>
+<li>Un oggetto <a class="el" href="class_contact.html" title="Classe per la gestione di singoli contatti anagrafici.">Contact</a> con i dati del contatto</li>
+<li>Un puntatore al nodo successivo (nullptr se è l'ultimo nodo) </li>
+</ul>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a808b98b14155f913ee1d2b4225c27ae6" name="a808b98b14155f913ee1d2b4225c27ae6"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a808b98b14155f913ee1d2b4225c27ae6">&#9670;&#160;</a></span>Node()</h2>
@@ -155,14 +158,11 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Constructor for <a class="el" href="struct_node.html" title="Node structure for the linked list implementation.">Node</a> structure. </p>
-<p>Costruttore per la struttura <a class="el" href="struct_node.html" title="Node structure for the linked list implementation.">Node</a></p>
+<p>Costruttore del nodo. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">c</td><td><a class="el" href="class_contact.html" title="Represents a contact entry with name, phone number and optional email.">Contact</a> object to store in the node </td></tr>
-    <tr><td class="paramname">n</td><td>Pointer to the next node (defaults to nullptr)</td></tr>
-    <tr><td class="paramname">c</td><td>Oggetto <a class="el" href="class_contact.html" title="Represents a contact entry with name, phone number and optional email.">Contact</a> da memorizzare nel nodo </td></tr>
-    <tr><td class="paramname">n</td><td>Puntatore al nodo successivo (default a nullptr) </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">c</td><td>Contatto da memorizzare </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">n</td><td>Puntatore al nodo successivo (default: nullptr) </td></tr>
   </table>
   </dd>
 </dl>
@@ -181,7 +181,7 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p><a class="el" href="class_contact.html" title="Represents a contact entry with name, phone number and optional email.">Contact</a> data stored in the node / Dati del contatto memorizzati nel nodo </p>
+<p>Dati anagrafici del contatto </p>
 
 </div>
 </div>
@@ -196,7 +196,7 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Pointer to the next node in the list / Puntatore al nodo successivo nella lista </p>
+<p>Puntatore al nodo successivo (nullptr per fine lista) </p>
 
 </div>
 </div>

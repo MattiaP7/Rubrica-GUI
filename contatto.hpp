@@ -1,165 +1,152 @@
 /**
  * @file contatto.hpp
- * @brief Contact class definition with name, phone and email
- * @brief Definizione della classe Contact con nome, telefono e email
+ * @brief Definizione della classe Contact per la gestione di contatti (nome, telefono, email)
+ * 
+ * @details
+ * Questo file contiene la definizione della classe Contact, che rappresenta una voce anagrafica
+ * completa con nome, numero di telefono e email opzionale. La classe include metodi per la validazione
+ * dei dati e operatori per il confronto e l'ordinamento.
  */
 
 #ifndef CONTATTO_HPP
 #define CONTATTO_HPP
 
+#include <QMetaType>
 #include <QString>
 #include <QVector>
-#include <QMetaType>
 
 /**
  * @class Contact
- * @brief Represents a contact entry with name, phone number and optional email
- * @brief Rappresenta una voce della rubrica con nome, numero di telefono e email opzionale
- *
- * This class encapsulates all information about a single contact,
- * providing methods to access and modify the data, and validation capabilities.
- *
- * Questa classe incapsula tutte le informazioni su un singolo contatto,
- * fornendo metodi per accedere e modificare i dati, e capacità di validazione.
+ * @brief Classe per la gestione di singoli contatti anagrafici
+ * 
+ * @details
+ * La classe rappresenta un contatto completo con:
+ * - Nome completo (obbligatorio)
+ * - Numero di telefono (obbligatorio)
+ * - Indirizzo email (opzionale, con validazione formato)
+ * 
+ * Fornisce:
+ * - Costruttori per creazione contatti
+ * - Metodi di accesso e modifica dei campi
+ * - Validazione automatica dell'email
+ * - Operatori di confronto per uguaglianza e ordinamento
+ * 
  */
 class Contact
 {
 public:
     /**
-     * @brief Default constructor creates an empty contact
-     * @brief Costruttore di default crea un contatto vuoto
+     * @brief Costruttore di default
+     * 
      */
     Contact();
 
     /**
-     * @brief Parameterized constructor creates a contact with given data
-     * @brief Costruttore parametrizzato crea un contatto con i dati forniti
-     *
-     * @param name Full name of the contact (cannot be empty)
-     * @param phone Phone number of the contact (cannot be empty)
-     * @param email Email address (optional, must be valid if provided)
-     *
-     * @param name Nome completo del contatto (non può essere vuoto)
-     * @param phone Numero di telefono del contatto (non può essere vuoto)
-     * @param email Indirizzo email (opzionale, deve essere valido se fornito)
+     * @brief Costruttore parametrizzato completo
+     * 
+     * @param[in] name Nome completo del contatto (non vuoto)
+     * @param[in] phone Numero di telefono (non vuoto)
+     * @param[in] email Indirizzo email (opzionale, verrà validato se fornito)
+     * 
+     * @warning Se l'email è fornita deve essere una email valida
      */
-    Contact(const QString& name, const QString& phone, const QString& email = "");
+    Contact(const QString &name, const QString &phone, const QString &email = "");
 
     /**
-     * @brief Gets the contact's full name
-     * @brief Ottiene il nome completo del contatto
-     *
-     * @return QString containing the name
-     *
-     * @return QString contenente il nome
+     * @brief Restituisce il nome del contatto
+     * @return QString Nome completo corrente
      */
     QString name() const;
 
     /**
-     * @brief Gets the contact's phone number
-     * @brief Ottiene il numero di telefono del contatto
-     *
-     * @return QString containing the phone number
-     *
-     * @return QString contenente il numero di telefono
+     * @brief Restituisce il numero di telefono
+     * @return QString Numero di telefono corrente
      */
     QString phone() const;
 
     /**
-     * @brief Gets the contact's email address
-     * @brief Ottiene l'indirizzo email del contatto
-     *
-     * @return QString containing the email (may be empty)
-     *
-     * @return QString contenente l'email (può essere vuota)
+     * @brief Restituisce l'indirizzo email
+     * @return QString Email corrente (può essere vuota)
      */
     QString email() const;
 
     /**
-     * @brief Validates the email format
-     * @brief Valida il formato dell'email
-     *
-     * Checks if the email contains '@' and a valid domain.
-     * Verifica se l'email contiene '@' e un dominio valido.
-     *
-     * @return true if email is valid (or empty), false otherwise
-     *
-     * @return true se l'email è valida (o vuota), false altrimenti
+     * @brief Imposta il nome del contatto
+     * @param[in] name Nuovo nome completo (non vuoto)
+     * 
+     * @note Se viene passata una stringa vuota, l'operazione viene ignorata
      */
-    bool isEmail();
+    void setName(const QString &name);
 
     /**
-     * @brief Sets the contact's full name
-     * @brief Imposta il nome completo del contatto
-     *
-     * @param name New name (cannot be empty)
-     *
-     * @param name Nuovo nome (non può essere vuoto)
+     * @brief Imposta il numero di telefono
+     * @param[in] phone Nuovo numero (non vuoto)
+     * 
+     * @note Il numero non viene validato formalmente, ma non può essere vuoto
      */
-    void setName(const QString& name);
+    void setPhone(const QString &phone);
 
     /**
-     * @brief Sets the contact's phone number
-     * @brief Imposta il numero di telefono del contatto
-     *
-     * @param phone New phone number (cannot be empty)
-     *
-     * @param phone Nuovo numero di telefono (non può essere vuoto)
+     * @brief Imposta l'indirizzo email
+     * @param[in] email Nuovo indirizzo email
+     * 
+     * @details
+     * Se l'email non è valida:
+     * - Viene scartata
+     * - Il campo rimane vuoto
+     * - Non viene generato alcun errore
      */
-    void setPhone(const QString& phone);
+    void setEmail(const QString &email);
 
     /**
-     * @brief Sets the contact's email address
-     * @brief Imposta l'indirizzo email del contatto
-     *
-     * @param email New email address (will be validated)
-     *
-     * @param email Nuovo indirizzo email (sarà validato)
+     * @brief Verifica la validità dell'email
+     * 
+     * Esegue un controllo sintattico sull'indirizzo email:
+     * - Deve contenere esattamente un '@'
+     * - Deve avere un dominio valido dopo '@'
+     * - Non deve contenere spazi
+     * 
+     * @retval true Se l'email è vuota o valida
+     * @retval false Se l'email non è vuota e non valida
      */
-    void setEmail(const QString& email);
+    bool isEmail() const;
 
     /**
-     * @brief Equality comparison operator
-     * @brief Operatore di confronto di uguaglianza
-     *
-     * Two contacts are considered equal if all their fields match.
-     * Due contatti sono considerati uguali se tutti i loro campi corrispondono.
-     *
-     * @param other Contact to compare with
-     * @return true if contacts are identical, false otherwise
-     *
-     * @param other Contatto con cui confrontare
-     * @return true se i contatti sono identici, false altrimenti
+     * @brief Operatore di uguaglianza
+     * 
+     * Confronta tutti i campi tra due contatti (case-sensitive)
+     * 
+     * @param[in] other Contatto da confrontare
+     * @retval true Se nome, telefono e email coincidono
+     * @retval false Altrimenti
      */
-    bool operator==(const Contact& other) const;
+    bool operator==(const Contact &other) const;
 
     /**
-     * @brief Less-than comparison operator for sorting
-     * @brief Operatore di confronto minore-per per l'ordinamento
-     *
-     * Compares contacts by name (case-insensitive) for sorting purposes.
-     * Confronta i contatti per nome (case-insensitive) per scopi di ordinamento.
-     *
-     * @param other Contact to compare with
-     * @return true if this contact should come before the other
-     *
-     * @param other Contatto con cui confrontare
-     * @return true se questo contatto dovrebbe venire prima dell'altro
+     * @brief Operatore di ordinamento
+     * 
+     * Confronta i contatti per nome (case-insensitive) per permettere
+     * l'ordinamento alfabetico nelle liste.
+     * 
+     * @param[in] other Contatto da confrontare
+     * @retval true Se questo contatto viene prima nell'ordinamento alfabetico
      */
-    bool operator<(const Contact& other) const;
+    bool operator<(const Contact &other) const;
 
 private:
-    QString m_name;     /**< Contact's full name / Nome completo del contatto */
-    QString m_phone;    /**< Contact's phone number / Numero di telefono del contatto */
-    QString m_email;    /**< Contact's email address / Indirizzo email del contatto */
+    QString m_name;  /**< Nome completo (case-sensitive) */
+    QString m_phone; /**< Numero di telefono (formato libero) */
+    QString m_email; /**< Indirizzo email (validato se presente) */
 };
 
 /**
- * @brief Registers Contact type with Qt's meta-object system
- * @brief Registra il tipo Contact con il sistema meta-oggetto di Qt
- *
- * This macro makes the Contact class usable in Qt's signal/slot mechanism.
- * Questa macro rende la classe Contact utilizzabile nel meccanismo di segnali/slot di Qt.
+ * @brief Registrazione del tipo Contact nel sistema meta-oggetto di Qt
+ * 
+ * @details
+ * Questa macro è necessaria per:
+ * - Utilizzare Contact in segnali/slot Qt
+ * - Serializzare l'oggetto in QVariant
+ * - Integrazione con QObject properties
  */
 Q_DECLARE_METATYPE(Contact)
 

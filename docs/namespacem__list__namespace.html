@@ -19,6 +19,8 @@
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -108,13 +110,13 @@ $(function(){initNavTree('namespacem__list__namespace.html',''); initResizable(t
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a17b1d543ef717d2907c3f3871a413097" id="r_a17b1d543ef717d2907c3f3871a413097"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_node.html">Node</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a17b1d543ef717d2907c3f3871a413097">merge</a> (<a class="el" href="struct_node.html">Node</a> *left, <a class="el" href="struct_node.html">Node</a> *right)</td></tr>
-<tr class="memdesc:a17b1d543ef717d2907c3f3871a413097"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unisce due liste ordinate in una singola lista ordinata.  <br /></td></tr>
+<tr class="memdesc:a17b1d543ef717d2907c3f3871a413097"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unisce due liste ordinate in una singola lista ordinata (ricorsiva)  <br /></td></tr>
 <tr class="separator:a17b1d543ef717d2907c3f3871a413097"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4faf0fe3af81a69de5ca7a618717834e" id="r_a4faf0fe3af81a69de5ca7a618717834e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4faf0fe3af81a69de5ca7a618717834e">split</a> (<a class="el" href="struct_node.html">Node</a> *head, <a class="el" href="struct_node.html">Node</a> **left, <a class="el" href="struct_node.html">Node</a> **right)</td></tr>
-<tr class="memdesc:a4faf0fe3af81a69de5ca7a618717834e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Divide una lista in due sottoliste di dimensione simile.  <br /></td></tr>
+<tr class="memdesc:a4faf0fe3af81a69de5ca7a618717834e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Divide la lista in due sottoliste.  <br /></td></tr>
 <tr class="separator:a4faf0fe3af81a69de5ca7a618717834e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8624fde3cbe45f50e9905ca4cd453a2a" id="r_a8624fde3cbe45f50e9905ca4cd453a2a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_node.html">Node</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8624fde3cbe45f50e9905ca4cd453a2a">merge_sort</a> (<a class="el" href="struct_node.html">Node</a> *head, int depth=0)</td></tr>
-<tr class="memdesc:a8624fde3cbe45f50e9905ca4cd453a2a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ordina una lista collegata utilizzando Merge Sort.  <br /></td></tr>
+<tr class="memdesc:a8624fde3cbe45f50e9905ca4cd453a2a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implementa il merge sort ricorsivo con thread.  <br /></td></tr>
 <tr class="separator:a8624fde3cbe45f50e9905ca4cd453a2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -140,15 +142,13 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Unisce due liste ordinate in una singola lista ordinata. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">left</td><td>Puntatore alla testa della prima lista ordinata. </td></tr>
-    <tr><td class="paramname">right</td><td>Puntatore alla testa della seconda lista ordinata. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd><code>Node*</code> Puntatore alla testa della lista risultante ordinata. </dd></dl>
+<p>Unisce due liste ordinate in una singola lista ordinata (ricorsiva) </p>
+<p>Algoritmo:</p><ol type="1">
+<li>Confronta i nodi testa delle due liste</li>
+<li>Sceglie il nodo minore come prossimo elemento</li>
+<li>Richiama ricorsivamente merge sul resto delle liste</li>
+<li>Concatena il risultato </li>
+</ol>
 
 </div>
 </div>
@@ -171,14 +171,16 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Ordina una lista collegata utilizzando Merge Sort. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">head</td><td>Puntatore alla testa della lista da ordinare. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd><code>Node*</code> Puntatore alla testa della lista ordinata. </dd></dl>
+<p>Implementa il merge sort ricorsivo con thread. </p>
+<p>Algoritmo:</p><ol type="1">
+<li>Divide la lista in due metà (split)</li>
+<li>Ordina ricorsivamente ciascuna metà</li>
+<li>Fonde le metà ordinate (merge)</li>
+</ol>
+<p>Versione parallela:</p><ul>
+<li>Usa thread separati per metà grandi (THRESHOLD)</li>
+<li>Limita la profondità ricorsiva per overhead thread </li>
+</ul>
 
 </div>
 </div>
@@ -206,15 +208,12 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Divide una lista in due sottoliste di dimensione simile. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">head</td><td>Puntatore alla testa della lista da dividere. </td></tr>
-    <tr><td class="paramname">left</td><td>Puntatore al puntatore che riceverà la testa della prima metà. </td></tr>
-    <tr><td class="paramname">right</td><td>Puntatore al puntatore che riceverà la testa della seconda metà. </td></tr>
-  </table>
-  </dd>
-</dl>
+<p>Divide la lista in due sottoliste. </p>
+<p>Algoritmo:</p><ol type="1">
+<li>Usa due puntatori: slow (avanza di 1) e fast (avanza di 2)</li>
+<li>Quando fast raggiunge la fine, slow è a metà</li>
+<li>Divide la lista in corrispondenza di slow </li>
+</ol>
 
 </div>
 </div>

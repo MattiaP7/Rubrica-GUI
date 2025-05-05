@@ -49,13 +49,14 @@ var NAVTREE =
         [ "All", "globals.html", null ],
         [ "Functions", "globals_func.html", null ]
       ] ]
-    ] ]
+    ] ],
+    [ "Examples", "examples.html", "examples" ]
   ] ]
 ];
 
 var NAVTREEINDEX =
 [
-"annotated.html"
+"_c_1_2_users_2matti_2_one_drive_01-_01_i_8_i_8_s_8_01_bassi-_burgatti_2anno_01scolastico_012024_582e04e13b878686b7d04dd6b8f5531f.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

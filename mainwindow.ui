@@ -121,6 +121,9 @@
       <property name="editTriggers">
        <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
       </property>
+      <property name="selectionBehavior">
+       <enum>QAbstractItemView::SelectionBehavior::SelectItems</enum>
+      </property>
      </widget>
      <widget class="QPushButton" name="btnElimina">
       <property name="geometry">
@@ -280,7 +283,7 @@
        <string notr="true"/>
       </property>
       <property name="text">
-       <string>Cancella</string>
+       <string>Annulla</string>
       </property>
       <property name="shortcut">
        <string>Ctrl+P</string>
@@ -388,7 +391,7 @@
        <string notr="true"/>
       </property>
       <property name="text">
-       <string>Cancella</string>
+       <string>Annulla</string>
       </property>
       <property name="shortcut">
        <string>Ctrl+P</string>
