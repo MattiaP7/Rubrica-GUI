@@ -1,30 +1,37 @@
-PROJECT_NAME = Rubrica GUI @PIRAZZI MATTIA
-PROJECT_NUMBER = 1.0
+# Progetto
+PROJECT_NAME           = "Rubrica GUI by @Pirazzi Mattia"
+PROJECT_BRIEF          = "Semplice rubrica con una GUI in Qt c++"
+#PROJECT_LOGO           = ./path/to/logo.png  # Opzionale
 
-# Imposta la cartella di output della documentazione
-OUTPUT_DIRECTORY = docs
+# Input
+INPUT                  = .
+RECURSIVE              = YES
 
-# Genera solo documentazione HTML
-GENERATE_HTML = YES
-GENERATE_LATEX = NO
-GENERATE_RTF = NO
-GENERATE_MAN = NO
-GENERATE_XML = NO
+# Output
+OUTPUT_DIRECTORY       = ./docs
+CREATE_SUBDIRS         = NO
+GENERATE_LATEX         = NO
 
-# Non creare una sottocartella per l'output HTML
-HTML_OUTPUT = .
-FILE_PATTERNS = *.hpp *.cpp *h
+# HTML
+GENERATE_HTML          = YES
+HTML_OUTPUT            = html
+HTML_EXTRA_STYLESHEET  = ./doxygen-awesome.css
+HTML_EXTRA_FILES       = ./doxygen-awesome-darkmode-toggle.js
 
-PRIVATE_MEMBERS = YES  # Mostra membri privati
-PRIVATE_METHODS = YES  # Mostra metodi privati
-EXTRACT_PRIVATE = YES  # Mostra tutto il codice privato
-EXTRACT_STATIC = YES
+# Configurazione per C++
+OPTIMIZE_OUTPUT_FOR_C  = YES
+BUILTIN_STL_SUPPORT    = YES
+CPP_CLI_SUPPORT        = YES
+SIP_SUPPORT            = YES
 
-GENERATE_TREEVIEW = YES
-FULL_SIDEBAR = YES
-ENABLE_NAMESPACES = YES
+# Documentazione dei membri
+EXTRACT_ALL            = YES
+EXTRACT_PRIVATE        = YES
+EXTRACT_STATIC         = YES
 
-HTML_EXTRA_STYLESHEET  = docs/doxygen-awesome.css
-HTML_EXTRA_FILES      = docs/doxygen-awesome-darkmode-toggle.js
-HTML_EXTRA_STYLESHEET += docs/doxygen-awesome-sidebar-only.css
-HTML_EXTRA_STYLESHEET += docs/doxygen-awesome-fragment-copy-button.css
+# Diagrammi (opzionali)
+HAVE_DOT               = YES
+CLASS_DIAGRAMS         = YES
+UML_LOOK               = YES
+CALL_GRAPH             = YES
+CALLER_GRAPH          = YES

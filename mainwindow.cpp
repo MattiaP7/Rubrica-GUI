@@ -17,6 +17,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     initializeUI();
 
+    // i connect servono a collegare un segnale ad uno slot
     connect(&m_contactList, &ContactList::dataChanged,
             this, &MainWindow::onContactListChanged);
 
@@ -142,6 +143,13 @@ void MainWindow::onConfirmButtonClicked(){
         return;
     }
 
+    if(m_contactList.contains(currentPhone)){
+        QString message = QString("Numero di telefono già esistente");
+        showErrorMessage("Errore", message);
+        ui->inputTelefono->selectAll();
+        ui->inputTelefono->setFocus();
+        return;
+    }
 
     // Validazione email (opzionale ma se presente deve essere valida)
     if(!currentEmail.isEmpty()) {
@@ -189,6 +197,14 @@ void MainWindow::onRemoveButtonClicked()
     }
 }
 
+/*
+ * SLOT: onEditButtonClicked
+ * 
+ * Triggerato quando si clicca "Modifica" su un contatto nella tabella filtrata.
+ * - Recupera l'indice ORIGINALE dal Qt::UserRole dell'item Nome
+ * - Popola i campi di modifica con i dati del contatto ORIGINALE
+ * - Salva l'indice originale in m_editingRow per usarlo nella conferma
+ */
 void MainWindow::onEditButtonClicked()
 {
     int row = ui->tableWidget->currentRow();
@@ -223,6 +239,14 @@ void MainWindow::on_btnConferma_2_clicked()
 
     if (telefono.size() != 10 || !telefono.toLongLong()) {
         showErrorMessage("Errore", "Telefono deve avere 10 cifre");
+        ui->inputTelefono->setFocus();
+        return;
+    }
+
+    if (m_contactList.contains(telefono)) {
+        QString message = QString("Numero di telefono già esistente");
+        showErrorMessage("Errore", message);
+        ui->inputTelefono->selectAll();
         ui->inputTelefono->setFocus();
         return;
     }
@@ -291,6 +315,11 @@ void MainWindow::showErrorMessage(const QString& title, const QString& message)
     msgBox.exec();
 }
 
+/**
+ * - Esegue la ricerca nella contactList usando la query
+ * - Salva gli indici originali dei risultati in m_searchResultsIndices
+ * - Aggiorna la tabella UI con solo i risultati trovati
+ */
 void MainWindow::on_inputSearch_textChanged(const QString &query)
 {
     m_searchResultsIndices = m_contactList.search(query, ui->tableWidget);

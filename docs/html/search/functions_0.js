@@ -1,0 +1,4 @@
+var searchData=
+[
+  ['applystylesheet_0',['applyStyleSheet',['../utils_8cpp.html#a36b27d2bbc6c9bc948b2b2b63d1dd174',1,'applyStyleSheet(bool isDarkMode):&#160;utils.cpp'],['../utils_8hpp.html#a36b27d2bbc6c9bc948b2b2b63d1dd174',1,'applyStyleSheet(bool isDarkMode):&#160;utils.cpp']]]
+];

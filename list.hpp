@@ -122,11 +122,11 @@ public:
 
     /**
      * @brief Verifica l'esistenza di un contatto
-     * @param[in] name Nome esatto da cercare (case-sensitive)
+     * @param[in] name Nome esatto da cercare (case-sensitive) oppure numero di telefono
      * @retval true Contatto presente
      * @retval false Contatto assente
      */
-    constexpr bool contains(const QString &name) const;
+    bool contains(const QString &value) const;
 
     /**
      * @brief Conta i contatti presenti
@@ -214,10 +214,10 @@ private:
 
     /**
      * @brief Ricerca un nodo per nome
-     * @param[in] name Nome esatto da cercare (case-sensitive)
+     * @param[in] name Nome esatto da cercare (case-sensitive) oppure numero di telefono
      * @return Puntatore al nodo trovato o nullptr
      */
-    Node *findNode(const QString &name) const;
+    Node *findNode(const QString &value) const;
 
     /**
      * @brief Ordina la lista per nome

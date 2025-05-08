@@ -56,6 +56,7 @@ public:
      */
     ~MainWindow();
 
+    // metodi che corrispondono ad un evento/segnale
 private slots:
     /**
      * @brief Slot per l'aggiunta di un nuovo contatto
@@ -135,6 +136,16 @@ private:
     ContactList m_contactList;           /**< Istanza della lista contatti (model) */
     int m_editingRow = -1;               /**< Riga in modifica (-1 = nessuna modifica) */
     QVector<int> m_searchResultsIndices; /**< Indici dei risultati di ricerca */
+
+    /*
+    *VARIABILE MEMBRO: m_searchResultsIndices
+     * 
+     * Conserva gli indici ORIGINALI dei contatti che corrispondono alla ricerca attuale.
+     * Esempio: se cerco "a" e trovo i contatti con indice originale 3 e 100,
+     * questo vettore conterrà [3, 100].
+     * Serve per mappare gli indici della tabella filtrata a quelli della lista completa.
+     */
+
     QSortFilterProxyModel *m_proxyModel; /**< Modello per il filtraggio dei dati */
 
     /**

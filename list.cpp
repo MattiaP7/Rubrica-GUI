@@ -207,6 +207,15 @@ bool ContactList::updateContact(const QString& originalName, const Contact& upda
     return true;
 }
 
+/*
+ * Cerca i contatti che corrispondono alla query e popola la tabella.
+ * - Scansiona tutta la lista originale
+ * - Per ogni match:
+ *   1. Aggiunge una riga alla tabella filtrata
+ *   2. Salva l'indice ORIGINALE nel Qt::UserRole dell'item "Nome"
+ *   3. Aggiunge l'indice al vettore risultato
+ * - Ritorna il vettore con gli indici originali dei risultati
+ */
 QVector<int> ContactList::search(const QString &query, QTableWidget *table)
 {
     QVector<int> originalIndices; // Conserverà gli indici ORIGINALI dei contatti trovati
@@ -260,9 +269,14 @@ QVector<Contact> ContactList::allContacts() const
     return contacts;
 }
 
-constexpr bool ContactList::contains(const QString& name) const
+bool ContactList::contains(const QString& value) const
 {
-    return findNode(name) != nullptr;
+    //return findNode(value) != nullptr;
+    if(findNode(value) != nullptr){
+        return true;
+    }else{
+        return false;
+    }
 }
 
 constexpr size_t ContactList::size() const
@@ -342,11 +356,11 @@ void ContactList::clear()
     m_count = 0;
 }
 
-Node* ContactList::findNode(const QString& name) const
+Node* ContactList::findNode(const QString& value) const
 {
     Node* current = m_head;
     while (current) {
-        if (current->contact.name() == name)
+        if (current->contact.name() == value || current->contact.phone() == value)
             return current;
         current = current->next;
     }
