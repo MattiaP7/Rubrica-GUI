@@ -244,11 +244,15 @@ void MainWindow::on_btnConferma_2_clicked()
     }
 
     if (m_contactList.contains(telefono)) {
-        QString message = QString("Numero di telefono già esistente");
-        showErrorMessage("Errore", message);
-        ui->inputTelefono->selectAll();
-        ui->inputTelefono->setFocus();
-        return;
+        Contact contatto_attule = m_contactList.at(m_editingRow);
+
+        if(contatto_attule.phone() != telefono){
+            QString message = QString("Numero di telefono già esistente");
+            showErrorMessage("Errore", message);
+            ui->inputTelefono->selectAll();
+            ui->inputTelefono->setFocus();
+            return;
+        }
     }
 
     if (!email.isEmpty() && !Contact("", "", email).isEmail()) {

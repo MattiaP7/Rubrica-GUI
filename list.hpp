@@ -63,7 +63,7 @@ public:
      * @brief Costruttore principale
      * @param[in] parent Oggetto padre nella gerarchia Qt (opzionale)
      */
-    explicit ContactList(QObject *parent = nullptr);
+    ContactList(QObject *parent = nullptr);
 
     /**
      * @brief Distruttore che libera la memoria allocata
