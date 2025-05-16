@@ -7,6 +7,7 @@
 *.core
 *.moc
 *.o
+*.zip
 *.obj
 *.orig
 *.rej
@@ -80,3 +81,4 @@ CMakeLists.txt.user*
 .rcc/
 .uic/
 /build*/
+/deploy*/
